@@ -141,6 +141,21 @@ h2 { font-family: var(--font-body); font-weight: 800; font-size: clamp(1.45rem, 
 .pill.ok { background: var(--saddle); color: var(--cream); }
 .pill.check { background: var(--canola); color: var(--on-canola); }
 .notes { font-size: .93rem; margin: .5rem 0 0; }
+.more-btn { display: none; }
+@media (max-width: 48rem) {
+  /* Finger-sized links and buttons */
+  .src a, .cal a, .cal button { display: inline-block; padding: .45rem 0; }
+  .cal { display: flex; flex-wrap: wrap; align-items: center; gap: 0 .9rem; }
+  .to-top { display: inline-block; padding: .45rem .2rem; }
+  .search .check { padding: .35rem 0; }
+  .search label.check input { width: 1.5rem; height: 1.5rem; }
+  footer a { display: inline-block; padding: .35rem 0; }
+  .sub-note a, .section-note a { display: inline-block; padding: .3rem 0; }
+  /* Shorter cards: name, town, date and price, with Details for the rest */
+  .more-btn { display: inline-block; margin-top: .5rem; font: inherit; font-size: .9rem; font-weight: 700; color: var(--denim); background: none; border: 1px solid var(--rule); border-radius: 999px; padding: .45rem .95rem; cursor: pointer; }
+  .more-btn:focus-visible { outline: 3px solid var(--denim); outline-offset: 2px; }
+  .ticket:not(.open) .facts .extra, .ticket:not(.open) .notes, .ticket:not(.open) .src, .ticket:not(.open) .cal { display: none; }
+}
 .email-form { margin: 0 0 1.4rem; max-width: 34rem; }
 .email-form label { display: block; font-weight: 700; margin-bottom: .4rem; }
 .email-row { display: flex; flex-wrap: wrap; gap: .5rem; }
@@ -911,6 +926,30 @@ html { scroll-behavior: smooth; }
   var t = document.querySelector('.nav-toggle'); if (!t) return;
   t.addEventListener('click', function () { t.setAttribute('aria-expanded', t.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'); });
   document.querySelectorAll('#nav-list a').forEach(function (a) { a.addEventListener('click', function () { t.setAttribute('aria-expanded', 'false'); }); });
+})();
+</script>
+
+<script>
+(function () {
+  // Phones: each card starts short (name, town, When, Price); "Details" shows the rest.
+  document.querySelectorAll('.ticket').forEach(function (t) {
+    var body = t.querySelector('.body'); if (!body) return;
+    var hidden = 0;
+    body.querySelectorAll('.facts > li').forEach(function (li) {
+      var b = li.querySelector('b'), k = b ? b.textContent : '';
+      if (!/^(When|Price)/.test(k)) { li.classList.add('extra'); hidden++; }
+    });
+    hidden += body.querySelectorAll('.notes, .src, .cal').length;
+    if (!hidden) return;
+    var btn = document.createElement('button');
+    btn.type = 'button'; btn.className = 'more-btn'; btn.textContent = 'Details'; btn.setAttribute('aria-expanded', 'false');
+    btn.addEventListener('click', function () {
+      var open = t.classList.toggle('open');
+      btn.textContent = open ? 'Hide details' : 'Details';
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    body.appendChild(btn);
+  });
 })();
 </script>
 
