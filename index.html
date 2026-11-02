@@ -226,6 +226,7 @@ footer .wrap { padding-block: 1.5rem 2.5rem; color: var(--muted); font-size: .9r
 .cv-head h2 { font-size: 1.35rem; text-align: center; flex: 1; }
 .cv-nav { font: inherit; font-size: 1.6rem; line-height: 1; width: 2.75rem; height: 2.75rem; border: 1px solid var(--rule); border-radius: 999px; background: var(--card); color: var(--saddle); cursor: pointer; }
 .cv-nav:disabled { opacity: .35; cursor: default; }
+.cv-note { margin: 0 0 .7rem; font-size: .92rem; font-weight: 600; color: var(--ink); }
 .cv-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 3px; }
 .cv-dow { text-align: center; font-size: .75rem; font-weight: 700; color: var(--muted); padding: .2rem 0; text-transform: uppercase; }
 .cv-cell { min-height: 4.6rem; background: var(--card); border: 1px solid var(--rule); border-radius: 4px; padding: .25rem .3rem; font: inherit; text-align: left; color: var(--ink); display: flex; flex-direction: column; gap: .15rem; overflow: hidden; }
@@ -445,9 +446,9 @@ html { scroll-behavior: smooth; }
       <h2 id="calview-h">Month</h2>
       <button type="button" class="cv-nav" id="cv-next" aria-label="Next month">&rsaquo;</button>
     </div>
+    <p class="cv-note">Only confirmed dances are on the calendar. Expected dances (date not posted yet) are in the list view.</p>
     <div class="cv-grid" id="cv-grid" role="grid"></div>
     <div class="cv-day" id="cv-day" aria-live="polite"></div>
-    <p class="section-note">Shows dances with a confirmed date. Annual dances with no date posted yet are in the list view.</p>
   </section>
 
   <nav class="jump" aria-label="Jump to a section">
@@ -1166,7 +1167,7 @@ html { scroll-behavior: smooth; }
   function key(y, m, d) { return y * 10000 + (m + 1) * 100 + d; }
   function clock(t) { var h = +t.slice(0, 2), mi = t.slice(2, 4), ap = h >= 12 ? 'pm' : 'am'; h = h % 12 || 12; return h + (mi !== '00' ? ':' + mi : '') + ' ' + ap; }
   var events = [];
-  document.querySelectorAll('.ticket[data-cal]').forEach(function (t) {
+  document.querySelectorAll('.ticket[data-cal][data-status="confirmed"]').forEach(function (t) {
     var cal = t.getAttribute('data-cal'), rr = t.getAttribute('data-rrule') || '';
     var a = t.querySelector('.src a');
     events.push({ el: t, title: clean(t.querySelector('h3')), where: clean(t.querySelector('.where')).split(' · ')[0],
