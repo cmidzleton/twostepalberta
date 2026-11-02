@@ -66,19 +66,10 @@
   --barn: #a3242b;
   --denim: #24476b;
   --on-canola: #1d2733;
+  color-scheme: light;
   --font-display: "Alfa Slab One", "Rockwell", "Georgia", serif;
   --font-body: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-data: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --paper: #141a21; --card: #1c242e; --ink: #ecefe8; --muted: #a3acb8; --rule: #2e3946;
-    --canola: #e0a548; --saddle: #28170d; --cream: #f3e3c3; --barn: #ff7b72; --denim: #8db8e8; --on-canola: #1d2733; color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --paper: #141a21; --card: #1c242e; --ink: #ecefe8; --muted: #a3acb8; --rule: #2e3946;
-  --canola: #e0a548; --saddle: #28170d; --cream: #f3e3c3; --barn: #ff7b72; --denim: #8db8e8; --on-canola: #1d2733; color-scheme: dark;
 }
 * { box-sizing: border-box; }
 body {
@@ -257,7 +248,7 @@ html { scroll-behavior: smooth; }
         <li><a href="#dances">Dances</a></li>
         <li><a href="#monthly">Monthly dances</a></li>
         <li><a href="#city">In Edmonton</a></li>
-        <li><a href="#subscribe">Get new dances</a></li>
+        <li><a href="#subscribe">Subscribe</a></li>
         <li><a href="#add">Submit a dance here</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="https://forms.gle/v9GQNi8NgZG2gEBN8" target="_blank" rel="noopener">Feedback</a></li>
@@ -658,7 +649,7 @@ html { scroll-behavior: smooth; }
   </section>
 
   <section id="subscribe" aria-labelledby="subscribe-h">
-    <div class="sec-head"><h2 id="subscribe-h">Get new dances</h2> <a class="to-top" href="#top">Back to top</a></div>
+    <div class="sec-head"><h2 id="subscribe-h">Subscribe</h2> <a class="to-top" href="#top">Back to top</a></div>
     <p class="section-note">Get an email when we post new dances, or put every confirmed dance into your own calendar. Either way, new ones reach you on their own after the Wednesday update.</p>
     <form class="email-form" action="https://api.follow.it/subscription-form/bXZkbDgzR1VJTlRvRWwzMjJmWTJFSGU5QUxtVkVmMlV5bTZEcCtWN081YnRjQitGeUEwUzRmOFpHbXVEYzU0SWk5Z3c2OHgyZTBLWlhVZVZwZlc3QWxlaitDTEJIYU5HdmdVakcyQXJVdnp4WU13dXBhVmFDeDBxK1VEMyswSmZ8MkZNNUZJUUc5b294R1I1R0VxMTcxNVp4UWZyeW9iWXJoR3F1YXFYWDNsOD0=/21" method="post">
       <label for="sub-email">Get new dances by email</label>
