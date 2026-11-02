@@ -96,6 +96,21 @@ h1, h2, h3 { text-wrap: balance; line-height: 1.15; margin: 0; }
 .hero-logo { display: block; width: min(100%, 34rem); height: auto; margin-top: 1.5rem; }
 .nav ul { list-style: none; display: flex; flex-wrap: wrap; gap: .25rem 1rem; margin: 0; padding: 0; font-weight: 600; font-size: .95rem; }
 .nav a { color: var(--cream); }
+.nav-toggle { display: none; }
+@media (max-width: 48rem) {
+  .nav { justify-content: flex-start; position: relative; padding-top: .6rem; }
+  .nav-toggle { display: inline-flex; align-items: center; gap: .55rem; font: inherit; font-weight: 700; color: var(--cream); background: none; border: 2px solid rgba(243, 227, 195, .45); border-radius: 6px; padding: .45rem .8rem; cursor: pointer; }
+  .nav-toggle:focus-visible { outline: 3px solid var(--canola); outline-offset: 2px; }
+  .burger, .burger::before, .burger::after { display: block; width: 1.2rem; height: 2px; background: currentColor; border-radius: 1px; position: relative; transition: transform .2s; }
+  .burger::before, .burger::after { content: ""; position: absolute; left: 0; }
+  .burger::before { top: -6px; } .burger::after { top: 6px; }
+  .nav-toggle[aria-expanded="true"] .burger { background: transparent; }
+  .nav-toggle[aria-expanded="true"] .burger::before { transform: translateY(6px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] .burger::after { transform: translateY(-6px) rotate(-45deg); }
+  .nav ul { display: none; flex-direction: column; gap: 0; width: 100%; margin-top: .5rem; font-size: 1.05rem; }
+  .nav-toggle[aria-expanded="true"] + ul { display: flex; }
+  .nav li a { display: block; padding: .6rem .2rem; border-bottom: 1px solid rgba(243, 227, 195, .18); text-decoration: none; }
+}
 .mast h1 { font-family: var(--font-body); font-weight: 700; font-size: clamp(1.35rem, 3.6vw, 1.7rem); margin-top: 1.25rem; max-width: 30ch; }
 .mast p.lede { font-size: 1.05rem; max-width: 36rem; margin: .5rem 0 0; opacity: .92; }
 .mast .weekly { margin: .6rem 0 0; font-weight: 700; color: var(--canola); }
@@ -244,7 +259,8 @@ html { scroll-behavior: smooth; }
 <header class="mast" id="top">
   <div class="wrap">
     <nav class="nav" aria-label="Main">
-      <ul>
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="nav-list"><span class="burger" aria-hidden="true"></span>Menu</button>
+      <ul id="nav-list">
         <li><a href="#dances">Local Dances &amp; Cabarets</a></li>
         <li><a href="#monthly">Monthly dances</a></li>
         <li><a href="#city">In Edmonton</a></li>
@@ -887,6 +903,14 @@ html { scroll-behavior: smooth; }
     var src = body.querySelector('.src');
     if (src) src.after(p); else body.appendChild(p);
   });
+})();
+</script>
+
+<script>
+(function () {
+  var t = document.querySelector('.nav-toggle'); if (!t) return;
+  t.addEventListener('click', function () { t.setAttribute('aria-expanded', t.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'); });
+  document.querySelectorAll('#nav-list a').forEach(function (a) { a.addEventListener('click', function () { t.setAttribute('aria-expanded', 'false'); }); });
 })();
 </script>
 
