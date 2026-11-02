@@ -132,6 +132,8 @@ footer .wrap { padding-block: 1.5rem 2.5rem; color: var(--muted); font-size: .9r
 .photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .photo figcaption { position: absolute; right: .5rem; bottom: .5rem; font-size: .72rem; color: #fff; background: rgba(20, 12, 6, .55); padding: .15rem .45rem; border-radius: 3px; }
 .mast-photo { margin-top: 1.5rem; min-height: 22rem; box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+.band-photo { aspect-ratio: 16 / 7; max-width: 100%; margin-bottom: 1.75rem; }
+.band-photo img { object-position: 50% 55%; }
 .about-grid { display: grid; grid-template-columns: minmax(12rem, 16rem) minmax(0, 1fr); gap: 1.5rem 2rem; align-items: start; }
 .about-photo { aspect-ratio: 757 / 963; max-width: 100%; }
 .about-text { min-width: 0; }
@@ -142,6 +144,8 @@ footer { border-top: 4px solid var(--canola); }
   .mast-photo { min-height: 0; height: 17rem; margin-top: .5rem; }
   .mast-photo img { object-position: 50% 68%; }
   .about-grid { grid-template-columns: 1fr; }
+  .band-photo { aspect-ratio: 4 / 3; }
+  .band-photo img { object-position: 35% 55%; }
   .about-photo { aspect-ratio: 4 / 3; }
   .about-photo img { object-position: 50% 45%; }
 }
@@ -657,6 +661,13 @@ html { scroll-behavior: smooth; }
   </section>
 
   <section id="add" aria-labelledby="add-h">
+    <figure class="photo band-photo">
+      <picture>
+        <source srcset="stage.webp" type="image/webp">
+        <img src="stage.jpg" width="1170" height="780" alt="Empty stage with a drum kit, microphone and keyboard under a spotlight" loading="lazy">
+      </picture>
+      <figcaption>Photo: John Matychuk</figcaption>
+    </figure>
     <div class="two">
       <div>
         <h2 id="add-h">Got a dance coming up?</h2>
