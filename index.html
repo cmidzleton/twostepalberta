@@ -135,6 +135,13 @@ h2 { font-family: var(--font-body); font-weight: 800; font-size: clamp(1.45rem, 
 .pill.ok { background: var(--saddle); color: var(--cream); }
 .pill.check { background: var(--canola); color: var(--on-canola); }
 .notes { font-size: .93rem; margin: .5rem 0 0; }
+.email-form { margin: 0 0 1.4rem; max-width: 34rem; }
+.email-form label { display: block; font-weight: 700; margin-bottom: .4rem; }
+.email-row { display: flex; flex-wrap: wrap; gap: .5rem; }
+.email-row input { flex: 1 1 14rem; min-width: 0; font: inherit; padding: .55rem .7rem; border: 2px solid var(--ink); border-radius: 4px; background: var(--card); color: var(--ink); }
+.email-row button { flex: 0 0 auto; font: inherit; font-weight: 700; color: var(--saddle); background: var(--canola); border: 0; border-radius: 4px; padding: .6rem 1rem; cursor: pointer; }
+.email-row input:focus-visible, .email-row button:focus-visible { outline: 3px solid var(--denim); outline-offset: 2px; }
+.cal-label { font-weight: 700; margin: 0 0 .5rem; }
 .sub-btns { display: flex; flex-wrap: wrap; gap: .6rem; }
 .sub-btn { display: inline-block; font-weight: 700; color: var(--cream); background: var(--saddle); text-decoration: none; border-radius: 999px; padding: .55rem 1.1rem; }
 .sub-btn:hover { background: var(--barn); }
@@ -652,13 +659,21 @@ html { scroll-behavior: smooth; }
 
   <section id="subscribe" aria-labelledby="subscribe-h">
     <div class="sec-head"><h2 id="subscribe-h">Get new dances</h2> <a class="to-top" href="#top">Back to top</a></div>
-    <p class="section-note">Put every confirmed dance on this page into your own calendar. When we add new ones on Wednesday, they show up there on their own.</p>
+    <p class="section-note">Get an email when we post new dances, or put every confirmed dance into your own calendar. Either way, new ones reach you on their own after the Wednesday update.</p>
+    <form class="email-form" action="https://api.follow.it/subscription-form/bXZkbDgzR1VJTlRvRWwzMjJmWTJFSGU5QUxtVkVmMlV5bTZEcCtWN081YnRjQitGeUEwUzRmOFpHbXVEYzU0SWk5Z3c2OHgyZTBLWlhVZVZwZlc3QWxlaitDTEJIYU5HdmdVakcyQXJVdnp4WU13dXBhVmFDeDBxK1VEMyswSmZ8MkZNNUZJUUc5b294R1I1R0VxMTcxNVp4UWZyeW9iWXJoR3F1YXFYWDNsOD0=/21" method="post">
+      <label for="sub-email">Get new dances by email</label>
+      <div class="email-row">
+        <input type="email" id="sub-email" name="email" required placeholder="Enter your email" autocomplete="email" spellcheck="false">
+        <button type="submit">Sign me up for weekly updates</button>
+      </div>
+      <p class="sub-note">One email when new dances go up, usually after the Wednesday update. You can unsubscribe any time. Sent through follow.it, where you can also <a href="https://follow.it/two-step-alberta-hall-dances-and-cabarets-near-edmonton" target="_blank" rel="noopener">follow us another way</a>.</p>
+    </form>
+    <p class="cal-label">Or add them all to your calendar</p>
     <div class="sub-btns">
       <a class="sub-btn" href="https://calendar.google.com/calendar/r?cid=webcal%3A%2F%2Ftwostepalberta.ca%2Fdances.ics" target="_blank" rel="noopener">Google Calendar</a>
       <a class="sub-btn" href="webcal://twostepalberta.ca/dances.ics">iPhone, Mac or Outlook</a>
     </div>
     <p class="sub-note">Google can take up to a day to pick up new dances. Other calendar apps: subscribe to <a href="https://twostepalberta.ca/dances.ics">https://twostepalberta.ca/dances.ics</a>.</p>
-    <!-- Email signup (MailerLite) goes here once the form is set up. -->
   </section>
 
   <section id="add" aria-labelledby="add-h">
