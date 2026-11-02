@@ -275,7 +275,6 @@ html { scroll-behavior: smooth; }
 
 <main class="wrap">
 
-  <p class="warn"><strong>Give the hall a call before you head out.</strong> Dates change, and nobody wants to drive an hour to a dark hall.</p>
   <div class="search">
     <label for="q">Search by town, hall or band</label>
     <input type="search" id="q" placeholder="e.g. Leduc, Villeneuve, Barre 44" autocomplete="off">
@@ -719,7 +718,7 @@ html { scroll-behavior: smooth; }
 <footer>
   <div class="wrap">
     <p><strong>Updated every Wednesday!</strong> Last updated <span class="updated">November 2, 2026</span>.</p>
-    <p>We don't run these dances. We just list what halls and organizers post online, so check with them before you go.</p>
+    <p>We don't run these dances. We just list what halls and organizers post online, so check the event page before you go.</p>
     <p>Two-Step Alberta · <a href="https://forms.gle/v9GQNi8NgZG2gEBN8" target="_blank" rel="noopener">Site feedback</a></p>
   </div>
 </footer>
@@ -857,7 +856,7 @@ html { scroll-behavior: smooth; }
     var where = clean(body.querySelector('.where')).split(' · ')[0];
     var a = body.querySelector('.src a'), link = a ? a.href : '';
     var whenEl = body.querySelector('.facts li');
-    var details = (whenEl ? whenEl.textContent.trim() + '\n' : '') + 'Check with the hall before you go.' + (link ? '\n' + link : '');
+    var details = (whenEl ? whenEl.textContent.trim() + '\n' : '') + 'Check the event page before you go.' + (link ? '\n' + link : '');
     var timed = cal.indexOf('/') !== -1, parts = cal.split('/');
     var g = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent(title) +
       '&dates=' + (timed ? parts[0] + '00/' + parts[1] + '00&ctz=America/Edmonton' : cal + '/' + nextDay(cal)) +

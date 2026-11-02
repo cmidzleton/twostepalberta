@@ -44,7 +44,7 @@ def main():
         where = text(re.search(r'<p class="where">(.*?)</p>', body, re.S)[1]).split(' · ')[0].rstrip(' ·')
         link = re.search(r'<p class="src">.*?href="([^"]+)"', body, re.S)
         when = re.search(r'<b>When:</b>(.*?)</li>', body, re.S)
-        desc = (text(when[1]) if when else '') + '\nCheck with the hall before you go.'
+        desc = (text(when[1]) if when else '') + '\nCheck the event page before you go.'
         if link: desc += '\n' + html.unescape(link[1])
         uid = hashlib.sha1((title + cal).encode()).hexdigest()[:16] + '@twostepalberta.ca'
         ev = ['BEGIN:VEVENT', 'UID:' + uid, 'DTSTAMP:' + stamp]
