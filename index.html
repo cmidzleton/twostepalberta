@@ -107,6 +107,12 @@ h2 { font-family: var(--font-body); font-weight: 800; font-size: clamp(1.45rem, 
 footer { margin-top: 3.5rem; border-top: 1px solid var(--rule); }
 footer .wrap { padding-block: 1.5rem 2.5rem; color: var(--muted); font-size: .9rem; }
 
+.search { display: grid; gap: .35rem; margin: 1.25rem 0 0; max-width: 42rem; }
+.search label { font-weight: 700; }
+.search input { font: inherit; padding: .65rem .8rem; border: 2px solid var(--saddle); border-radius: 4px; background: var(--card); color: var(--ink); width: 100%; }
+.search input:focus-visible { outline: 3px solid var(--canola); outline-offset: 1px; }
+.search #q-msg { margin: 0; font-size: .93rem; color: var(--muted); min-height: 1.2em; }
+.no-match { color: var(--muted); font-style: italic; margin: 0; }
 .locate { display: flex; flex-wrap: wrap; gap: .5rem .9rem; align-items: center; margin: .9rem 0 0; font-size: .93rem; color: var(--muted); max-width: 42rem; }
 .locate button { font: inherit; font-weight: 700; color: var(--saddle); background: var(--canola); border: 0; border-radius: 4px; padding: .5rem .9rem; cursor: pointer; }
 .locate select { font: inherit; padding: .45rem .5rem; border: 1px solid var(--rule); border-radius: 4px; background: var(--card); color: var(--ink); max-width: 100%; }
@@ -144,6 +150,12 @@ html { scroll-behavior: smooth; }
 <main class="wrap">
 
   <p class="warn"><strong>Give the hall a call before you head out.</strong> Dates change, and nobody wants to drive an hour to a dark hall.</p>
+  <div class="search">
+    <label for="q">Search by town, hall or band</label>
+    <input type="search" id="q" placeholder="e.g. Leduc, Villeneuve, Barre 44" autocomplete="off">
+    <p id="q-msg" aria-live="polite"></p>
+  </div>
+
   <div class="locate">
     <button type="button" id="locate">Use my location</button>
     <label for="town">or pick your town</label>
@@ -504,6 +516,36 @@ html { scroll-behavior: smooth; }
   </div>
 </footer>
 
+<script>
+(function () {
+  var q = document.getElementById('q');
+  var msg = document.getElementById('q-msg');
+  if (!q) return;
+  var tickets = Array.prototype.slice.call(document.querySelectorAll('.ticket'));
+  var lists = Array.prototype.slice.call(document.querySelectorAll('ol.dances'));
+  lists.forEach(function (ol) {
+    var p = document.createElement('p');
+    p.className = 'no-match'; p.hidden = true; p.textContent = 'Nothing here matches that.';
+    ol.parentNode.insertBefore(p, ol.nextSibling);
+  });
+  function norm(t) { return t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/&/g, 'and'); }
+  tickets.forEach(function (t) { t._text = norm(t.querySelector('.body').textContent); });
+  function run() {
+    var terms = norm(q.value).split(/\s+/).filter(Boolean);
+    var shown = 0;
+    tickets.forEach(function (t) {
+      var ok = terms.every(function (w) { return t._text.indexOf(w) !== -1; });
+      t.hidden = !ok; if (ok) shown++;
+    });
+    lists.forEach(function (ol) {
+      var any = ol.querySelector('.ticket:not([hidden])');
+      ol.nextSibling.hidden = !!any || !terms.length;
+    });
+    msg.textContent = terms.length ? (shown ? shown + (shown === 1 ? ' match' : ' matches') : 'No matches. Try just the town name.') : '';
+  }
+  q.addEventListener('input', run);
+})();
+</script>
 <script>
 (function () {
   var btn = document.getElementById('locate');
