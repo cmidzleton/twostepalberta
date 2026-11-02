@@ -64,6 +64,7 @@ h1, h2, h3 { text-wrap: balance; line-height: 1.15; margin: 0; }
 .nav a { color: var(--cream); }
 .mast h1 { font-family: var(--font-body); font-weight: 700; font-size: clamp(1.35rem, 3.6vw, 1.7rem); margin-top: 1.25rem; max-width: 30ch; }
 .mast p.lede { font-size: 1.05rem; max-width: 36rem; margin: .5rem 0 0; opacity: .92; }
+.mast .weekly { margin: .6rem 0 0; font-weight: 700; color: var(--canola); }
 .mast .cta { display: inline-block; margin-top: 1.25rem; background: var(--canola); color: var(--saddle); padding: .7rem 1.1rem; border-radius: 4px; font-weight: 700; text-decoration: none; }
 
 main section { padding-block: 2.5rem 0; }
@@ -149,6 +150,7 @@ html { scroll-behavior: smooth; }
     <img class="hero-logo" src="logo.png" width="760" height="320" alt="">
     <h1 id="top">Where's the dance this weekend?</h1>
     <p class="lede">Cabarets, suppers and old-time dances at halls around Edmonton. Mostly country, mostly live bands.</p>
+    <p class="weekly">Updated every Wednesday! Last updated <span class="updated">November 2, 2026</span>.</p>
     <a class="cta" href="#dances">See what's on</a>
   </div>
 </header>
@@ -212,7 +214,7 @@ html { scroll-behavior: smooth; }
 
   <section id="dances" aria-labelledby="dances-h">
     <h2 id="dances-h">Coming up</h2>
-    <p class="section-note">Out-of-town dances, soonest first. City ones are <a href="#city">further down</a>. Updated Nov 2, 2026.</p>
+    <p class="section-note">Out-of-town dances, soonest first. City ones are <a href="#city">further down</a>.</p>
 
     <ol class="dances">
 
@@ -528,7 +530,8 @@ html { scroll-behavior: smooth; }
 
 <footer>
   <div class="wrap">
-    <p>Two-Step Alberta · Updated Nov 2, 2026 · twostepalberta@gmail.com · <a href="https://forms.gle/v9GQNi8NgZG2gEBN8" target="_blank" rel="noopener">Site feedback</a></p>
+    <p><strong>Updated every Wednesday!</strong> Last updated <span class="updated">November 2, 2026</span>.</p>
+    <p>Two-Step Alberta · twostepalberta@gmail.com · <a href="https://forms.gle/v9GQNi8NgZG2gEBN8" target="_blank" rel="noopener">Site feedback</a></p>
   </div>
 </footer>
 
