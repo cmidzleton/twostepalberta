@@ -108,6 +108,12 @@ h2 { font-family: var(--font-body); font-weight: 800; font-size: clamp(1.45rem, 
 footer { margin-top: 3.5rem; }
 footer .wrap { padding-block: 1.5rem 2.5rem; color: var(--muted); font-size: .9rem; }
 
+.jump { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.25rem 0 0; }
+.jump a { display: inline-block; padding: .55rem .95rem; border-radius: 999px; background: var(--saddle); color: var(--cream); font-weight: 700; font-size: .95rem; text-decoration: none; }
+.jump a:hover { background: var(--denim); }
+.jump a:focus-visible { outline: 3px solid var(--canola); outline-offset: 2px; }
+.jump a[aria-disabled="true"] { opacity: .4; pointer-events: none; }
+section { scroll-margin-top: 1rem; }
 .search { display: grid; gap: .35rem; margin: 1.25rem 0 0; max-width: 42rem; }
 .search label { font-weight: 700; }
 .search input { font: inherit; padding: .65rem .8rem; border: 2px solid var(--saddle); border-radius: 4px; background: var(--card); color: var(--ink); width: 100%; }
@@ -168,7 +174,7 @@ html { scroll-behavior: smooth; }
       <ul>
         <li><a href="#dances">Dances</a></li>
         <li><a href="#monthly">Monthly jams</a></li>
-        <li><a href="#city">In the city</a></li>
+        <li><a href="#city">In Edmonton</a></li>
         <li><a href="#add">Submit a dance here</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="https://forms.gle/v9GQNi8NgZG2gEBN8" target="_blank" rel="noopener">Feedback</a></li>
@@ -196,6 +202,13 @@ html { scroll-behavior: smooth; }
 <main class="wrap">
 
   <p class="warn"><strong>Give the hall a call before you head out.</strong> Dates change, and nobody wants to drive an hour to a dark hall.</p>
+  <nav class="jump" aria-label="Jump to a section">
+    <a href="#dances">Confirmed dances</a>
+    <a href="#expected" id="jump-expected">Expected dances</a>
+    <a href="#monthly">Monthly jams</a>
+    <a href="#city">In Edmonton</a>
+  </nav>
+
   <div class="search">
     <label for="q">Search by town, hall or band</label>
     <input type="search" id="q" placeholder="e.g. Leduc, Villeneuve, Barre 44" autocomplete="off">
@@ -251,8 +264,8 @@ html { scroll-behavior: smooth; }
   </div>
 
   <section id="dances" aria-labelledby="dances-h">
-    <h2 id="dances-h">Coming up</h2>
-    <p class="section-note">Out-of-town dances, soonest first. City ones are <a href="#city">further down</a>.</p>
+    <h2 id="dances-h">Confirmed dances</h2>
+    <p class="section-note">Out-of-town dances with a date posted, soonest first. Edmonton ones are <a href="#city">further down</a>.</p>
 
     <ol class="dances">
 
@@ -369,40 +382,6 @@ html { scroll-behavior: smooth; }
       </li>
 
 
-      <li class="ticket" data-status="expected" data-age="18plus">
-        <div class="stub recurring" aria-hidden="true"><span class="mon">Expected</span><span class="day">Feb</span></div>
-        <div class="body">
-          <h3>Music &amp; Memories Dinner and Dance <span class="pill age">18+</span> <span class="pill check">2027 date not posted</span></h3>
-          <p class="where">Morinville Community Cultural Centre, 9502 100 Ave, Morinville · <span class="drive" data-ll="53.802,-113.649">~35 min from Edmonton</span></p>
-          <ul class="facts">
-            <li><b>When:</b> A Friday evening in February (2026 was Fri Feb 6)</li>
-            <li><b>Band:</b> 2026: Ryan Snow Band (live country)</li>
-            <li><b>Price:</b> 2026: $37 + GST early, $42 + GST later, buffet included</li>
-          </ul>
-          <p class="notes">18+. Put on by the Town of Morinville FCSS, who ran it in 2025 and 2026.</p>
-          <p class="src">More info: <a href="https://www.morinville.ca/news/news-posts/music-memories-returns-for-its-second-year/" target="_blank" rel="noopener">Town of Morinville, 2026 announcement</a></p>
-        </div>
-      </li>
-      <li class="ticket" data-status="expected" data-age="unknown">
-        <div class="stub recurring" aria-hidden="true"><span class="mon">Expected</span><span class="day">Feb</span></div>
-        <div class="body">
-          <h3>Alberta Beach Valentine's Supper &amp; Dance <span class="pill check">2027 date not posted</span></h3>
-          <p class="where">Alberta Beach Agriplex · <span class="drive" data-ll="53.676,-114.350">~1 hr from Edmonton</span></p>
-          <ul class="facts"><li><b>When:</b> Valentine's weekend (2026 was Sat Feb 14). Doors 5 pm, supper 6 pm, music 8–11 pm</li><li><b>Band:</b> 2026: Passin' Through (bluegrass) and Canadian Coldwater Revival (CCR tribute)</li><li><b>Price:</b> 2026: $49 supper and dance, $29 dance only</li></ul>
-          <p class="notes">Put on by Community of Alberta Networking (C.A.N.). The money goes to a wishlist program for seniors.</p>
-          <p class="src">More info: <a href="https://lsac.ca/events/valentines-day-dine-dance" target="_blank" rel="noopener">Lac Ste. Anne County, 2026 listing</a></p>
-        </div>
-      </li>
-      <li class="ticket" data-status="expected" data-age="unknown">
-        <div class="stub recurring" aria-hidden="true"><span class="mon">Expected</span><span class="day">Feb</span></div>
-        <div class="body">
-          <h3>Winter Blooms Gala <span class="pill check">2027 date not posted</span></h3>
-          <p class="where">Elks Social Hall, 400 Diamond Ave, Spruce Grove · <span class="drive" data-ll="53.545,-113.910">~30 min from Edmonton</span></p>
-          <ul class="facts"><li><b>When:</b> A Saturday evening in February (2026 was Sat Feb 21, 5–11 pm)</li><li><b>Price:</b> 2026: $100</li></ul>
-          <p class="notes">Put on by the Spruce Grove &amp; District Ag Society. Dressier than a cabaret (2026 was a masquerade).</p>
-          <p class="src">More info: <a href="https://www.onefm.ca/leduc/whats-happening/event/winter-blooms-masquerade-gala" target="_blank" rel="noopener">The One FM, 2026 listing</a></p>
-        </div>
-      </li>
       <li class="ticket" data-status="confirmed" data-age="unknown">
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">27</span><span class="mon">Feb</span></div>
         <div class="body">
@@ -457,6 +436,48 @@ html { scroll-behavior: smooth; }
           </ul>
           <p class="notes">Doors 7 pm. Order on the hall's form and e-transfer; your tickets wait at the door.</p>
           <p class="src">Tickets: <a href="https://docs.google.com/forms/d/e/1FAIpQLSfe5xHcJxSb2BKJgkgmM8IUcehAR2R0IWzXfBcJcFt2fQaZaA/viewform" target="_blank" rel="noopener">Villeneuve Hall ticket form</a> (linked from <a href="https://villeneuvehall.ca/" target="_blank" rel="noopener">villeneuvehall.ca</a>)</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section id="expected" aria-labelledby="expected-h">
+    <h2 id="expected-h">Expected dances</h2>
+    <p class="section-note">These happen most years, but this year's date isn't posted yet. We link last year's page so you know what to expect.</p>
+
+    <ol class="dances">
+      <li class="ticket" data-status="expected" data-age="18plus">
+        <div class="stub recurring" aria-hidden="true"><span class="mon">Expected</span><span class="day">Feb</span></div>
+        <div class="body">
+          <h3>Music &amp; Memories Dinner and Dance <span class="pill age">18+</span> <span class="pill check">2027 date not posted</span></h3>
+          <p class="where">Morinville Community Cultural Centre, 9502 100 Ave, Morinville · <span class="drive" data-ll="53.802,-113.649">~35 min from Edmonton</span></p>
+          <ul class="facts">
+            <li><b>When:</b> A Friday evening in February (2026 was Fri Feb 6)</li>
+            <li><b>Band:</b> 2026: Ryan Snow Band (live country)</li>
+            <li><b>Price:</b> 2026: $37 + GST early, $42 + GST later, buffet included</li>
+          </ul>
+          <p class="notes">18+. Put on by the Town of Morinville FCSS, who ran it in 2025 and 2026.</p>
+          <p class="src">More info: <a href="https://www.morinville.ca/news/news-posts/music-memories-returns-for-its-second-year/" target="_blank" rel="noopener">Town of Morinville, 2026 announcement</a></p>
+        </div>
+      </li>
+      <li class="ticket" data-status="expected" data-age="unknown">
+        <div class="stub recurring" aria-hidden="true"><span class="mon">Expected</span><span class="day">Feb</span></div>
+        <div class="body">
+          <h3>Alberta Beach Valentine's Supper &amp; Dance <span class="pill check">2027 date not posted</span></h3>
+          <p class="where">Alberta Beach Agriplex · <span class="drive" data-ll="53.676,-114.350">~1 hr from Edmonton</span></p>
+          <ul class="facts"><li><b>When:</b> Valentine's weekend (2026 was Sat Feb 14). Doors 5 pm, supper 6 pm, music 8–11 pm</li><li><b>Band:</b> 2026: Passin' Through (bluegrass) and Canadian Coldwater Revival (CCR tribute)</li><li><b>Price:</b> 2026: $49 supper and dance, $29 dance only</li></ul>
+          <p class="notes">Put on by Community of Alberta Networking (C.A.N.). The money goes to a wishlist program for seniors.</p>
+          <p class="src">More info: <a href="https://lsac.ca/events/valentines-day-dine-dance" target="_blank" rel="noopener">Lac Ste. Anne County, 2026 listing</a></p>
+        </div>
+      </li>
+      <li class="ticket" data-status="expected" data-age="unknown">
+        <div class="stub recurring" aria-hidden="true"><span class="mon">Expected</span><span class="day">Feb</span></div>
+        <div class="body">
+          <h3>Winter Blooms Gala <span class="pill check">2027 date not posted</span></h3>
+          <p class="where">Elks Social Hall, 400 Diamond Ave, Spruce Grove · <span class="drive" data-ll="53.545,-113.910">~30 min from Edmonton</span></p>
+          <ul class="facts"><li><b>When:</b> A Saturday evening in February (2026 was Sat Feb 21, 5–11 pm)</li><li><b>Price:</b> 2026: $100</li></ul>
+          <p class="notes">Put on by the Spruce Grove &amp; District Ag Society. Dressier than a cabaret (2026 was a masquerade).</p>
+          <p class="src">More info: <a href="https://www.onefm.ca/leduc/whats-happening/event/winter-blooms-masquerade-gala" target="_blank" rel="noopener">The One FM, 2026 listing</a></p>
         </div>
       </li>
     </ol>
@@ -565,7 +586,7 @@ html { scroll-behavior: smooth; }
   </section>
 
   <section id="city" aria-labelledby="city-h">
-    <h2 id="city-h">In the city</h2>
+    <h2 id="city-h">In Edmonton</h2>
     <p class="section-note">Edmonton and St. Albert. Not small town, but it's the same music.</p>
 
     <ol class="dances">
@@ -687,7 +708,7 @@ html { scroll-behavior: smooth; }
       </div>
       <div class="add-box">
         <a class="form-btn" href="https://forms.gle/kTqBcc3n5XQJCLADA" target="_blank" rel="noopener">Send in a dance</a>
-        <p>It's a short form. Have the date, start time, hall and a link to the event page or Facebook event handy. We only post dances that have one.</p>
+        <p>Have the date, start time, hall and a link to the event page or Facebook event handy. We only post dances that have one.</p>
       </div>
     </div>
   </section>
@@ -752,6 +773,12 @@ html { scroll-behavior: smooth; }
   q.addEventListener('input', run);
   age.addEventListener('change', run);
   conf.addEventListener('change', run);
+  conf.addEventListener('change', function () {
+    var sec = document.getElementById('expected'), j = document.getElementById('jump-expected');
+    sec.hidden = conf.checked;
+    if (conf.checked) { j.setAttribute('aria-disabled', 'true'); j.setAttribute('tabindex', '-1'); j.title = 'Hidden because "Only show dances with a confirmed date" is ticked'; }
+    else { j.removeAttribute('aria-disabled'); j.removeAttribute('tabindex'); j.removeAttribute('title'); }
+  });
 })();
 </script>
 <script>
