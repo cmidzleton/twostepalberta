@@ -105,7 +105,7 @@ h2 { font-family: var(--font-body); font-weight: 800; font-size: clamp(1.45rem, 
 .form-btn:focus-visible { outline: 3px solid var(--denim); outline-offset: 2px; }
 .email { font-family: var(--font-data); background: var(--paper); padding: .1rem .35rem; border-radius: 3px; user-select: all; }
 
-footer { margin-top: 3.5rem; border-top: 1px solid var(--rule); }
+footer { margin-top: 3.5rem; }
 footer .wrap { padding-block: 1.5rem 2.5rem; color: var(--muted); font-size: .9rem; }
 
 .search { display: grid; gap: .35rem; margin: 1.25rem 0 0; max-width: 42rem; }
@@ -125,6 +125,26 @@ footer .wrap { padding-block: 1.5rem 2.5rem; color: var(--muted); font-size: .9r
 .locate #locate-msg { flex-basis: 100%; margin: 0; }
 .locate button:focus-visible, .locate select:focus-visible { outline: 3px solid var(--denim); outline-offset: 2px; }
 .drive.mine { font-weight: 600; color: var(--ink); }
+/* Photos */
+.mast-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(14rem, 19rem); gap: 1.5rem 2.5rem; align-items: stretch; }
+.mast-text { min-width: 0; }
+.photo { position: relative; margin: 0; border-radius: 8px; overflow: hidden; background: var(--saddle); }
+.photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.photo figcaption { position: absolute; right: .5rem; bottom: .5rem; font-size: .72rem; color: #fff; background: rgba(20, 12, 6, .55); padding: .15rem .45rem; border-radius: 3px; }
+.mast-photo { margin-top: 1.5rem; min-height: 22rem; box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+.about-grid { display: grid; grid-template-columns: minmax(12rem, 16rem) minmax(0, 1fr); gap: 1.5rem 2rem; align-items: start; }
+.about-photo { aspect-ratio: 757 / 963; max-width: 100%; }
+.about-text { min-width: 0; }
+.ticket { box-shadow: 0 1px 2px rgba(40, 23, 13, .06), 0 4px 14px rgba(40, 23, 13, .06); }
+footer { border-top: 4px solid var(--canola); }
+@media (max-width: 48rem) {
+  .mast-grid { grid-template-columns: 1fr; }
+  .mast-photo { min-height: 0; height: 17rem; margin-top: .5rem; }
+  .mast-photo img { object-position: 50% 68%; }
+  .about-grid { grid-template-columns: 1fr; }
+  .about-photo { aspect-ratio: 4 / 3; }
+  .about-photo img { object-position: 50% 45%; }
+}
 @media (max-width: 30rem) {
   .ticket { grid-template-columns: 4.4rem 1fr; }
   .stub .day { font-size: 1.6rem; }
@@ -147,11 +167,22 @@ html { scroll-behavior: smooth; }
         <li><a href="https://forms.gle/v9GQNi8NgZG2gEBN8" target="_blank" rel="noopener">Feedback</a></li>
       </ul>
     </nav>
+    <div class="mast-grid">
+      <div class="mast-text">
     <img class="hero-logo" src="logo.png" width="760" height="320" alt="">
     <h1 id="top">Where's the dance this weekend?</h1>
     <p class="lede">Cabarets, suppers and old-time dances at halls around Edmonton. Mostly country, mostly live bands.</p>
     <p class="weekly">Updated every Wednesday! Last updated <span class="updated">November 2, 2026</span>.</p>
     <a class="cta" href="#dances">See what's on</a>
+      </div>
+      <figure class="photo mast-photo">
+        <picture>
+          <source srcset="welcome-sign.webp" type="image/webp">
+          <img src="welcome-sign.jpg" width="688" height="1030" alt="Neon bucking-horse Welcome sign against a pink prairie sunset">
+        </picture>
+        <figcaption>Photo: Karsten Winegeart</figcaption>
+      </figure>
+    </div>
   </div>
 </header>
 
@@ -639,10 +670,21 @@ html { scroll-behavior: smooth; }
   </section>
 
   <section id="about" aria-labelledby="about-h">
+    <div class="about-grid">
+      <figure class="photo about-photo">
+        <picture>
+          <source srcset="cowboy-hat.webp" type="image/webp">
+          <img src="cowboy-hat.jpg" width="757" height="963" alt="Cowboy hat resting on a truck tailgate at sunset on the prairie" loading="lazy">
+        </picture>
+        <figcaption>Photo: Blake Emge</figcaption>
+      </figure>
+      <div class="about-text">
     <h2 id="about-h">About this site</h2>
     <p class="section-note">Finding out when a hall dance is on usually means knowing somebody, or spotting the poster at the post office after it's already happened. This puts them in one spot. Every listing links to the hall or organizer's own page so you can check it yourself.</p>
     <p class="section-note">We don't run any of these dances. This is just a list of hall dances people have posted online, gathered in one place. For tickets, changes or questions, go to the hall or whoever's putting it on.</p>
     <p class="section-note">Something wrong, missing or hard to use? <a href="https://forms.gle/v9GQNi8NgZG2gEBN8" target="_blank" rel="noopener">Tell us here</a>.</p>
+      </div>
+    </div>
   </section>
 
 </main>
