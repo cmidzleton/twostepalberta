@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build dances.ics (the calendar feed people subscribe to) from the confirmed
+"""Build dances.ics (the calendar feed people subscribe to) and feed.xml (RSS for email alerts) from the confirmed
 listings in index.html. Each confirmed card carries data-cal="start/end"
 (Alberta local time, written out as UTC; or just a date for all-day) and optional data-rrule."""
 import hashlib, html, re
@@ -36,6 +36,7 @@ def main():
              'X-WR-TIMEZONE:America/Edmonton', 'REFRESH-INTERVAL;VALUE=DURATION:PT12H',
              'X-PUBLISHED-TTL:PT12H']
     n = 0
+    items = []
     for m in re.finditer(r'<li class="ticket"[^>]*data-cal="([^"]+)"([^>]*)>(.*?)</li>\s*(?=<li class="ticket"|</ol>)', src, re.S):
         cal, rest, body = m.groups()
         rr = re.search(r'data-rrule="([^"]+)"', rest)
@@ -58,9 +59,31 @@ def main():
         if link: ev.append('URL:' + html.unescape(link[1]))
         ev.append('END:VEVENT')
         lines += ev; n += 1
+        items.append((uid, title, where, desc, html.unescape(link[1]) if link else 'https://twostepalberta.ca/'))
     lines.append('END:VCALENDAR')
     with open('dances.ics', 'w', encoding='utf-8', newline='') as f: f.write('\r\n'.join(fold(l) for l in lines) + '\r\n')
     print('Wrote dances.ics with', n, 'events')
+    write_rss(items)
+
+def write_rss(items):
+    # feed.xml: one item per confirmed dance, so email services (follow.it, MailerLite)
+    # can send new dances automatically. guid stays stable, so only new dances trigger mail.
+    from email.utils import format_datetime
+    now = format_datetime(datetime.now(timezone.utc))
+    x = lambda v: html.escape(v, quote=True)
+    out = ['<?xml version="1.0" encoding="UTF-8"?>', '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">', '<channel>',
+           '<title>Two-Step Alberta: new dances</title>', '<link>https://twostepalberta.ca/</link>',
+           '<atom:link href="https://twostepalberta.ca/feed.xml" rel="self" type="application/rss+xml"/>',
+           '<description>Hall dances, cabarets and suppers around Edmonton, updated every Wednesday.</description>',
+           '<language>en-ca</language>', '<lastBuildDate>' + now + '</lastBuildDate>']
+    for uid, title, where, desc, link in items:
+        body = where + '\n' + desc
+        out += ['<item>', '<title>' + x(title) + '</title>', '<link>' + x(link) + '</link>',
+                '<guid isPermaLink="false">' + x(uid) + '</guid>',
+                '<description>' + x(body.replace('\n', '<br>')) + '</description>', '</item>']
+    out += ['</channel>', '</rss>']
+    with open('feed.xml', 'w', encoding='utf-8') as f: f.write('\n'.join(out) + '\n')
+    print('Wrote feed.xml with', len(items), 'items')
 
 if __name__ == '__main__':
     main()
