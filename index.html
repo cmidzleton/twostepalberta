@@ -108,7 +108,7 @@ h2 { font-family: var(--font-body); font-weight: 800; font-size: clamp(1.45rem, 
 footer { margin-top: 3.5rem; }
 footer .wrap { padding-block: 1.5rem 2.5rem; color: var(--muted); font-size: .9rem; }
 
-.jump { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.25rem 0 0; }
+.jump { display: flex; flex-wrap: wrap; gap: .5rem; margin: 2rem 0 0; }
 .jump a { display: inline-block; padding: .55rem .95rem; border-radius: 999px; background: var(--saddle); color: var(--cream); font-weight: 700; font-size: .95rem; text-decoration: none; }
 .jump a:hover { background: var(--denim); }
 .jump a:focus-visible { outline: 3px solid var(--canola); outline-offset: 2px; }
@@ -202,13 +202,6 @@ html { scroll-behavior: smooth; }
 <main class="wrap">
 
   <p class="warn"><strong>Give the hall a call before you head out.</strong> Dates change, and nobody wants to drive an hour to a dark hall.</p>
-  <nav class="jump" aria-label="Jump to a section">
-    <a href="#dances">Confirmed dances</a>
-    <a href="#expected" id="jump-expected">Expected dances</a>
-    <a href="#monthly">Monthly jams</a>
-    <a href="#city">In Edmonton</a>
-  </nav>
-
   <div class="search">
     <label for="q">Search by town, hall or band</label>
     <input type="search" id="q" placeholder="e.g. Leduc, Villeneuve, Barre 44" autocomplete="off">
@@ -262,6 +255,13 @@ html { scroll-behavior: smooth; }
     </select>
     <p id="locate-msg">Drive times below are rough guesses from central Edmonton. If you use your location, it stays on your phone or computer.</p>
   </div>
+
+  <nav class="jump" aria-label="Jump to a section">
+    <a href="#dances">Confirmed dances</a>
+    <a href="#expected" id="jump-expected">Expected dances</a>
+    <a href="#monthly">Monthly jams</a>
+    <a href="#city">In Edmonton</a>
+  </nav>
 
   <section id="dances" aria-labelledby="dances-h">
     <h2 id="dances-h">Confirmed dances</h2>
