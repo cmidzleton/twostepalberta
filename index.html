@@ -97,7 +97,11 @@ h2 { font-family: var(--font-body); font-weight: 800; font-size: clamp(1.45rem, 
 .two { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: 1.5rem 2.5rem; }
 .two > * { min-width: 0; }
 .add-box { background: var(--card); border: 2px solid var(--ink); border-radius: 6px; padding: 1.25rem; }
-.add-box ul { padding-left: 1.2rem; margin: .5rem 0 0; }
+.add-box { display: grid; gap: .6rem; justify-items: start; }
+.add-box p { margin: 0; }
+.add-box .alt { font-size: .93rem; color: var(--muted); }
+.form-btn { display: inline-block; background: var(--canola); color: var(--saddle); font-weight: 700; padding: .7rem 1.1rem; border-radius: 4px; text-decoration: none; }
+.form-btn:focus-visible { outline: 3px solid var(--denim); outline-offset: 2px; }
 .email { font-family: var(--font-data); background: var(--paper); padding: .1rem .35rem; border-radius: 3px; user-select: all; }
 
 footer { margin-top: 3.5rem; border-top: 1px solid var(--rule); }
@@ -480,13 +484,9 @@ html { scroll-behavior: smooth; }
         <p class="section-note">A lot of these only ever go up on Facebook or a poster at the post office. If your hall has one, send it over and I'll put it up. It's free.</p>
       </div>
       <div class="add-box">
-        <p style="margin:0">Email <span class="email">twostepalberta@gmail.com</span> and include:</p>
-        <ul>
-          <li>The town, the hall, the date and what time it starts</li>
-          <li>Who's playing and what it costs</li>
-          <li>A link to the event page or Facebook event (I only post dances that have one)</li>
-          <li>A picture of the poster if you've got it</li>
-        </ul>
+        <a class="form-btn" href="https://forms.gle/kTqBcc3n5XQJCLADA" target="_blank" rel="noopener">Send in a dance</a>
+        <p>It's a short form. Have the date, start time, hall and a link to the event page or Facebook event handy. I only post dances that have one.</p>
+        <p class="alt">Not a form person? Email <span class="email">twostepalberta@gmail.com</span>.</p>
       </div>
     </div>
   </section>
