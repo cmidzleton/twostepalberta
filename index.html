@@ -343,7 +343,7 @@ html { scroll-behavior: smooth; }
 
   <aside class="drive-calc" aria-labelledby="calc-h">
    <div class="calc-inner">
-    <button type="button" class="calc-toggle" id="calc-toggle" aria-expanded="false" aria-controls="calc-body"><span class="calc-title" id="calc-h">Drive time calculator</span> <span class="calc-from" id="calc-from">from central Edmonton</span></button>
+    <button type="button" class="calc-toggle" id="calc-toggle" aria-expanded="false" aria-controls="calc-body"><span class="calc-title" id="calc-h">Drive time calculator</span> <span class="calc-from" id="calc-from">set your location</span></button>
     <div class="calc-body" id="calc-body">
     <p class="calc-intro">Shows roughly how long each drive takes. It doesn't change which dances are listed.</p>
     <button type="button" id="locate">Use my location</button>
@@ -878,7 +878,7 @@ html { scroll-behavior: smooth; }
       from([pos.coords.latitude, pos.coords.longitude], 'you');
       town.value = '';
       msg.textContent = 'Drive times are now from you. They are estimates, so check a map for the real route.';
-      setFrom('from you');
+      setFrom('from your location');
     }, function () {
       msg.textContent = 'Couldn\u2019t get your location. Pick your town from the list instead.';
     }, { maximumAge: 600000, timeout: 15000 });
