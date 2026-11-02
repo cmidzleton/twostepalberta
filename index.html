@@ -41,7 +41,6 @@
       "name": "Two-Step Alberta",
       "url": "https://twostepalberta.ca/",
       "logo": "https://twostepalberta.ca/logo.png",
-      "email": "twostepalberta@gmail.com",
       "areaServed": "Edmonton region, Alberta, Canada"
     }
   ]
@@ -159,18 +158,44 @@ section { scroll-margin-top: 1rem; }
 .search label { font-weight: 700; }
 .search input { font: inherit; padding: .65rem .8rem; border: 2px solid var(--saddle); border-radius: 4px; background: var(--card); color: var(--ink); width: 100%; }
 .search input:focus-visible { outline: 3px solid var(--canola); outline-offset: 1px; }
-.search .age-label { font-weight: 600; margin-top: .3rem; }
 .search select { font: inherit; padding: .45rem .5rem; border: 1px solid var(--rule); border-radius: 4px; background: var(--card); color: var(--ink); justify-self: start; }
 .pill.age { background: var(--barn); color: var(--card); }
 .search .check { display: flex; gap: .5rem; align-items: center; font-weight: 600; margin-top: .3rem; cursor: pointer; }
 .search .check input { width: 1.15rem; height: 1.15rem; accent-color: var(--saddle); }
 .search #q-msg { margin: 0; font-size: .93rem; color: var(--muted); min-height: 1.2em; }
 .no-match { color: var(--muted); font-style: italic; margin: 0; }
-.locate { display: flex; flex-wrap: wrap; gap: .5rem .9rem; align-items: center; margin: .9rem 0 0; font-size: .93rem; color: var(--muted); max-width: 42rem; }
-.locate button { font: inherit; font-weight: 700; color: var(--saddle); background: var(--canola); border: 0; border-radius: 4px; padding: .5rem .9rem; cursor: pointer; }
-.locate select { font: inherit; padding: .45rem .5rem; border: 1px solid var(--rule); border-radius: 4px; background: var(--card); color: var(--ink); max-width: 100%; }
-.locate #locate-msg { flex-basis: 100%; margin: 0; }
-.locate button:focus-visible, .locate select:focus-visible { outline: 3px solid var(--denim); outline-offset: 2px; }
+.drive-calc { font-size: .93rem; color: var(--muted); }
+.calc-inner { background: var(--card); border: 1px solid var(--rule); border-top: 4px solid var(--canola); border-radius: 6px; box-shadow: 0 4px 14px rgba(40, 23, 13, .12); }
+.calc-toggle { display: flex; flex-wrap: nowrap; align-items: center; gap: 0 .5rem; width: 100%; font: inherit; text-align: left; color: var(--ink); background: none; border: 0; padding: .7rem .9rem; cursor: pointer; }
+.calc-title { font-weight: 700; font-size: 1rem; }
+.calc-from { color: var(--muted); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.calc-title { white-space: nowrap; }
+.calc-toggle::after { content: ""; flex: none; margin-left: auto; width: .5rem; height: .5rem; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: translateY(.15rem) rotate(-135deg); }
+.calc-toggle[aria-expanded="true"]::after { transform: translateY(-.15rem) rotate(45deg); }
+.calc-body { display: grid; gap: .5rem; padding: 0 .9rem .9rem; }
+.calc-intro { margin: 0; }
+.drive-calc button#locate { font: inherit; font-weight: 700; color: var(--saddle); background: var(--canola); border: 0; border-radius: 4px; padding: .5rem .9rem; cursor: pointer; justify-self: start; }
+.drive-calc select { font: inherit; padding: .45rem .5rem; border: 1px solid var(--rule); border-radius: 4px; background: var(--card); color: var(--ink); max-width: 100%; }
+.drive-calc #locate-msg { margin: 0; }
+.drive-calc button:focus-visible, .drive-calc select:focus-visible { outline: 3px solid var(--denim); outline-offset: 2px; }
+/* Phones and narrow windows: a bar pinned to the bottom that opens up */
+@media (max-width: 69.99rem) {
+  body { padding-bottom: 3.5rem; }
+  .drive-calc { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; padding: 0 max(8px, env(safe-area-inset-right, 0px)) max(8px, env(safe-area-inset-bottom, 0px)) max(8px, env(safe-area-inset-left, 0px)); }
+  .calc-inner { max-width: 32rem; margin: 0 auto; }
+  .calc-body { max-height: 60vh; overflow: auto; }
+  .calc-toggle[aria-expanded="false"] + .calc-body { display: none; }
+}
+/* Wide screens: a panel down the right side that stays in view */
+@media (min-width: 70rem) {
+  .wrap { max-width: 72rem; }
+  main.wrap { position: relative; padding-right: calc(max(16px, env(safe-area-inset-right, 0px)) + 18rem); }
+  .drive-calc { position: absolute; top: 1.5rem; bottom: 0; right: max(16px, env(safe-area-inset-right, 0px)); width: 16rem; }
+  .calc-inner { position: sticky; top: 1rem; }
+  .calc-toggle { cursor: default; padding-bottom: .4rem; }
+  .calc-toggle::after { content: none; }
+  .calc-from { display: none; }
+}
 .drive.mine { font-weight: 600; color: var(--ink); }
 /* Photos */
 .mast-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(14rem, 19rem); gap: 1.5rem 2.5rem; align-items: stretch; }
@@ -246,19 +271,15 @@ html { scroll-behavior: smooth; }
   <div class="search">
     <label for="q">Search by town, hall or band</label>
     <input type="search" id="q" placeholder="e.g. Leduc, Villeneuve, Barre 44" autocomplete="off">
-    <label for="age" class="age-label">Age</label>
-    <select id="age">
-      <option value="">Any age</option>
-      <option value="55plus">55+ / seniors</option>
-      <option value="18plus">18+</option>
-      <option value="all">All ages</option>
-      <option value="unknown">Age not listed</option>
-    </select>
     <label class="check"><input type="checkbox" id="confirmed-only"> Only show dances with a confirmed date</label>
     <p id="q-msg" aria-live="polite"></p>
   </div>
 
-  <div class="locate">
+  <aside class="drive-calc" aria-labelledby="calc-h">
+   <div class="calc-inner">
+    <button type="button" class="calc-toggle" id="calc-toggle" aria-expanded="false" aria-controls="calc-body"><span class="calc-title" id="calc-h">Drive time calculator</span> <span class="calc-from" id="calc-from">from central Edmonton</span></button>
+    <div class="calc-body" id="calc-body">
+    <p class="calc-intro">Shows roughly how long each drive takes. It doesn't change which dances are listed.</p>
     <button type="button" id="locate">Use my location</button>
     <label for="town">or pick your town</label>
     <select id="town">
@@ -295,7 +316,9 @@ html { scroll-behavior: smooth; }
       <option value="54.142,-115.685">Whitecourt</option>
     </select>
     <p id="locate-msg">Drive times below are rough guesses from central Edmonton. If you use your location, it stays on your phone or computer.</p>
-  </div>
+    </div>
+   </div>
+  </aside>
 
   <nav class="jump" aria-label="Jump to a section">
     <a href="#dances">Confirmed dances</a>
@@ -759,7 +782,7 @@ html { scroll-behavior: smooth; }
       </div>
       <div class="add-box">
         <a class="form-btn" href="https://forms.gle/kTqBcc3n5XQJCLADA" target="_blank" rel="noopener">Send in a dance</a>
-        <p>Have the date, start time and hall handy. We prefer to post dances with a link to an event page or Facebook event, so add one if there is one.</p>
+        <p>Have the date, start time and hall handy. We prefer to post dances with a link to an event page or Facebook event.</p>
       </div>
     </div>
   </section>
@@ -788,14 +811,13 @@ html { scroll-behavior: smooth; }
   <div class="wrap">
     <p><strong>Updated every Wednesday!</strong> Last updated <span class="updated">November 2, 2026</span>.</p>
     <p>We don't run these dances. We just list what halls and organizers post online, so check with them before you go.</p>
-    <p>Two-Step Alberta · <a href="mailto:twostepalberta@gmail.com">twostepalberta@gmail.com</a> · <a href="https://forms.gle/v9GQNi8NgZG2gEBN8" target="_blank" rel="noopener">Site feedback</a></p>
+    <p>Two-Step Alberta · <a href="https://forms.gle/v9GQNi8NgZG2gEBN8" target="_blank" rel="noopener">Site feedback</a></p>
   </div>
 </footer>
 
 <script>
 (function () {
   var q = document.getElementById('q');
-  var age = document.getElementById('age');
   var conf = document.getElementById('confirmed-only');
   var msg = document.getElementById('q-msg');
   if (!q) return;
@@ -812,17 +834,27 @@ html { scroll-behavior: smooth; }
     var terms = norm(q.value).split(/\s+/).filter(Boolean);
     var shown = 0;
     tickets.forEach(function (t) {
-      var ok = terms.every(function (w) { return t._text.indexOf(w) !== -1; }) && (!age.value || t.getAttribute('data-age') === age.value) && (!conf.checked || t.getAttribute('data-status') !== 'expected');
+      var ok = terms.every(function (w) { return t._text.indexOf(w) !== -1; }) && (!conf.checked || t.getAttribute('data-status') !== 'expected');
       t.hidden = !ok; if (ok) shown++;
     });
     lists.forEach(function (ol) {
       var any = ol.querySelector('.ticket:not([hidden])');
-      ol.nextSibling.hidden = !!any || !(terms.length || age.value || conf.checked);
+      ol.nextSibling.hidden = !!any || !(terms.length || conf.checked);
     });
-    msg.textContent = (terms.length || age.value || conf.checked) ? (shown ? shown + (shown === 1 ? ' match' : ' matches') : 'No matches. Try just the town name.') : '';
+    msg.textContent = '';
+    if (!(terms.length || conf.checked)) return;
+    if (!shown) { msg.textContent = 'No matches. Try just the town name.'; return; }
+    msg.appendChild(document.createTextNode(shown + (shown === 1 ? ' match, in ' : ' matches, in ')));
+    var secs = lists.filter(function (ol) { return ol.querySelector('.ticket:not([hidden])'); }).map(function (ol) { return ol.closest('section'); });
+    secs.forEach(function (sec, i) {
+      if (i) msg.appendChild(document.createTextNode(i === secs.length - 1 ? ' and ' : ', '));
+      var a = document.createElement('a');
+      a.href = '#' + sec.id; a.textContent = sec.querySelector('h2').textContent;
+      msg.appendChild(a);
+    });
+    msg.appendChild(document.createTextNode('.'));
   }
   q.addEventListener('input', run);
-  age.addEventListener('change', run);
   conf.addEventListener('change', run);
   conf.addEventListener('change', function () {
     var sec = document.getElementById('expected'), j = document.getElementById('jump-expected');
@@ -864,7 +896,14 @@ html { scroll-behavior: smooth; }
     if (!town.value) return;
     from(town.value.split(',').map(Number), town.options[town.selectedIndex].text);
     msg.textContent = 'Drive times are now from ' + town.options[town.selectedIndex].text + '. They are estimates, so check a map for the real route.';
+    setFrom('from ' + town.options[town.selectedIndex].text);
     try { localStorage.setItem('town', town.value); } catch (e) {}
+  });
+  var tog = document.getElementById('calc-toggle'), fromEl = document.getElementById('calc-from');
+  function setFrom(t) { fromEl.textContent = t; }
+  tog.addEventListener('click', function () {
+    if (window.matchMedia('(min-width: 70rem)').matches) return;
+    tog.setAttribute('aria-expanded', tog.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');
   });
   btn.addEventListener('click', function () {
     msg.textContent = 'Finding you...';
@@ -872,6 +911,7 @@ html { scroll-behavior: smooth; }
       from([pos.coords.latitude, pos.coords.longitude], 'you');
       town.value = '';
       msg.textContent = 'Drive times are now from you. They are estimates, so check a map for the real route.';
+      setFrom('from you');
     }, function () {
       msg.textContent = 'Couldn\u2019t get your location. Pick your town from the list instead.';
     }, { maximumAge: 600000, timeout: 15000 });
