@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Two-Step Alberta</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Hall dances, cabarets and old-time country nights in small-town Alberta. Find a dance near Edmonton this winter.">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: a hall-poster masthead, then a single column of dance "tickets": date stub on the left, details on the right. */
+:root {
+  --paper: #f2f3ee;
+  --card: #ffffff;
+  --ink: #1d2733;
+  --muted: #5b6573;
+  --rule: #d5d9d0;
+  --canola: #e0a548;
+  --saddle: #28170d;
+  --cream: #f3e3c3;
+  --barn: #a3242b;
+  --denim: #24476b;
+  --on-canola: #1d2733;
+  --font-display: "Alfa Slab One", "Rockwell", "Georgia", serif;
+  --font-body: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-data: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #141a21; --card: #1c242e; --ink: #ecefe8; --muted: #a3acb8; --rule: #2e3946;
+    --canola: #e0a548; --saddle: #28170d; --cream: #f3e3c3; --barn: #ff7b72; --denim: #8db8e8; --on-canola: #1d2733; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #141a21; --card: #1c242e; --ink: #ecefe8; --muted: #a3acb8; --rule: #2e3946;
+  --canola: #e0a548; --saddle: #28170d; --cream: #f3e3c3; --barn: #ff7b72; --denim: #8db8e8; --on-canola: #1d2733; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font-family: var(--font-body); font-size: 1.0625rem; line-height: 1.6;
+}
+a { color: var(--denim); text-underline-offset: 2px; }
+a:focus-visible { outline: 3px solid var(--canola); outline-offset: 2px; }
+.wrap {
+  max-width: 54rem; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+h1, h2, h3 { text-wrap: balance; line-height: 1.15; margin: 0; }
+
+/* Masthead */
+.mast { background: var(--saddle); color: var(--cream); }
+.mast .wrap { padding-block: 1.25rem 2.25rem; }
+.nav { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; align-items: center; justify-content: space-between; }
+.logo { display: block; line-height: 0; }
+.logo img { width: clamp(11rem, 40vw, 17rem); height: auto; display: block; }
+.nav ul { list-style: none; display: flex; flex-wrap: wrap; gap: .25rem 1rem; margin: 0; padding: 0; font-weight: 600; font-size: .95rem; }
+.nav a { color: var(--cream); }
+.mast h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(2.2rem, 7vw, 3.75rem); margin-top: 2rem; max-width: 14ch; }
+.mast p.lede { font-size: 1.15rem; max-width: 38rem; margin: .9rem 0 0; }
+.mast .cta { display: inline-block; margin-top: 1.25rem; background: var(--canola); color: var(--saddle); padding: .7rem 1.1rem; border-radius: 4px; font-weight: 700; text-decoration: none; }
+
+main section { padding-block: 2.5rem 0; }
+.eyebrow { font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--barn); margin: 0 0 .4rem; }
+h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.6rem, 4.5vw, 2.2rem); }
+.section-note { color: var(--muted); max-width: 40rem; margin: .5rem 0 1.25rem; }
+
+.warn { border-left: 4px solid var(--barn); background: var(--card); padding: .8rem 1rem; margin: 1.5rem 0 0; max-width: 42rem; }
+.warn strong { color: var(--barn); }
+
+/* Dance tickets */
+.dances { list-style: none; margin: 0; padding: 0; display: grid; gap: .75rem; }
+.ticket { display: grid; grid-template-columns: 5.5rem 1fr; background: var(--card); border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; }
+.stub { background: var(--denim); color: var(--card); text-align: center; padding: .9rem .4rem; display: flex; flex-direction: column; justify-content: center; border-right: 2px dashed var(--paper); font-family: var(--font-data); font-variant-numeric: tabular-nums; }
+.stub .dow, .stub .mon { font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; }
+.stub .day { font-family: var(--font-display); font-size: 2rem; line-height: 1.05; }
+.stub.recurring { background: var(--rule); color: var(--ink); }
+.stub.recurring .day { font-size: 1.05rem; font-family: var(--font-body); font-weight: 700; line-height: 1.25; }
+.body { padding: .9rem 1.1rem 1rem; min-width: 0; }
+.body h3 { font-size: 1.12rem; font-weight: 700; }
+.where { color: var(--muted); margin: .15rem 0 .5rem; font-size: .97rem; }
+.facts { display: flex; flex-wrap: wrap; gap: .3rem 1.1rem; margin: 0; padding: 0; list-style: none; font-size: .93rem; }
+.facts b { font-weight: 600; }
+.pill { display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: .12rem .5rem; border-radius: 999px; vertical-align: .15em; margin-left: .35rem; white-space: nowrap; }
+.pill.ok { background: var(--denim); color: var(--card); }
+.pill.check { background: var(--canola); color: var(--on-canola); }
+.notes { font-size: .93rem; margin: .5rem 0 0; }
+.src { font-size: .85rem; margin: .45rem 0 0; color: var(--muted); }
+
+/* About + add */
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: 1.5rem 2.5rem; }
+.two > * { min-width: 0; }
+.add-box { background: var(--card); border: 2px solid var(--ink); border-radius: 6px; padding: 1.25rem; }
+.add-box ul { padding-left: 1.2rem; margin: .5rem 0 0; }
+.email { font-family: var(--font-data); background: var(--paper); padding: .1rem .35rem; border-radius: 3px; user-select: all; }
+
+footer { margin-top: 3.5rem; border-top: 1px solid var(--rule); }
+footer .wrap { padding-block: 1.5rem 2.5rem; color: var(--muted); font-size: .9rem; }
+
+@media (max-width: 30rem) {
+  .ticket { grid-template-columns: 4.4rem 1fr; }
+  .stub .day { font-size: 1.6rem; }
+}
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+html { scroll-behavior: smooth; }
+</style>
+</head>
+<body>
+
+<header class="mast">
+  <div class="wrap">
+    <nav class="nav" aria-label="Main">
+      <a class="logo" href="#top"><img src="logo.png" width="760" height="320" alt="Two-Step Alberta"></a>
+      <ul>
+        <li><a href="#dances">Dances</a></li>
+        <li><a href="#monthly">Monthly jams</a></li>
+        <li><a href="#city">In the city</a></li>
+        <li><a href="#add">Add a dance</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </nav>
+    <h1 id="top">Find a hall dance this weekend.</h1>
+    <p class="lede">Cabarets, dinner-and-dances and old-time country nights at community halls, ag society grounds and Legions around Edmonton. Live bands, mostly country.</p>
+    <a class="cta" href="#dances">See winter 2026–27 dances</a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <p class="warn"><strong>Phone before you drive.</strong> Small-town dates change and many dances never get posted online. Call the hall or organizer to confirm. Drive times are rough estimates from central Edmonton.</p>
+
+  <section id="dances" aria-labelledby="dances-h">
+    <p class="eyebrow">Edmonton &amp; area · Winter 2026–27</p>
+    <h2 id="dances-h">Dates on the calendar</h2>
+    <p class="section-note">Small-town dances with a posted date, in order. Edmonton dances are listed <a href="#city">further down</a>. Last checked November 2, 2026.</p>
+
+    <ol class="dances">
+      <li class="ticket">
+        <div class="stub" aria-hidden="true"><span class="dow">Sun</span><span class="day">15</span><span class="mon">Nov</span></div>
+        <div class="body">
+          <h3>Ardrossan 55+ Social Dance <span class="pill check">Reconfirm</span></h3>
+          <p class="where">Ardrossan Seniors Centre, 21 Queen St, Ardrossan · ~25 min</p>
+          <ul class="facts">
+            <li><b>When:</b> Sunday, November 15, 2026, 1–4 pm</li>
+            <li><b>Band:</b> Wayne Felske</li>
+            <li><b>Price:</b> $12 at the door, light lunch included</li>
+          </ul>
+          <p class="notes">Hosted by the Ardrossan 55+ Seniors Club. No liquor. Centre: 780-922-2025.</p>
+          <p class="src">Source: <a href="https://mydancingshoes.ca/pdf/Kim_Maksym_Newsletter.pdf" target="_blank" rel="noopener">Kim Maksym's Dance Weekly, May 26, 2026 (PDF)</a></p>
+        </div>
+      </li>
+
+      <li class="ticket">
+        <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">5</span><span class="mon">Dec</span></div>
+        <div class="body">
+          <h3>Villeneuve Christmas Dinner &amp; Cabaret <span class="pill ok">Tickets on sale</span></h3>
+          <p class="where">Villeneuve Community Hall, 61-54200 Rge Rd 265, Sturgeon County · ~30 min</p>
+          <ul class="facts">
+            <li><b>When:</b> Saturday, December 5, 2026. Supper 6 pm, dance 8 pm–midnight</li>
+            <li><b>Band:</b> Barre 44</li>
+            <li><b>Price:</b> $65 dinner and dance, or $15 dance only (includes lunch)</li>
+          </ul>
+          <p class="notes">Dinner tickets must be bought by November 29. Doors 7 pm. Order on the hall's form, pay by e-transfer, tickets held at the door.</p>
+          <p class="src">Tickets and source: <a href="https://docs.google.com/forms/d/e/1FAIpQLSfe5xHcJxSb2BKJgkgmM8IUcehAR2R0IWzXfBcJcFt2fQaZaA/viewform" target="_blank" rel="noopener">Villeneuve Hall ticket form</a> (linked from <a href="https://villeneuvehall.ca/" target="_blank" rel="noopener">villeneuvehall.ca</a>)</p>
+        </div>
+      </li>
+
+      <li class="ticket">
+        <div class="stub" aria-hidden="true"><span class="dow">Sun</span><span class="day">20</span><span class="mon">Dec</span></div>
+        <div class="body">
+          <h3>Ardrossan 55+ Christmas-season Dance <span class="pill check">Reconfirm</span></h3>
+          <p class="where">Ardrossan Seniors Centre, 21 Queen St, Ardrossan · ~25 min</p>
+          <ul class="facts">
+            <li><b>When:</b> Sunday, December 20, 2026, 1–4 pm</li>
+            <li><b>Band:</b> Wayne Felske</li>
+            <li><b>Price:</b> $12 at the door, light lunch included</li>
+          </ul>
+          <p class="notes">Centre: 780-922-2025.</p>
+          <p class="src">Source: <a href="https://mydancingshoes.ca/pdf/Kim_Maksym_Newsletter.pdf" target="_blank" rel="noopener">Kim Maksym's Dance Weekly, May 26, 2026 (PDF)</a></p>
+        </div>
+      </li>
+
+
+      <li class="ticket">
+        <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">30</span><span class="mon">Jan</span></div>
+        <div class="body">
+          <h3>Villeneuve Hall Cabaret <span class="pill ok">Tickets on sale</span></h3>
+          <p class="where">Villeneuve Community Hall, 61-54200 Rge Rd 265, Sturgeon County · ~30 min</p>
+          <ul class="facts">
+            <li><b>When:</b> Saturday, January 30, 2027, 8 pm–midnight</li>
+            <li><b>Band:</b> Rave On</li>
+            <li><b>Price:</b> $15, free lunch included</li>
+          </ul>
+          <p class="notes">Doors 7 pm. Order on the hall's form, pay by e-transfer, tickets held at the door.</p>
+          <p class="src">Tickets and source: <a href="https://docs.google.com/forms/d/e/1FAIpQLSfe5xHcJxSb2BKJgkgmM8IUcehAR2R0IWzXfBcJcFt2fQaZaA/viewform" target="_blank" rel="noopener">Villeneuve Hall ticket form</a> (linked from <a href="https://villeneuvehall.ca/" target="_blank" rel="noopener">villeneuvehall.ca</a>)</p>
+        </div>
+      </li>
+
+      <li class="ticket">
+        <div class="stub recurring" aria-hidden="true"><span class="mon">Expected</span><span class="day">Feb</span></div>
+        <div class="body">
+          <h3>Music &amp; Memories Dinner and Dance <span class="pill check">2027 date not posted</span></h3>
+          <p class="where">Morinville Community Cultural Centre, 9502 100 Ave, Morinville · ~35 min</p>
+          <ul class="facts">
+            <li><b>When:</b> A Friday evening in February (2026 was Fri Feb 6)</li>
+            <li><b>Band:</b> 2026: Ryan Snow Band (live country)</li>
+            <li><b>Price:</b> 2026: $37 + GST early, $42 + GST later, buffet included</li>
+          </ul>
+          <p class="notes">18+. Hosted by Town of Morinville FCSS. Ran in 2025 and 2026.</p>
+          <p class="src">Source: <a href="https://www.morinville.ca/news/news-posts/music-memories-returns-for-its-second-year/" target="_blank" rel="noopener">Town of Morinville, 2026 announcement</a></p>
+        </div>
+      </li>
+
+      <li class="ticket">
+        <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">27</span><span class="mon">Feb</span></div>
+        <div class="body">
+          <h3>Villeneuve Hall Cabaret <span class="pill ok">Tickets on sale</span></h3>
+          <p class="where">Villeneuve Community Hall, 61-54200 Rge Rd 265, Sturgeon County · ~30 min</p>
+          <ul class="facts">
+            <li><b>When:</b> Saturday, February 27, 2027, 8 pm–midnight</li>
+            <li><b>Band:</b> Barre 44</li>
+            <li><b>Price:</b> $15, free lunch included</li>
+          </ul>
+          <p class="notes">Doors 7 pm. Order on the hall's form, pay by e-transfer, tickets held at the door.</p>
+          <p class="src">Tickets and source: <a href="https://docs.google.com/forms/d/e/1FAIpQLSfe5xHcJxSb2BKJgkgmM8IUcehAR2R0IWzXfBcJcFt2fQaZaA/viewform" target="_blank" rel="noopener">Villeneuve Hall ticket form</a> (linked from <a href="https://villeneuvehall.ca/" target="_blank" rel="noopener">villeneuvehall.ca</a>)</p>
+        </div>
+      </li>
+      <li class="ticket">
+        <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">20</span><span class="mon">Mar</span></div>
+        <div class="body">
+          <h3>Villeneuve Hall Cabaret <span class="pill ok">Tickets on sale</span></h3>
+          <p class="where">Villeneuve Community Hall, 61-54200 Rge Rd 265, Sturgeon County · ~30 min</p>
+          <ul class="facts">
+            <li><b>When:</b> Saturday, March 20, 2027, 8 pm–midnight</li>
+            <li><b>Band:</b> Satellites</li>
+            <li><b>Price:</b> $15, free lunch included</li>
+          </ul>
+          <p class="notes">Doors 7 pm. Order on the hall's form, pay by e-transfer, tickets held at the door.</p>
+          <p class="src">Tickets and source: <a href="https://docs.google.com/forms/d/e/1FAIpQLSfe5xHcJxSb2BKJgkgmM8IUcehAR2R0IWzXfBcJcFt2fQaZaA/viewform" target="_blank" rel="noopener">Villeneuve Hall ticket form</a> (linked from <a href="https://villeneuvehall.ca/" target="_blank" rel="noopener">villeneuvehall.ca</a>)</p>
+        </div>
+      </li>
+      <li class="ticket">
+        <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">10</span><span class="mon">Apr</span></div>
+        <div class="body">
+          <h3>Villeneuve Funny Money Social <span class="pill ok">Tickets on sale</span></h3>
+          <p class="where">Villeneuve Community Hall, 61-54200 Rge Rd 265, Sturgeon County · ~30 min</p>
+          <ul class="facts">
+            <li><b>When:</b> Saturday, April 10, 2027, doors 7 pm (end time not listed)</li>
+            <li><b>Band:</b> Not listed</li>
+            <li><b>Price:</b> $15, free lunch included</li>
+          </ul>
+          <p class="notes">Order on the hall's form, pay by e-transfer, tickets held at the door.</p>
+          <p class="src">Tickets and source: <a href="https://docs.google.com/forms/d/e/1FAIpQLSfe5xHcJxSb2BKJgkgmM8IUcehAR2R0IWzXfBcJcFt2fQaZaA/viewform" target="_blank" rel="noopener">Villeneuve Hall ticket form</a> (linked from <a href="https://villeneuvehall.ca/" target="_blank" rel="noopener">villeneuvehall.ca</a>)</p>
+        </div>
+      </li>
+      <li class="ticket">
+        <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">24</span><span class="mon">Apr</span></div>
+        <div class="body">
+          <h3>Villeneuve Hall Cabaret <span class="pill ok">Tickets on sale</span></h3>
+          <p class="where">Villeneuve Community Hall, 61-54200 Rge Rd 265, Sturgeon County · ~30 min</p>
+          <ul class="facts">
+            <li><b>When:</b> Saturday, April 24, 2027, 8 pm–midnight</li>
+            <li><b>Band:</b> Ryan Snow Band</li>
+            <li><b>Price:</b> $15, free lunch included</li>
+          </ul>
+          <p class="notes">Doors 7 pm. Order on the hall's form, pay by e-transfer, tickets held at the door.</p>
+          <p class="src">Tickets and source: <a href="https://docs.google.com/forms/d/e/1FAIpQLSfe5xHcJxSb2BKJgkgmM8IUcehAR2R0IWzXfBcJcFt2fQaZaA/viewform" target="_blank" rel="noopener">Villeneuve Hall ticket form</a> (linked from <a href="https://villeneuvehall.ca/" target="_blank" rel="noopener">villeneuvehall.ca</a>)</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section id="monthly" aria-labelledby="monthly-h">
+    <p class="eyebrow">Recurring</p>
+    <h2 id="monthly-h">Monthly jams and dances</h2>
+    <p class="section-note">These run on a regular pattern, but winter dates aren't posted. Most come from a May 2026 newsletter, so treat them as "probably still running, phone first." Contacts are in the linked newsletter.</p>
+
+    <ol class="dances">
+      <li class="ticket">
+        <div class="stub recurring" aria-hidden="true"><span class="mon">1st</span><span class="day">Sun</span></div>
+        <div class="body">
+          <h3>Stony Plain Jamboree / Community Sunday Jam</h3>
+          <p class="where">Stony Plain (venue not named in source) · ~30 min</p>
+          <ul class="facts"><li><b>When:</b> 1st Sunday, not July or August</li><li><b>Music:</b> Jam musicians</li></ul>
+          <p class="src">Source: <a href="https://mydancingshoes.ca/pdf/Kim_Maksym_Newsletter.pdf" target="_blank" rel="noopener">Kim Maksym's Dance Weekly (PDF)</a></p>
+        </div>
+      </li>
+      <li class="ticket">
+        <div class="stub recurring" aria-hidden="true"><span class="mon">1st</span><span class="day">Sat</span></div>
+        <div class="body">
+          <h3>Camrose Dance Club</h3>
+          <p class="where">Camrose (venue not named in source) · ~1 hr 10 min</p>
+          <ul class="facts"><li><b>When:</b> 1st Saturday afternoon</li></ul>
+          <p class="src">Source: <a href="https://mydancingshoes.ca/pdf/Kim_Maksym_Newsletter.pdf" target="_blank" rel="noopener">Kim Maksym's Dance Weekly (PDF)</a></p>
+        </div>
+      </li>
+      <li class="ticket">
+        <div class="stub recurring" aria-hidden="true"><span class="mon">2nd</span><span class="day">Sun</span></div>
+        <div class="body">
+          <h3>Ardrossan 55+ Social Dance</h3>
+          <p class="where">Ardrossan Seniors Centre, 21 Queen St · ~25 min</p>
+          <ul class="facts"><li><b>When:</b> 2nd Sunday, 1–4 pm (Jan, Feb, Mar 2027 expected)</li><li><b>Band:</b> Rotating local bands</li><li><b>Price:</b> $12</li></ul>
+          <p class="notes">Call the centre at 780-922-2025 for 2027 dates.</p>
+          <p class="src">Source: <a href="https://mydancingshoes.ca/pdf/Kim_Maksym_Newsletter.pdf" target="_blank" rel="noopener">Kim Maksym's Dance Weekly (PDF)</a></p>
+        </div>
+      </li>
+      <li class="ticket">
+        <div class="stub recurring" aria-hidden="true"><span class="mon">2nd</span><span class="day">Sun</span></div>
+        <div class="body">
+          <h3>Camrose Jam &amp; Dance</h3>
+          <p class="where">Camrose (venue not named in source) · ~1 hr 10 min</p>
+          <ul class="facts"><li><b>When:</b> 2nd Sunday</li><li><b>Music:</b> Jam musicians</li></ul>
+          <p class="src">Source: <a href="https://mydancingshoes.ca/pdf/Kim_Maksym_Newsletter.pdf" target="_blank" rel="noopener">Kim Maksym's Dance Weekly (PDF)</a></p>
+        </div>
+      </li>
+      <li class="ticket">
+        <div class="stub recurring" aria-hidden="true"><span class="mon">3rd</span><span class="day">Thu</span></div>
+        <div class="body">
+          <h3>Strathcona Seniors Dance</h3>
+          <p class="where">Sherwood Park (county lists the Sherwood Park Log Cabin) · ~20 min</p>
+          <ul class="facts"><li><b>When:</b> 3rd Thursday, monthly except December</li><li><b>Music:</b> Live</li><li><b>Price:</b> $12, pre-register online or cash at the door</li></ul>
+          <p class="notes">Strathcona County: 780-464-8262.</p>
+          <p class="src">Source: <a href="https://www.strathcona.ca/community-families/seniors/seniors-dance-social" target="_blank" rel="noopener">Strathcona County, Seniors' Dance and Social</a></p>
+        </div>
+      </li>
+      <li class="ticket">
+        <div class="stub recurring" aria-hidden="true"><span class="mon">4th</span><span class="day">Fri</span></div>
+        <div class="body">
+          <h3>Devon Monthly Music Jam &amp; Dance</h3>
+          <p class="where">Devon (venue not named in source) · ~35 min</p>
+          <ul class="facts"><li><b>When:</b> 4th Friday, 1:30–4:30 pm, not July to September</li><li><b>Price:</b> $10 guests, $5 musicians</li></ul>
+          <p class="src">Source: <a href="https://mydancingshoes.ca/pdf/Kim_Maksym_Newsletter.pdf" target="_blank" rel="noopener">Kim Maksym's Dance Weekly (PDF)</a></p>
+        </div>
+      </li>
+      <li class="ticket">
+        <div class="stub recurring" aria-hidden="true"><span class="mon">4th</span><span class="day">Sun</span></div>
+        <div class="body">
+          <h3>Busby Dance &amp; Music Jamboree</h3>
+          <p class="where">Busby (likely the Busby hall) · ~1 hr</p>
+          <ul class="facts"><li><b>When:</b> 4th Sunday, not July or August</li><li><b>Music:</b> Jam musicians</li></ul>
+          <p class="src">Source: <a href="https://mydancingshoes.ca/pdf/Kim_Maksym_Newsletter.pdf" target="_blank" rel="noopener">Kim Maksym's Dance Weekly (PDF)</a></p>
+        </div>
+      </li>
+      <li class="ticket">
+        <div class="stub recurring" aria-hidden="true"><span class="mon">No</span><span class="day">set day</span></div>
+        <div class="body">
+          <h3>Clymont Hall and Garden Valley Hall country jams</h3>
+          <p class="where">Near Spruce Grove · ~30 min</p>
+          <ul class="facts"><li><b>When:</b> No schedule listed</li><li><b>Music:</b> Country jam</li></ul>
+          <p class="src">Source: <a href="https://mydancingshoes.ca/pdf/Kim_Maksym_Newsletter.pdf" target="_blank" rel="noopener">Kim Maksym's Dance Weekly (PDF)</a></p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section id="city" aria-labelledby="city-h">
+    <p class="eyebrow">Edmonton</p>
+    <h2 id="city-h">In the city</h2>
+    <p class="section-note">Not small-town halls, but these old-time Legion dances draw the same crowd. Kingsway Legion Br. 175 is at 14339 50 St NW.</p>
+
+    <ol class="dances">
+      <li class="ticket">
+        <div class="stub" aria-hidden="true"><span class="dow">Sun</span><span class="day">6</span><span class="mon">Dec</span></div>
+        <div class="body">
+          <h3>Calvin Vollrath &amp; Country Swing Christmas Dance <span class="pill ok">Tickets on sale</span></h3>
+          <p class="where">Kingsway Legion Br. 175, 14339 50 St NW, Edmonton</p>
+          <ul class="facts">
+            <li><b>When:</b> Sunday, December 6, 2026, 2 pm</li>
+            <li><b>Band:</b> Calvin Vollrath &amp; Country Swing (old-time country)</li>
+            <li><b>Price:</b> Not listed (earlier 2026 dances were $15)</li>
+          </ul>
+          <p class="notes">"Dance &amp; Dinner" and "dance only" tickets are offered.</p>
+          <p class="src">Source: <a href="https://calvinvollrath.com/tickets" target="_blank" rel="noopener">calvinvollrath.com/tickets</a></p>
+        </div>
+      </li>
+      <li class="ticket">
+        <div class="stub" aria-hidden="true"><span class="dow">Sun</span><span class="day">10</span><span class="mon">Jan</span></div>
+        <div class="body">
+          <h3>Calvin Vollrath &amp; Country Swing Dance <span class="pill ok">Tickets on sale</span></h3>
+          <p class="where">Kingsway Legion Br. 175, Edmonton</p>
+          <ul class="facts">
+            <li><b>When:</b> Sunday, January 10, 2027, 2 pm</li>
+            <li><b>Band:</b> Calvin Vollrath &amp; Country Swing</li>
+          </ul>
+          <p class="src">Source: <a href="https://calvinvollrath.com/tickets" target="_blank" rel="noopener">calvinvollrath.com/tickets</a></p>
+        </div>
+      </li>
+      <li class="ticket">
+        <div class="stub" aria-hidden="true"><span class="dow">Sun</span><span class="day">21</span><span class="mon">Feb</span></div>
+        <div class="body">
+          <h3>Calvin Vollrath &amp; Country Swing Dance <span class="pill ok">Tickets on sale</span></h3>
+          <p class="where">Kingsway Legion Br. 175, Edmonton</p>
+          <ul class="facts">
+            <li><b>When:</b> Sunday, February 21, 2027, 2 pm</li>
+            <li><b>Band:</b> Calvin Vollrath &amp; Country Swing</li>
+          </ul>
+          <p class="src">Source: <a href="https://calvinvollrath.com/tickets" target="_blank" rel="noopener">calvinvollrath.com/tickets</a></p>
+        </div>
+      </li>
+      <li class="ticket">
+        <div class="stub" aria-hidden="true"><span class="dow">Sun</span><span class="day">14</span><span class="mon">Mar</span></div>
+        <div class="body">
+          <h3>Calvin Vollrath &amp; Country Swing Dance <span class="pill ok">Tickets on sale</span></h3>
+          <p class="where">Kingsway Legion Br. 175, Edmonton</p>
+          <ul class="facts">
+            <li><b>When:</b> Sunday, March 14, 2027, 2 pm</li>
+            <li><b>Band:</b> Calvin Vollrath &amp; Country Swing</li>
+          </ul>
+          <p class="notes">The season runs to June 13, 2027.</p>
+          <p class="src">Source: <a href="https://calvinvollrath.com/tickets" target="_blank" rel="noopener">calvinvollrath.com/tickets</a></p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section id="add" aria-labelledby="add-h">
+    <div class="two">
+      <div>
+        <p class="eyebrow">Know of one we missed?</p>
+        <h2 id="add-h">Add your hall's dance</h2>
+        <p class="section-note">Most small-town cabarets, New Year's Eve dances and Legion nights only get posted on Facebook or a poster at the post office. If you run one, or saw a poster, send it in and we'll list it free.</p>
+      </div>
+      <div class="add-box">
+        <p style="margin:0">Email <span class="email">twostepalberta@gmail.com</span> with:</p>
+        <ul>
+          <li>Dance name, town and hall</li>
+          <li>Date and start time</li>
+          <li>Band and price</li>
+          <li>Who's hosting, and a phone number for questions</li>
+          <li>A photo of the poster, if you have one</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" aria-labelledby="about-h">
+    <p class="eyebrow">About</p>
+    <h2 id="about-h">Keeping the hall dance going</h2>
+    <p class="section-note">Hall dances keep small towns together, and plenty of them are run by volunteers who are getting ready to retire. Two-Step Alberta puts the dates in one place so more people show up, the band gets paid, and the hall stays open. Every listing links to where we found it.</p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Two-Step Alberta · Listings last checked November 2, 2026. Dates come from public sources and can change, so always confirm with the organizer.</p>
+  </div>
+</footer>
+
+</body>
+</html>
