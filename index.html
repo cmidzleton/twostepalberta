@@ -161,7 +161,12 @@ h2 { font-family: var(--font-body); font-weight: 800; font-size: clamp(1.45rem, 
   /* Shorter cards: name, town, date and price, with Details for the rest */
   .more-btn { display: inline-block; margin-top: .5rem; font: inherit; font-size: .9rem; font-weight: 700; color: var(--denim); background: none; border: 1px solid var(--rule); border-radius: 999px; padding: .45rem .95rem; cursor: pointer; }
   .more-btn:focus-visible { outline: 3px solid var(--denim); outline-offset: 2px; }
-  .ticket:not(.open) .facts .extra, .ticket:not(.open) .notes, .ticket:not(.open) .src, .ticket:not(.open) .cal { display: none; }
+  .ticket:not(.open) .facts .extra, .ticket:not(.open) .notes, .ticket:not(.open) .src { display: none; }
+  .ticket:not(.cal-open) .cal { display: none; }
+  .card-actions { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .5rem; }
+  .card-actions .more-btn { padding: .45rem .75rem; font-size: .85rem; }
+  .card-actions .more-btn { margin-top: 0; }
+  .cal-btn { display: inline-flex; align-items: center; gap: .4rem; }
 }
 .email-form { margin: 0 0 1.4rem; max-width: 34rem; }
 .email-form label { display: block; font-weight: 700; margin-bottom: .4rem; }
@@ -960,7 +965,21 @@ html { scroll-behavior: smooth; }
       btn.textContent = open ? 'Hide details' : 'Details';
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
-    body.appendChild(btn);
+    var row = document.createElement('div'); row.className = 'card-actions';
+    row.appendChild(btn);
+    var cal = body.querySelector('.cal');
+    if (cal) {
+      var cb = document.createElement('button');
+      cb.type = 'button'; cb.className = 'more-btn cal-btn'; cb.setAttribute('aria-expanded', 'false');
+      cb.innerHTML = '<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Add to calendar';
+      cb.addEventListener('click', function () {
+        var o = t.classList.toggle('cal-open');
+        cb.setAttribute('aria-expanded', o ? 'true' : 'false');
+      });
+      row.appendChild(cb);
+    }
+    body.appendChild(row);
+    if (cal) body.appendChild(cal);
   });
 })();
 </script>
