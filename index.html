@@ -217,6 +217,42 @@ h2 { font-family: var(--font-body); font-weight: 800; font-size: clamp(1.45rem, 
 footer { margin-top: 3.5rem; }
 footer .wrap { padding-block: 1.5rem 2.5rem; color: var(--muted); font-size: .9rem; }
 
+.view-toggle { display: inline-flex; margin: 1.6rem 0 0; border: 2px solid var(--saddle); border-radius: 999px; overflow: hidden; }
+.view-toggle button { font: inherit; font-weight: 700; font-size: .95rem; padding: .55rem 1.2rem; border: 0; background: var(--card); color: var(--saddle); cursor: pointer; }
+.view-toggle button[aria-pressed="true"] { background: var(--saddle); color: var(--cream); }
+.view-toggle button:focus-visible { outline: 3px solid var(--canola); outline-offset: -3px; }
+.calview { margin-top: 1.2rem; }
+.cv-head { display: flex; align-items: center; justify-content: space-between; gap: .5rem; margin-bottom: .6rem; }
+.cv-head h2 { font-size: 1.35rem; text-align: center; flex: 1; }
+.cv-nav { font: inherit; font-size: 1.6rem; line-height: 1; width: 2.75rem; height: 2.75rem; border: 1px solid var(--rule); border-radius: 999px; background: var(--card); color: var(--saddle); cursor: pointer; }
+.cv-nav:disabled { opacity: .35; cursor: default; }
+.cv-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 3px; }
+.cv-dow { text-align: center; font-size: .75rem; font-weight: 700; color: var(--muted); padding: .2rem 0; text-transform: uppercase; }
+.cv-cell { min-height: 4.6rem; background: var(--card); border: 1px solid var(--rule); border-radius: 4px; padding: .25rem .3rem; font: inherit; text-align: left; color: var(--ink); display: flex; flex-direction: column; gap: .15rem; overflow: hidden; }
+.cv-cell.empty { background: transparent; border-color: transparent; }
+.cv-cell .n { font-size: .8rem; font-weight: 700; color: var(--muted); }
+.cv-cell.has { cursor: pointer; border-color: var(--saddle); }
+.cv-cell.has .n { color: var(--saddle); }
+.cv-cell.today { box-shadow: inset 0 0 0 2px var(--canola); }
+.cv-cell.sel { background: var(--saddle); color: var(--cream); }
+.cv-cell.sel .n, .cv-cell.sel .ev { color: var(--cream); }
+.cv-cell .ev { font-size: .72rem; line-height: 1.2; color: var(--ink); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.cv-cell .more { font-size: .7rem; color: var(--muted); }
+.cv-cell:focus-visible { outline: 3px solid var(--denim); outline-offset: 1px; }
+.cv-day { margin-top: 1rem; }
+.cv-day h3 { font-size: 1.05rem; margin: 0 0 .5rem; }
+.cv-day ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
+.cv-day li { background: var(--card); border: 1px solid var(--rule); border-left: 4px solid var(--canola); border-radius: 4px; padding: .6rem .8rem; }
+.cv-day .t { font-weight: 700; }
+.cv-day .m { font-size: .9rem; color: var(--muted); }
+.cv-day a { display: inline-block; padding: .35rem 0; font-size: .9rem; font-weight: 600; }
+@media (max-width: 30rem) {
+  .cv-cell { min-height: 3rem; padding: .2rem; align-items: center; }
+  .cv-cell .ev, .cv-cell .more { display: none; }
+  .cv-cell.has::after { content: ""; width: .45rem; height: .45rem; border-radius: 50%; background: var(--barn); }
+  .cv-cell.sel::after { background: var(--canola); }
+}
+body.cal-mode .jump, body.cal-mode #dances, body.cal-mode #expected, body.cal-mode #monthly, body.cal-mode #city { display: none; }
 .jump { display: flex; flex-wrap: wrap; gap: .5rem; margin: 2rem 0 0; }
 .jump a { display: inline-block; padding: .55rem .95rem; border-radius: 999px; background: var(--saddle); color: var(--cream); font-weight: 700; font-size: .95rem; text-decoration: none; }
 .jump a:hover { background: var(--denim); }
@@ -397,6 +433,22 @@ html { scroll-behavior: smooth; }
     </div>
    </div>
   </aside>
+
+  <div class="view-toggle" role="group" aria-label="How to show the dances">
+    <button type="button" id="view-list" aria-pressed="true">List</button>
+    <button type="button" id="view-cal" aria-pressed="false">Calendar</button>
+  </div>
+
+  <section id="calview" class="calview" aria-labelledby="calview-h" hidden>
+    <div class="cv-head">
+      <button type="button" class="cv-nav" id="cv-prev" aria-label="Previous month">&lsaquo;</button>
+      <h2 id="calview-h">Month</h2>
+      <button type="button" class="cv-nav" id="cv-next" aria-label="Next month">&rsaquo;</button>
+    </div>
+    <div class="cv-grid" id="cv-grid" role="grid"></div>
+    <div class="cv-day" id="cv-day" aria-live="polite"></div>
+    <p class="section-note">Shows dances with a confirmed date. Annual dances with no date posted yet are in the list view.</p>
+  </section>
 
   <nav class="jump" aria-label="Jump to a section">
     <a href="#dances">Confirmed dances</a>
@@ -854,6 +906,7 @@ html { scroll-behavior: smooth; }
         <li>Buttons to jump to each section, and Back to top links.</li>
         <li>On phones: a menu button, shorter cards with a Details button, and bigger buttons that are easier to tap.</li>
         <li>The page loads faster.</li>
+        <li>Switch between a list and a calendar view of the dances.</li>
       </ul>
     </section>
   </div>
@@ -1099,6 +1152,100 @@ html { scroll-behavior: smooth; }
   b.addEventListener('click', function () { if (d.showModal) d.showModal(); else d.setAttribute('open', ''); });
   d.querySelector('.news-close').addEventListener('click', function () { d.close(); });
   d.addEventListener('click', function (e) { if (e.target === d) d.close(); });
+})();
+</script>
+
+<script>
+(function () {
+  var cv = document.getElementById('calview'); if (!cv) return;
+  var bL = document.getElementById('view-list'), bC = document.getElementById('view-cal');
+  var grid = document.getElementById('cv-grid'), dayBox = document.getElementById('cv-day'), head = document.getElementById('calview-h');
+  var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var DOW = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'], BYDAY = { SU: 0, MO: 1, TU: 2, WE: 3, TH: 4, FR: 5, SA: 6 };
+  function clean(el) { var c = el.cloneNode(true); c.querySelectorAll('.pill, .drive').forEach(function (x) { x.remove(); }); return c.textContent.replace(/\s+/g, ' ').replace(/\s*·\s*$/, '').trim(); }
+  function key(y, m, d) { return y * 10000 + (m + 1) * 100 + d; }
+  function clock(t) { var h = +t.slice(0, 2), mi = t.slice(2, 4), ap = h >= 12 ? 'pm' : 'am'; h = h % 12 || 12; return h + (mi !== '00' ? ':' + mi : '') + ' ' + ap; }
+  var events = [];
+  document.querySelectorAll('.ticket[data-cal]').forEach(function (t) {
+    var cal = t.getAttribute('data-cal'), rr = t.getAttribute('data-rrule') || '';
+    var a = t.querySelector('.src a');
+    events.push({ el: t, title: clean(t.querySelector('h3')), where: clean(t.querySelector('.where')).split(' · ')[0],
+      y: +cal.slice(0, 4), m: +cal.slice(4, 6) - 1, d: +cal.slice(6, 8),
+      time: cal.indexOf('T') > -1 ? clock(cal.slice(9, 13)) : 'Time not listed', rr: rr, link: a ? a.href : '' });
+  });
+  function onDate(e, y, m, d) {
+    var k = key(y, m, d), start = key(e.y, e.m, e.d);
+    if (!e.rr) return k === start;
+    if (k < start) return false;
+    var p = {}; e.rr.split(';').forEach(function (x) { var kv = x.split('='); p[kv[0]] = kv[1]; });
+    var dt = new Date(y, m, d);
+    if (p.BYMONTH && p.BYMONTH.split(',').indexOf(String(m + 1)) === -1) return false;
+    if (p.FREQ === 'WEEKLY') return dt.getDay() === BYDAY[p.BYDAY];
+    if (p.FREQ === 'MONTHLY') { var n = +p.BYDAY.slice(0, -2), wd = BYDAY[p.BYDAY.slice(-2)]; return dt.getDay() === wd && Math.ceil(d / 7) === n; }
+    return false;
+  }
+  function eventsOn(y, m, d) { return events.filter(function (e) { return !e.el.hidden && onDate(e, y, m, d); }); }
+  var now = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Edmonton' }));
+  var minY = now.getFullYear(), minM = now.getMonth(), curY = minY, curM = minM, sel = null;
+  function render() {
+    head.textContent = MONTHS[curM] + ' ' + curY;
+    document.getElementById('cv-prev').disabled = (curY === minY && curM === minM);
+    grid.innerHTML = '';
+    DOW.forEach(function (n) { var h = document.createElement('div'); h.className = 'cv-dow'; h.textContent = n; grid.appendChild(h); });
+    var first = new Date(curY, curM, 1).getDay(), days = new Date(curY, curM + 1, 0).getDate();
+    for (var i = 0; i < first; i++) { var e0 = document.createElement('div'); e0.className = 'cv-cell empty'; grid.appendChild(e0); }
+    var firstWith = null;
+    for (var d = 1; d <= days; d++) {
+      var evs = eventsOn(curY, curM, d), c = document.createElement(evs.length ? 'button' : 'div');
+      c.className = 'cv-cell' + (evs.length ? ' has' : '');
+      if (curY === now.getFullYear() && curM === now.getMonth() && d === now.getDate()) c.className += ' today';
+      if (sel === d) c.className += ' sel';
+      c.innerHTML = '<span class="n">' + d + '</span>';
+      if (evs.length) {
+        if (firstWith === null && (curY !== minY || curM !== minM || d >= now.getDate())) firstWith = d;
+        c.type = 'button';
+        c.setAttribute('aria-label', MONTHS[curM] + ' ' + d + ', ' + evs.length + (evs.length > 1 ? ' dances' : ' dance'));
+        evs.slice(0, 2).forEach(function (e) { var s = document.createElement('span'); s.className = 'ev'; s.textContent = e.title; c.appendChild(s); });
+        if (evs.length > 2) { var mo = document.createElement('span'); mo.className = 'more'; mo.textContent = '+' + (evs.length - 2) + ' more'; c.appendChild(mo); }
+        (function (dd) { c.addEventListener('click', function () { sel = dd; render(); }); })(d);
+      }
+      grid.appendChild(c);
+    }
+    if (sel === null && firstWith !== null) { sel = firstWith; return render(); }
+    showDay();
+  }
+  function showDay() {
+    dayBox.innerHTML = '';
+    if (sel === null) { dayBox.innerHTML = '<p class="section-note">No dances posted this month yet.</p>'; return; }
+    var evs = eventsOn(curY, curM, sel), wd = new Date(curY, curM, sel).getDay();
+    var h = document.createElement('h3'); h.textContent = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][wd] + ', ' + MONTHS[curM] + ' ' + sel;
+    var ul = document.createElement('ul');
+    evs.forEach(function (e) {
+      var li = document.createElement('li');
+      li.innerHTML = '<div class="t"></div><div class="m"></div>';
+      li.querySelector('.t').textContent = e.title;
+      li.querySelector('.m').textContent = e.time + ' · ' + e.where;
+      var see = document.createElement('a'); see.href = '#'; see.textContent = 'See full details';
+      see.addEventListener('click', function (ev) { ev.preventDefault(); setView('list'); e.el.classList.add('open'); var db = e.el.querySelector('.details-btn'); if (db) { db.textContent = 'Hide details'; db.setAttribute('aria-expanded', 'true'); } e.el.scrollIntoView({ block: 'center' }); });
+      li.appendChild(see);
+      if (e.link) { li.appendChild(document.createTextNode(' · ')); var ev2 = document.createElement('a'); ev2.href = e.link; ev2.target = '_blank'; ev2.rel = 'noopener'; ev2.textContent = 'Event page'; li.appendChild(ev2); }
+      ul.appendChild(li);
+    });
+    dayBox.appendChild(h); dayBox.appendChild(ul);
+  }
+  document.getElementById('cv-prev').addEventListener('click', function () { curM--; if (curM < 0) { curM = 11; curY--; } sel = null; render(); });
+  document.getElementById('cv-next').addEventListener('click', function () { curM++; if (curM > 11) { curM = 0; curY++; } sel = null; render(); });
+  function setView(v) {
+    var cal = v === 'cal';
+    document.body.classList.toggle('cal-mode', cal); cv.hidden = !cal;
+    bL.setAttribute('aria-pressed', String(!cal)); bC.setAttribute('aria-pressed', String(cal));
+    if (cal) render();
+    try { localStorage.setItem('view', v); } catch (e) {}
+  }
+  bL.addEventListener('click', function () { setView('list'); });
+  bC.addEventListener('click', function () { setView('cal'); });
+  ['q', 'confirmed-only'].forEach(function (id) { var el = document.getElementById(id); if (el) el.addEventListener(id === 'q' ? 'input' : 'change', function () { if (!cv.hidden) { sel = null; render(); } }); });
+  try { if (localStorage.getItem('view') === 'cal') setView('cal'); } catch (e) {}
 })();
 </script>
 
