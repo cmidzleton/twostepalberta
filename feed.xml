@@ -6,7 +6,7 @@
 <atom:link href="https://twostepalberta.ca/feed.xml" rel="self" type="application/rss+xml"/>
 <description>Hall dances, cabarets and suppers around Edmonton, updated every Wednesday.</description>
 <language>en-ca</language>
-<lastBuildDate>Mon, 02 Nov 2026 17:19:49 +0000</lastBuildDate>
+<lastBuildDate>Mon, 02 Nov 2026 18:13:40 +0000</lastBuildDate>
 <item>
 <title>Myrnam Perogy Supper &amp; Dance</title>
 <link>https://goeastofedmonton.com/events/myrnam-peroghy-supper/</link>
@@ -104,6 +104,18 @@
 <description>Pioneer 73 Club, St. Lawrence Ave, Devon&lt;br&gt;4th Wednesday, 7 pm, October to May&lt;br&gt;Check the event page before you go.&lt;br&gt;https://www.albertafiddlers.com/alberta-regular-weekly-monthly-jams/</description>
 </item>
 <item>
+<title>Traditional Tuesday Dance</title>
+<link>https://www.facebook.com/TraditionalTuesday/</link>
+<guid isPermaLink="false">3de17626bbd98456@twostepalberta.ca</guid>
+<description>Chateau Nova Yellowhead, 13920 Yellowhead Trail NW, Edmonton&lt;br&gt;Tuesdays, doors 6:30 pm, dancing 8–11 pm&lt;br&gt;Check the event page before you go.&lt;br&gt;https://www.facebook.com/TraditionalTuesday/</description>
+</item>
+<item>
+<title>WROTFA Old-Time Country Jam &amp; Dance</title>
+<link>https://www.albertafiddlers.com/alberta-regular-weekly-monthly-jams/</link>
+<guid isPermaLink="false">5786f23b8d918a09@twostepalberta.ca</guid>
+<description>North Glenora Community Hall, Edmonton&lt;br&gt;Every Thursday, 7–10 pm&lt;br&gt;Check the event page before you go.&lt;br&gt;https://www.albertafiddlers.com/alberta-regular-weekly-monthly-jams/</description>
+</item>
+<item>
 <title>Blatchford Boogie Woogie</title>
 <link>https://albertaaviationmuseum.com/blatchford-boogie-woogie/</link>
 <guid isPermaLink="false">0beef60317143844@twostepalberta.ca</guid>
@@ -144,18 +156,6 @@
 <link>https://calvinvollrath.com/tickets</link>
 <guid isPermaLink="false">66a522c780269dfe@twostepalberta.ca</guid>
 <description>Kingsway Legion Br. 175, Edmonton&lt;br&gt;Sunday, March 14, 2027, 2 pm&lt;br&gt;Check the event page before you go.&lt;br&gt;https://calvinvollrath.com/tickets</description>
-</item>
-<item>
-<title>Traditional Tuesday Dance</title>
-<link>https://www.facebook.com/TraditionalTuesday/</link>
-<guid isPermaLink="false">3de17626bbd98456@twostepalberta.ca</guid>
-<description>Chateau Nova Yellowhead, 13920 Yellowhead Trail NW, Edmonton&lt;br&gt;Tuesdays, doors 6:30 pm, dancing 8–11 pm&lt;br&gt;Check the event page before you go.&lt;br&gt;https://www.facebook.com/TraditionalTuesday/</description>
-</item>
-<item>
-<title>WROTFA Old-Time Country Jam &amp; Dance</title>
-<link>https://www.albertafiddlers.com/alberta-regular-weekly-monthly-jams/</link>
-<guid isPermaLink="false">5786f23b8d918a09@twostepalberta.ca</guid>
-<description>North Glenora Community Hall, Edmonton&lt;br&gt;Every Thursday, 7–10 pm&lt;br&gt;Check the event page before you go.&lt;br&gt;https://www.albertafiddlers.com/alberta-regular-weekly-monthly-jams/</description>
 </item>
 </channel>
 </rss>
