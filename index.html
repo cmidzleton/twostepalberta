@@ -111,6 +111,9 @@ footer .wrap { padding-block: 1.5rem 2.5rem; color: var(--muted); font-size: .9r
 .search label { font-weight: 700; }
 .search input { font: inherit; padding: .65rem .8rem; border: 2px solid var(--saddle); border-radius: 4px; background: var(--card); color: var(--ink); width: 100%; }
 .search input:focus-visible { outline: 3px solid var(--canola); outline-offset: 1px; }
+.search .age-label { font-weight: 600; margin-top: .3rem; }
+.search select { font: inherit; padding: .45rem .5rem; border: 1px solid var(--rule); border-radius: 4px; background: var(--card); color: var(--ink); justify-self: start; }
+.pill.age { background: var(--barn); color: var(--card); }
 .search #q-msg { margin: 0; font-size: .93rem; color: var(--muted); min-height: 1.2em; }
 .no-match { color: var(--muted); font-style: italic; margin: 0; }
 .locate { display: flex; flex-wrap: wrap; gap: .5rem .9rem; align-items: center; margin: .9rem 0 0; font-size: .93rem; color: var(--muted); max-width: 42rem; }
@@ -154,6 +157,14 @@ html { scroll-behavior: smooth; }
   <div class="search">
     <label for="q">Search by town, hall or band</label>
     <input type="search" id="q" placeholder="e.g. Leduc, Villeneuve, Barre 44" autocomplete="off">
+    <label for="age" class="age-label">Age</label>
+    <select id="age">
+      <option value="">Any age</option>
+      <option value="55plus">55+ / seniors</option>
+      <option value="18plus">18+</option>
+      <option value="all">All ages</option>
+      <option value="unknown">Age not listed</option>
+    </select>
     <p id="q-msg" aria-live="polite"></p>
   </div>
 
@@ -202,7 +213,7 @@ html { scroll-behavior: smooth; }
 
     <ol class="dances">
 
-      <li class="ticket">
+      <li class="ticket" data-age="unknown">
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">5</span><span class="mon">Dec</span></div>
         <div class="body">
           <h3>Villeneuve Christmas Dinner &amp; Cabaret <span class="pill ok">Tickets on sale</span></h3>
@@ -217,7 +228,7 @@ html { scroll-behavior: smooth; }
         </div>
       </li>
 
-      <li class="ticket">
+      <li class="ticket" data-age="unknown">
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">12</span><span class="mon">Dec</span></div>
         <div class="body">
           <h3>Leduc Christmas Gala Night <span class="pill ok">Confirmed</span></h3>
@@ -229,7 +240,7 @@ html { scroll-behavior: smooth; }
       </li>
 
 
-      <li class="ticket">
+      <li class="ticket" data-age="unknown">
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">30</span><span class="mon">Jan</span></div>
         <div class="body">
           <h3>Villeneuve Hall Cabaret <span class="pill ok">Tickets on sale</span></h3>
@@ -245,10 +256,10 @@ html { scroll-behavior: smooth; }
       </li>
 
 
-      <li class="ticket">
+      <li class="ticket" data-age="18plus">
         <div class="stub recurring" aria-hidden="true"><span class="mon">Expected</span><span class="day">Feb</span></div>
         <div class="body">
-          <h3>Music &amp; Memories Dinner and Dance <span class="pill check">2027 date not posted</span></h3>
+          <h3>Music &amp; Memories Dinner and Dance <span class="pill age">18+</span> <span class="pill check">2027 date not posted</span></h3>
           <p class="where">Morinville Community Cultural Centre, 9502 100 Ave, Morinville · <span class="drive" data-ll="53.802,-113.649">~35 min from Edmonton</span></p>
           <ul class="facts">
             <li><b>When:</b> A Friday evening in February (2026 was Fri Feb 6)</li>
@@ -259,7 +270,7 @@ html { scroll-behavior: smooth; }
           <p class="src">More info: <a href="https://www.morinville.ca/news/news-posts/music-memories-returns-for-its-second-year/" target="_blank" rel="noopener">Town of Morinville, 2026 announcement</a></p>
         </div>
       </li>
-      <li class="ticket">
+      <li class="ticket" data-age="unknown">
         <div class="stub recurring" aria-hidden="true"><span class="mon">Expected</span><span class="day">Feb</span></div>
         <div class="body">
           <h3>Alberta Beach Valentine's Supper &amp; Dance <span class="pill check">2027 date not posted</span></h3>
@@ -269,7 +280,7 @@ html { scroll-behavior: smooth; }
           <p class="src">More info: <a href="https://lsac.ca/events/valentines-day-dine-dance" target="_blank" rel="noopener">Lac Ste. Anne County, 2026 listing</a></p>
         </div>
       </li>
-      <li class="ticket">
+      <li class="ticket" data-age="unknown">
         <div class="stub recurring" aria-hidden="true"><span class="mon">Expected</span><span class="day">Feb</span></div>
         <div class="body">
           <h3>Winter Blooms Gala <span class="pill check">2027 date not posted</span></h3>
@@ -279,7 +290,7 @@ html { scroll-behavior: smooth; }
           <p class="src">More info: <a href="https://www.onefm.ca/leduc/whats-happening/event/winter-blooms-masquerade-gala" target="_blank" rel="noopener">The One FM, 2026 listing</a></p>
         </div>
       </li>
-      <li class="ticket">
+      <li class="ticket" data-age="unknown">
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">27</span><span class="mon">Feb</span></div>
         <div class="body">
           <h3>Villeneuve Hall Cabaret <span class="pill ok">Tickets on sale</span></h3>
@@ -293,7 +304,7 @@ html { scroll-behavior: smooth; }
           <p class="src">Tickets: <a href="https://docs.google.com/forms/d/e/1FAIpQLSfe5xHcJxSb2BKJgkgmM8IUcehAR2R0IWzXfBcJcFt2fQaZaA/viewform" target="_blank" rel="noopener">Villeneuve Hall ticket form</a> (linked from <a href="https://villeneuvehall.ca/" target="_blank" rel="noopener">villeneuvehall.ca</a>)</p>
         </div>
       </li>
-      <li class="ticket">
+      <li class="ticket" data-age="unknown">
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">20</span><span class="mon">Mar</span></div>
         <div class="body">
           <h3>Villeneuve Hall Cabaret <span class="pill ok">Tickets on sale</span></h3>
@@ -307,7 +318,7 @@ html { scroll-behavior: smooth; }
           <p class="src">Tickets: <a href="https://docs.google.com/forms/d/e/1FAIpQLSfe5xHcJxSb2BKJgkgmM8IUcehAR2R0IWzXfBcJcFt2fQaZaA/viewform" target="_blank" rel="noopener">Villeneuve Hall ticket form</a> (linked from <a href="https://villeneuvehall.ca/" target="_blank" rel="noopener">villeneuvehall.ca</a>)</p>
         </div>
       </li>
-      <li class="ticket">
+      <li class="ticket" data-age="unknown">
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">10</span><span class="mon">Apr</span></div>
         <div class="body">
           <h3>Villeneuve Funny Money Social <span class="pill ok">Tickets on sale</span></h3>
@@ -321,7 +332,7 @@ html { scroll-behavior: smooth; }
           <p class="src">Tickets: <a href="https://docs.google.com/forms/d/e/1FAIpQLSfe5xHcJxSb2BKJgkgmM8IUcehAR2R0IWzXfBcJcFt2fQaZaA/viewform" target="_blank" rel="noopener">Villeneuve Hall ticket form</a> (linked from <a href="https://villeneuvehall.ca/" target="_blank" rel="noopener">villeneuvehall.ca</a>)</p>
         </div>
       </li>
-      <li class="ticket">
+      <li class="ticket" data-age="unknown">
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">24</span><span class="mon">Apr</span></div>
         <div class="body">
           <h3>Villeneuve Hall Cabaret <span class="pill ok">Tickets on sale</span></h3>
@@ -343,7 +354,7 @@ html { scroll-behavior: smooth; }
     <p class="section-note">These happen every month. Bring a fiddle or just come listen. From the Alberta Fiddlers' list.</p>
 
     <ol class="dances">
-      <li class="ticket">
+      <li class="ticket" data-age="unknown">
         <div class="stub recurring" aria-hidden="true"><span class="mon">1st</span><span class="day">Fri</span></div>
         <div class="body">
           <h3>Pizza Jam</h3>
@@ -352,7 +363,7 @@ html { scroll-behavior: smooth; }
           <p class="src">More info: <a href="https://www.albertafiddlers.com/alberta-regular-weekly-monthly-jams/" target="_blank" rel="noopener">Alberta Fiddlers, regular jams</a></p>
         </div>
       </li>
-      <li class="ticket">
+      <li class="ticket" data-age="unknown">
         <div class="stub recurring" aria-hidden="true"><span class="mon">2nd &amp; 4th</span><span class="day">Sun</span></div>
         <div class="body">
           <h3>Wetaskiwin Jammers</h3>
@@ -361,7 +372,7 @@ html { scroll-behavior: smooth; }
           <p class="src">More info: <a href="https://www.albertafiddlers.com/alberta-regular-weekly-monthly-jams/" target="_blank" rel="noopener">Alberta Fiddlers, regular jams</a></p>
         </div>
       </li>
-      <li class="ticket">
+      <li class="ticket" data-age="unknown">
         <div class="stub recurring" aria-hidden="true"><span class="mon">3rd</span><span class="day">Wed</span></div>
         <div class="body">
           <h3>Old Time Country Jam</h3>
@@ -370,7 +381,7 @@ html { scroll-behavior: smooth; }
           <p class="src">More info: <a href="https://www.albertafiddlers.com/alberta-regular-weekly-monthly-jams/" target="_blank" rel="noopener">Alberta Fiddlers, regular jams</a></p>
         </div>
       </li>
-      <li class="ticket">
+      <li class="ticket" data-age="unknown">
         <div class="stub recurring" aria-hidden="true"><span class="mon">3rd</span><span class="day">Fri</span></div>
         <div class="body">
           <h3>Genesee Hall Jam</h3>
@@ -379,7 +390,7 @@ html { scroll-behavior: smooth; }
           <p class="src">More info: <a href="https://www.albertafiddlers.com/alberta-regular-weekly-monthly-jams/" target="_blank" rel="noopener">Alberta Fiddlers, regular jams</a></p>
         </div>
       </li>
-      <li class="ticket">
+      <li class="ticket" data-age="unknown">
         <div class="stub recurring" aria-hidden="true"><span class="mon">4th</span><span class="day">Wed</span></div>
         <div class="body">
           <h3>Devon Music Jam &amp; Dance</h3>
@@ -389,7 +400,7 @@ html { scroll-behavior: smooth; }
           <p class="src">More info: <a href="https://www.albertafiddlers.com/alberta-regular-weekly-monthly-jams/" target="_blank" rel="noopener">Alberta Fiddlers, regular jams</a></p>
         </div>
       </li>
-      <li class="ticket">
+      <li class="ticket" data-age="unknown">
         <div class="stub recurring" aria-hidden="true"><span class="mon">4th</span><span class="day">Sat</span></div>
         <div class="body">
           <h3>Jamboree at Duffield Hall</h3>
@@ -406,7 +417,7 @@ html { scroll-behavior: smooth; }
     <p class="section-note">Not small town, but it's the same music.</p>
 
     <ol class="dances">
-      <li class="ticket">
+      <li class="ticket" data-age="unknown">
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">21</span><span class="mon">Nov</span></div>
         <div class="body">
           <h3>Bar None 79 <span class="pill check">Not verified</span></h3>
@@ -416,7 +427,7 @@ html { scroll-behavior: smooth; }
           <p class="src">More info: <a href="https://www.todocanada.ca/city/edmonton/event/bar-none-79/" target="_blank" rel="noopener">ToDo Canada, Bar None 79</a></p>
         </div>
       </li>
-      <li class="ticket">
+      <li class="ticket" data-age="unknown">
         <div class="stub" aria-hidden="true"><span class="dow">Sun</span><span class="day">6</span><span class="mon">Dec</span></div>
         <div class="body">
           <h3>Calvin Vollrath &amp; Country Swing Christmas Dance <span class="pill ok">Tickets on sale</span></h3>
@@ -430,7 +441,7 @@ html { scroll-behavior: smooth; }
           <p class="src">More info: <a href="https://calvinvollrath.com/tickets" target="_blank" rel="noopener">calvinvollrath.com/tickets</a></p>
         </div>
       </li>
-      <li class="ticket">
+      <li class="ticket" data-age="unknown">
         <div class="stub" aria-hidden="true"><span class="dow">Sun</span><span class="day">10</span><span class="mon">Jan</span></div>
         <div class="body">
           <h3>Calvin Vollrath &amp; Country Swing Dance <span class="pill ok">Tickets on sale</span></h3>
@@ -442,7 +453,7 @@ html { scroll-behavior: smooth; }
           <p class="src">More info: <a href="https://calvinvollrath.com/tickets" target="_blank" rel="noopener">calvinvollrath.com/tickets</a></p>
         </div>
       </li>
-      <li class="ticket">
+      <li class="ticket" data-age="unknown">
         <div class="stub" aria-hidden="true"><span class="dow">Sun</span><span class="day">21</span><span class="mon">Feb</span></div>
         <div class="body">
           <h3>Calvin Vollrath &amp; Country Swing Dance <span class="pill ok">Tickets on sale</span></h3>
@@ -454,7 +465,7 @@ html { scroll-behavior: smooth; }
           <p class="src">More info: <a href="https://calvinvollrath.com/tickets" target="_blank" rel="noopener">calvinvollrath.com/tickets</a></p>
         </div>
       </li>
-      <li class="ticket">
+      <li class="ticket" data-age="unknown">
         <div class="stub" aria-hidden="true"><span class="dow">Sun</span><span class="day">14</span><span class="mon">Mar</span></div>
         <div class="body">
           <h3>Calvin Vollrath &amp; Country Swing Dance <span class="pill ok">Tickets on sale</span></h3>
@@ -467,7 +478,7 @@ html { scroll-behavior: smooth; }
           <p class="src">More info: <a href="https://calvinvollrath.com/tickets" target="_blank" rel="noopener">calvinvollrath.com/tickets</a></p>
         </div>
       </li>
-      <li class="ticket">
+      <li class="ticket" data-age="unknown">
         <div class="stub recurring" aria-hidden="true"><span class="mon">Every</span><span class="day">Mon</span></div>
         <div class="body">
           <h3>WROTFA Old-Time Fiddle Jam</h3>
@@ -477,7 +488,7 @@ html { scroll-behavior: smooth; }
           <p class="src">More info: <a href="https://www.albertafiddlers.com/alberta-regular-weekly-monthly-jams/" target="_blank" rel="noopener">Alberta Fiddlers, regular jams</a></p>
         </div>
       </li>
-      <li class="ticket">
+      <li class="ticket" data-age="unknown">
         <div class="stub recurring" aria-hidden="true"><span class="mon">Every</span><span class="day">Thu</span></div>
         <div class="body">
           <h3>WROTFA Old-Time Country Jam &amp; Dance</h3>
@@ -521,6 +532,7 @@ html { scroll-behavior: smooth; }
 <script>
 (function () {
   var q = document.getElementById('q');
+  var age = document.getElementById('age');
   var msg = document.getElementById('q-msg');
   if (!q) return;
   var tickets = Array.prototype.slice.call(document.querySelectorAll('.ticket'));
@@ -536,16 +548,17 @@ html { scroll-behavior: smooth; }
     var terms = norm(q.value).split(/\s+/).filter(Boolean);
     var shown = 0;
     tickets.forEach(function (t) {
-      var ok = terms.every(function (w) { return t._text.indexOf(w) !== -1; });
+      var ok = terms.every(function (w) { return t._text.indexOf(w) !== -1; }) && (!age.value || t.getAttribute('data-age') === age.value);
       t.hidden = !ok; if (ok) shown++;
     });
     lists.forEach(function (ol) {
       var any = ol.querySelector('.ticket:not([hidden])');
-      ol.nextSibling.hidden = !!any || !terms.length;
+      ol.nextSibling.hidden = !!any || !(terms.length || age.value);
     });
-    msg.textContent = terms.length ? (shown ? shown + (shown === 1 ? ' match' : ' matches') : 'No matches. Try just the town name.') : '';
+    msg.textContent = (terms.length || age.value) ? (shown ? shown + (shown === 1 ? ' match' : ' matches') : 'No matches. Try just the town name.') : '';
   }
   q.addEventListener('input', run);
+  age.addEventListener('change', run);
 })();
 </script>
 <script>
