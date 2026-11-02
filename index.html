@@ -260,6 +260,7 @@ body.cal-mode .jump, body.cal-mode #dances, body.cal-mode #expected, body.cal-mo
 .jump a:focus-visible { outline: 3px solid var(--canola); outline-offset: 2px; }
 .jump a[aria-disabled="true"] { opacity: .4; pointer-events: none; }
 section { scroll-margin-top: 1rem; }
+#search { scroll-margin-top: 1rem; }
 .search { display: grid; gap: .35rem; margin: 1.25rem 0 0; max-width: 42rem; }
 .search label { font-weight: 700; }
 .search input { font: inherit; padding: .65rem .8rem; border: 2px solid var(--saddle); border-radius: 4px; background: var(--card); color: var(--ink); width: 100%; }
@@ -382,7 +383,7 @@ html { scroll-behavior: smooth; }
 <main class="wrap">
 
   <p class="warn"><strong>Check the event link before you head out.</strong> Dates can change.</p>
-  <div class="search">
+  <div class="search" id="search">
     <label for="q">Search by town, hall or band</label>
     <input type="search" id="q" placeholder="e.g. Leduc, Villeneuve, Barre 44" autocomplete="off">
     <label class="check"><input type="checkbox" id="confirmed-only"> Only show dances with a confirmed date</label>
@@ -459,7 +460,7 @@ html { scroll-behavior: smooth; }
   </nav>
 
   <section id="dances" aria-labelledby="dances-h">
-    <div class="sec-head"><h2 id="dances-h">Confirmed dances</h2> <a class="to-top" href="#top">Back to top</a></div>
+    <div class="sec-head"><h2 id="dances-h">Confirmed dances</h2> <a class="to-top" href="#search">Back to search</a></div>
     <p class="section-note">Out-of-town dances with a date posted, soonest first. Edmonton ones are <a href="#city">further down</a>.</p>
 
     <ol class="dances">
@@ -643,7 +644,7 @@ html { scroll-behavior: smooth; }
   </section>
 
   <section id="expected" aria-labelledby="expected-h">
-    <div class="sec-head"><h2 id="expected-h">Expected dances</h2> <a class="to-top" href="#top">Back to top</a></div>
+    <div class="sec-head"><h2 id="expected-h">Expected dances</h2> <a class="to-top" href="#search">Back to search</a></div>
     <p class="section-note">These happen most years, but this year's date isn't posted yet. We link last year's page so you know what to expect.</p>
 
     <ol class="dances">
@@ -685,7 +686,7 @@ html { scroll-behavior: smooth; }
   </section>
 
   <section id="monthly" aria-labelledby="monthly-h">
-    <div class="sec-head"><h2 id="monthly-h">Monthly dances</h2> <a class="to-top" href="#top">Back to top</a></div>
+    <div class="sec-head"><h2 id="monthly-h">Monthly dances</h2> <a class="to-top" href="#search">Back to search</a></div>
     <p class="section-note">Dances that happen every month or every week.</p>
 
     <ol class="dances">
@@ -723,7 +724,7 @@ html { scroll-behavior: smooth; }
   </section>
 
   <section id="city" aria-labelledby="city-h">
-    <div class="sec-head"><h2 id="city-h">In Edmonton</h2> <a class="to-top" href="#top">Back to top</a></div>
+    <div class="sec-head"><h2 id="city-h">In Edmonton</h2> <a class="to-top" href="#search">Back to search</a></div>
     <p class="section-note">Edmonton and St. Albert. Not small town, but it's the same music.</p>
 
     <ol class="dances">
@@ -816,7 +817,7 @@ html { scroll-behavior: smooth; }
   </section>
 
   <section id="subscribe" aria-labelledby="subscribe-h">
-    <div class="sec-head"><h2 id="subscribe-h">Subscribe</h2> <a class="to-top" href="#top">Back to top</a></div>
+    <div class="sec-head"><h2 id="subscribe-h">Subscribe</h2> <a class="to-top" href="#search">Back to search</a></div>
     <p class="section-note">Get an email when we post new dances, or put every confirmed dance into your own calendar. Either way, new ones reach you on their own after the Wednesday update.</p>
     <form class="email-form" action="https://api.follow.it/subscription-form/bXZkbDgzR1VJTlRvRWwzMjJmWTJFSGU5QUxtVkVmMlV5bTZEcCtWN081YnRjQitGeUEwUzRmOFpHbXVEYzU0SWk5Z3c2OHgyZTBLWlhVZVZwZlc3QWxlaitDTEJIYU5HdmdVakcyQXJVdnp4WU13dXBhVmFDeDBxK1VEMyswSmZ8MkZNNUZJUUc5b294R1I1R0VxMTcxNVp4UWZyeW9iWXJoR3F1YXFYWDNsOD0=/21" method="post">
       <label for="sub-email">Get new dances by email</label>
@@ -853,7 +854,7 @@ html { scroll-behavior: smooth; }
     </div>
     <div class="two">
       <div>
-        <div class="sec-head"><h2 id="add-h">Got a dance coming up?</h2> <a class="to-top" href="#top">Back to top</a></div>
+        <div class="sec-head"><h2 id="add-h">Got a dance coming up?</h2> <a class="to-top" href="#search">Back to search</a></div>
         <p class="section-note">A lot of these only ever go up on Facebook or a poster at the post office. If your hall has one, send it over and we'll put it up. It's free.</p>
       </div>
       <div class="add-box">
@@ -873,7 +874,7 @@ html { scroll-behavior: smooth; }
         <figcaption>Photo: Blake Emge</figcaption>
       </figure>
       <div class="about-text">
-    <div class="sec-head"><h2 id="about-h">About this site</h2> <a class="to-top" href="#top">Back to top</a></div>
+    <div class="sec-head"><h2 id="about-h">About this site</h2> <a class="to-top" href="#search">Back to search</a></div>
     <p class="section-note">Finding out when a hall dance is on usually means knowing somebody, or spotting the poster at the post office after it's already happened. This puts them in one spot. Every listing links to the hall or organizer's own page so you can check it yourself.</p>
     <p class="section-note">We don't run any of these dances. This is just a list of hall dances people have posted online, gathered in one place. For tickets, changes or questions, go to the hall or whoever's putting it on.</p>
     <p class="section-note">Something wrong, missing or hard to use? <a href="https://forms.gle/v9GQNi8NgZG2gEBN8" target="_blank" rel="noopener">Tell us here</a>.</p>
