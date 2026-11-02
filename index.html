@@ -231,6 +231,7 @@ section { scroll-margin-top: 1rem; }
 .pill.age { background: var(--barn); color: var(--card); }
 .search .check { display: flex; gap: .5rem; align-items: center; font-weight: 600; margin-top: .3rem; cursor: pointer; }
 .search .check input { width: 1.15rem; height: 1.15rem; accent-color: var(--saddle); }
+.town-req { margin: 0; font-size: .93rem; color: var(--muted); }
 .search #q-msg { margin: 0; font-size: .93rem; color: var(--muted); min-height: 1.2em; }
 .no-match { color: var(--muted); font-style: italic; margin: 0; }
 .drive-calc { font-size: .93rem; color: var(--muted); }
@@ -349,6 +350,7 @@ html { scroll-behavior: smooth; }
     <input type="search" id="q" placeholder="e.g. Leduc, Villeneuve, Barre 44" autocomplete="off">
     <label class="check"><input type="checkbox" id="confirmed-only"> Only show dances with a confirmed date</label>
     <p id="q-msg" aria-live="polite"></p>
+    <p class="town-req">Don't see your town? <a href="https://forms.gle/kTqBcc3n5XQJCLADA" target="_blank" rel="noopener">Request your town</a></p>
   </div>
 
   <aside class="drive-calc" aria-labelledby="calc-h">
