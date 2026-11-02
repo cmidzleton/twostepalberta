@@ -134,6 +134,12 @@ h2 { font-family: var(--font-body); font-weight: 800; font-size: clamp(1.45rem, 
 .pill.ok { background: var(--saddle); color: var(--cream); }
 .pill.check { background: var(--canola); color: var(--on-canola); }
 .notes { font-size: .93rem; margin: .5rem 0 0; }
+.sub-btns { display: flex; flex-wrap: wrap; gap: .6rem; }
+.sub-btn { display: inline-block; font-weight: 700; color: var(--cream); background: var(--saddle); text-decoration: none; border-radius: 999px; padding: .55rem 1.1rem; }
+.sub-btn:hover { background: var(--barn); }
+.sub-note { font-size: .88rem; color: var(--muted); margin: .7rem 0 0; overflow-wrap: anywhere; }
+.cal { font-size: .85rem; margin: .45rem 0 0; color: var(--muted); }
+.cal a, .cal button { font: inherit; font-weight: 600; color: var(--denim); background: none; border: 0; padding: 0; text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }
 .src { font-size: .85rem; margin: .45rem 0 0; color: var(--muted); }
 
 /* About + add */
@@ -243,6 +249,7 @@ html { scroll-behavior: smooth; }
         <li><a href="#dances">Dances</a></li>
         <li><a href="#monthly">Monthly jam &amp; dance</a></li>
         <li><a href="#city">In Edmonton</a></li>
+        <li><a href="#subscribe">Get new dances</a></li>
         <li><a href="#add">Submit a dance here</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="https://forms.gle/v9GQNi8NgZG2gEBN8" target="_blank" rel="noopener">Feedback</a></li>
@@ -335,7 +342,7 @@ html { scroll-behavior: smooth; }
 
     <ol class="dances">
 
-      <li class="ticket" data-status="confirmed" data-age="unknown">
+      <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20261107">
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">7</span><span class="mon">Nov</span></div>
         <div class="body">
           <h3>Myrnam Perogy Supper &amp; Dance <span class="pill ok">Confirmed</span></h3>
@@ -345,7 +352,7 @@ html { scroll-behavior: smooth; }
           <p class="src">More info: <a href="https://goeastofedmonton.com/events/myrnam-peroghy-supper/" target="_blank" rel="noopener">Go East of Edmonton, Myrnam Perogy Supper</a></p>
         </div>
       </li>
-      <li class="ticket" data-status="confirmed" data-age="unknown">
+      <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20261113T1700/20261113T2100">
         <div class="stub" aria-hidden="true"><span class="dow">Fri</span><span class="day">13</span><span class="mon">Nov</span></div>
         <div class="body">
           <h3>Kinsella Fall Supper &amp; Family Dance <span class="pill ok">Confirmed</span></h3>
@@ -355,7 +362,7 @@ html { scroll-behavior: smooth; }
           <p class="src">More info: <a href="https://goeastofedmonton.com/events/kinsella-fall-supper-and-family-dance/" target="_blank" rel="noopener">Go East of Edmonton, Kinsella Fall Supper</a></p>
         </div>
       </li>
-      <li class="ticket" data-status="confirmed" data-age="unknown">
+      <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20261114T1730/20261114T2130">
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">14</span><span class="mon">Nov</span></div>
         <div class="body">
           <h3>Vegreville Legion Dinner &amp; Dance <span class="pill ok">Confirmed</span></h3>
@@ -364,7 +371,7 @@ html { scroll-behavior: smooth; }
           <p class="src">More info: <a href="https://goeastofedmonton.com/events/vegreville-legion-saturday-night-dinner-and-dance/" target="_blank" rel="noopener">Go East of Edmonton, Vegreville Legion Dinner and Dance</a></p>
         </div>
       </li>
-      <li class="ticket" data-status="confirmed" data-age="all">
+      <li class="ticket" data-status="confirmed" data-age="all" data-cal="20261114T1730/20261114T2130">
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">14</span><span class="mon">Nov</span></div>
         <div class="body">
           <h3>Stry Hall 75th Anniversary Dinner &amp; Dance <span class="pill ok">Confirmed</span></h3>
@@ -374,7 +381,7 @@ html { scroll-behavior: smooth; }
           <p class="src">More info: <a href="https://goeastofedmonton.com/events/stry-75th-anniversary-hall-celebrating-the-fall-season/" target="_blank" rel="noopener">Go East of Edmonton, Stry Hall 75th</a></p>
         </div>
       </li>
-      <li class="ticket" data-status="confirmed" data-age="unknown">
+      <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20261114T2000/20261115T0000">
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">14</span><span class="mon">Nov</span></div>
         <div class="body">
           <h3>Pathfinder Hall Harvest Dinner &amp; Dance <span class="pill ok">Confirmed</span></h3>
@@ -384,7 +391,7 @@ html { scroll-behavior: smooth; }
           <p class="src">More info: <a href="https://calvinvollrath.com/calendar" target="_blank" rel="noopener">calvinvollrath.com/calendar</a></p>
         </div>
       </li>
-      <li class="ticket" data-status="confirmed" data-age="unknown">
+      <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20261114T1700/20261114T2300">
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">14</span><span class="mon">Nov</span></div>
         <div class="body">
           <h3>Harvest the Art Fundraiser &amp; Dance <span class="pill ok">Confirmed</span></h3>
@@ -394,7 +401,7 @@ html { scroll-behavior: smooth; }
           <p class="src">More info: <a href="https://allevents.in/barrhead/harvest-the-art-fundraiser/200030766779354" target="_blank" rel="noopener">AllEvents, Harvest the Art</a></p>
         </div>
       </li>
-      <li class="ticket" data-status="confirmed" data-age="unknown">
+      <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20261128T1900/20261129T0100">
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">28</span><span class="mon">Nov</span></div>
         <div class="body">
           <h3>Fall Zabava with Millenia <span class="pill ok">Confirmed</span></h3>
@@ -405,7 +412,7 @@ html { scroll-behavior: smooth; }
         </div>
       </li>
 
-      <li class="ticket" data-status="confirmed" data-age="unknown">
+      <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20261205T1800/20261206T0000">
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">5</span><span class="mon">Dec</span></div>
         <div class="body">
           <h3>Villeneuve Christmas Dinner &amp; Cabaret <span class="pill ok">Tickets on sale</span></h3>
@@ -422,7 +429,7 @@ html { scroll-behavior: smooth; }
 
 
 
-      <li class="ticket" data-status="confirmed" data-age="unknown">
+      <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20270130T2000/20270131T0000">
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">30</span><span class="mon">Jan</span></div>
         <div class="body">
           <h3>Villeneuve Hall Cabaret <span class="pill ok">Tickets on sale</span></h3>
@@ -438,7 +445,7 @@ html { scroll-behavior: smooth; }
       </li>
 
 
-      <li class="ticket" data-status="confirmed" data-age="unknown">
+      <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20270227T2000/20270228T0000">
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">27</span><span class="mon">Feb</span></div>
         <div class="body">
           <h3>Villeneuve Hall Cabaret <span class="pill ok">Tickets on sale</span></h3>
@@ -452,7 +459,7 @@ html { scroll-behavior: smooth; }
           <p class="src">Tickets: <a href="https://docs.google.com/forms/d/e/1FAIpQLSfe5xHcJxSb2BKJgkgmM8IUcehAR2R0IWzXfBcJcFt2fQaZaA/viewform" target="_blank" rel="noopener">Villeneuve Hall ticket form</a> (linked from <a href="https://villeneuvehall.ca/" target="_blank" rel="noopener">villeneuvehall.ca</a>)</p>
         </div>
       </li>
-      <li class="ticket" data-status="confirmed" data-age="unknown">
+      <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20270320T2000/20270321T0000">
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">20</span><span class="mon">Mar</span></div>
         <div class="body">
           <h3>Villeneuve Hall Cabaret <span class="pill ok">Tickets on sale</span></h3>
@@ -466,7 +473,7 @@ html { scroll-behavior: smooth; }
           <p class="src">Tickets: <a href="https://docs.google.com/forms/d/e/1FAIpQLSfe5xHcJxSb2BKJgkgmM8IUcehAR2R0IWzXfBcJcFt2fQaZaA/viewform" target="_blank" rel="noopener">Villeneuve Hall ticket form</a> (linked from <a href="https://villeneuvehall.ca/" target="_blank" rel="noopener">villeneuvehall.ca</a>)</p>
         </div>
       </li>
-      <li class="ticket" data-status="confirmed" data-age="unknown">
+      <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20270424T2000/20270425T0000">
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">24</span><span class="mon">Apr</span></div>
         <div class="body">
           <h3>Villeneuve Hall Cabaret <span class="pill ok">Tickets on sale</span></h3>
@@ -530,7 +537,7 @@ html { scroll-behavior: smooth; }
     <p class="section-note">A monthly jam that's advertised with dancing. From the Alberta Fiddlers' list.</p>
 
     <ol class="dances">
-      <li class="ticket" data-status="confirmed" data-age="unknown">
+      <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20261125T1900/20261125T2200" data-rrule="FREQ=MONTHLY;BYDAY=4WE;BYMONTH=1,2,3,4,5,10,11,12">
         <div class="stub recurring" aria-hidden="true"><span class="mon">4th</span><span class="day">Wed</span></div>
         <div class="body">
           <h3>Devon Music Jam &amp; Dance</h3>
@@ -548,7 +555,7 @@ html { scroll-behavior: smooth; }
     <p class="section-note">Edmonton and St. Albert. Not small town, but it's the same music.</p>
 
     <ol class="dances">
-      <li class="ticket" data-status="confirmed" data-age="unknown">
+      <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20261121T1900/20261121T2300">
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">21</span><span class="mon">Nov</span></div>
         <div class="body">
           <h3>Bar None 79 <span class="pill ok">Confirmed</span></h3>
@@ -558,7 +565,7 @@ html { scroll-behavior: smooth; }
           <p class="src">More info: <a href="https://timhus.ca/tour" target="_blank" rel="noopener">Tim Hus tour page</a> and <a href="https://uofaagricultureclub.com/bar-none/" target="_blank" rel="noopener">U of A Ag Club, Bar None</a></p>
         </div>
       </li>
-      <li class="ticket" data-status="confirmed" data-age="unknown">
+      <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20261206T1400/20261206T1700">
         <div class="stub" aria-hidden="true"><span class="dow">Sun</span><span class="day">6</span><span class="mon">Dec</span></div>
         <div class="body">
           <h3>Calvin Vollrath &amp; Country Swing Christmas Dance <span class="pill ok">Tickets on sale</span></h3>
@@ -572,7 +579,7 @@ html { scroll-behavior: smooth; }
           <p class="src">More info: <a href="https://calvinvollrath.com/tickets" target="_blank" rel="noopener">calvinvollrath.com/tickets</a></p>
         </div>
       </li>
-      <li class="ticket" data-status="confirmed" data-age="unknown">
+      <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20261222T1700/20261222T2100">
         <div class="stub" aria-hidden="true"><span class="dow">Tue</span><span class="day">22</span><span class="mon">Dec</span></div>
         <div class="body">
           <h3>Making Spirits Bright Dinner &amp; Dance <span class="pill ok">Confirmed</span></h3>
@@ -582,7 +589,7 @@ html { scroll-behavior: smooth; }
           <p class="src">More info: <a href="https://allevents.in/saint-albert/making-spirits-bright-dinner-and-dance/200030886440501" target="_blank" rel="noopener">AllEvents, Making Spirits Bright</a></p>
         </div>
       </li>
-      <li class="ticket" data-status="confirmed" data-age="unknown">
+      <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20270110T1400/20270110T1700">
         <div class="stub" aria-hidden="true"><span class="dow">Sun</span><span class="day">10</span><span class="mon">Jan</span></div>
         <div class="body">
           <h3>Calvin Vollrath &amp; Country Swing Dance <span class="pill ok">Tickets on sale</span></h3>
@@ -594,7 +601,7 @@ html { scroll-behavior: smooth; }
           <p class="src">More info: <a href="https://calvinvollrath.com/tickets" target="_blank" rel="noopener">calvinvollrath.com/tickets</a></p>
         </div>
       </li>
-      <li class="ticket" data-status="confirmed" data-age="unknown">
+      <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20270221T1400/20270221T1700">
         <div class="stub" aria-hidden="true"><span class="dow">Sun</span><span class="day">21</span><span class="mon">Feb</span></div>
         <div class="body">
           <h3>Calvin Vollrath &amp; Country Swing Dance <span class="pill ok">Tickets on sale</span></h3>
@@ -606,7 +613,7 @@ html { scroll-behavior: smooth; }
           <p class="src">More info: <a href="https://calvinvollrath.com/tickets" target="_blank" rel="noopener">calvinvollrath.com/tickets</a></p>
         </div>
       </li>
-      <li class="ticket" data-status="confirmed" data-age="unknown">
+      <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20270314T1400/20270314T1700">
         <div class="stub" aria-hidden="true"><span class="dow">Sun</span><span class="day">14</span><span class="mon">Mar</span></div>
         <div class="body">
           <h3>Calvin Vollrath &amp; Country Swing Dance <span class="pill ok">Tickets on sale</span></h3>
@@ -619,7 +626,7 @@ html { scroll-behavior: smooth; }
           <p class="src">More info: <a href="https://calvinvollrath.com/tickets" target="_blank" rel="noopener">calvinvollrath.com/tickets</a></p>
         </div>
       </li>
-      <li class="ticket" data-status="confirmed" data-age="unknown">
+      <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20261103T1830/20261103T2300" data-rrule="FREQ=WEEKLY;BYDAY=TU">
         <div class="stub recurring" aria-hidden="true"><span class="mon">Every</span><span class="day">Tue</span></div>
         <div class="body">
           <h3>Traditional Tuesday Dance <span class="pill check">Check first</span></h3>
@@ -629,7 +636,7 @@ html { scroll-behavior: smooth; }
           <p class="src">More info: <a href="https://www.facebook.com/TraditionalTuesday/" target="_blank" rel="noopener">Traditional Tuesday on Facebook</a></p>
         </div>
       </li>
-      <li class="ticket" data-status="confirmed" data-age="unknown">
+      <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20261105T1900/20261105T2200" data-rrule="FREQ=WEEKLY;BYDAY=TH">
         <div class="stub recurring" aria-hidden="true"><span class="mon">Every</span><span class="day">Thu</span></div>
         <div class="body">
           <h3>WROTFA Old-Time Country Jam &amp; Dance</h3>
@@ -640,6 +647,17 @@ html { scroll-behavior: smooth; }
         </div>
       </li>
     </ol>
+  </section>
+
+  <section id="subscribe" aria-labelledby="subscribe-h">
+    <div class="sec-head"><h2 id="subscribe-h">Get new dances</h2> <a class="to-top" href="#top">Back to top</a></div>
+    <p class="section-note">Put every confirmed dance on this page into your own calendar. When we add new ones on Wednesday, they show up there on their own.</p>
+    <div class="sub-btns">
+      <a class="sub-btn" href="https://calendar.google.com/calendar/r?cid=webcal%3A%2F%2Ftwostepalberta.ca%2Fdances.ics" target="_blank" rel="noopener">Google Calendar</a>
+      <a class="sub-btn" href="webcal://twostepalberta.ca/dances.ics">iPhone, Mac or Outlook</a>
+    </div>
+    <p class="sub-note">Google can take up to a day to pick up new dances. Other calendar apps: subscribe to <a href="https://twostepalberta.ca/dances.ics">https://twostepalberta.ca/dances.ics</a>.</p>
+    <!-- Email signup (MailerLite) goes here once the form is set up. -->
   </section>
 
   <section id="add" aria-labelledby="add-h">
@@ -804,6 +822,64 @@ html { scroll-behavior: smooth; }
     var saved = localStorage.getItem('town');
     if (saved && town.querySelector('option[value="' + saved + '"]')) { town.value = saved; town.dispatchEvent(new Event('change')); }
   } catch (e) {}
+})();
+</script>
+
+<script>
+(function () {
+  // "Add to calendar" links on every card with data-cal (times are Alberta local).
+  function clean(el) {
+    var c = el.cloneNode(true);
+    c.querySelectorAll('.pill, .drive').forEach(function (x) { x.remove(); });
+    return c.textContent.replace(/\s+/g, ' ').replace(/\s*·\s*$/, '').trim();
+  }
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function toUTC(t) { // "20261113T1700" -> "20261113T230000Z"; Alberta is UTC-6 year-round from Nov 2026
+    var d = new Date(Date.UTC(+t.slice(0, 4), +t.slice(4, 6) - 1, +t.slice(6, 8), +t.slice(9, 11) + 6, +t.slice(11, 13)));
+    return d.getUTCFullYear() + pad(d.getUTCMonth() + 1) + pad(d.getUTCDate()) + 'T' + pad(d.getUTCHours()) + pad(d.getUTCMinutes()) + '00Z';
+  }
+  function nextDay(d) {
+    var x = new Date(Date.UTC(+d.slice(0, 4), +d.slice(4, 6) - 1, +d.slice(6, 8) + 1));
+    return x.getUTCFullYear() + pad(x.getUTCMonth() + 1) + pad(x.getUTCDate());
+  }
+  function esc(v) { return v.replace(/\\/g, '\\\\').replace(/;/g, '\;').replace(/,/g, '\\,').replace(/\n/g, '\\n'); }
+  document.querySelectorAll('.ticket[data-cal]').forEach(function (t, i) {
+    var cal = t.getAttribute('data-cal'), rr = t.getAttribute('data-rrule');
+    var body = t.querySelector('.body');
+    var title = clean(body.querySelector('h3'));
+    var where = clean(body.querySelector('.where')).split(' · ')[0];
+    var a = body.querySelector('.src a'), link = a ? a.href : '';
+    var whenEl = body.querySelector('.facts li');
+    var details = (whenEl ? whenEl.textContent.trim() + '\n' : '') + 'Check with the hall before you go.' + (link ? '\n' + link : '');
+    var timed = cal.indexOf('/') !== -1, parts = cal.split('/');
+    var g = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent(title) +
+      '&dates=' + (timed ? parts[0] + '00/' + parts[1] + '00&ctz=America/Edmonton' : cal + '/' + nextDay(cal)) +
+      '&location=' + encodeURIComponent(where) + '&details=' + encodeURIComponent(details) +
+      (rr ? '&recur=' + encodeURIComponent('RRULE:' + rr) : '');
+    var p = document.createElement('p'); p.className = 'cal';
+    p.appendChild(document.createTextNode('Add to calendar: '));
+    var ga = document.createElement('a'); ga.href = g; ga.target = '_blank'; ga.rel = 'noopener'; ga.textContent = 'Google';
+    var ab = document.createElement('button'); ab.type = 'button'; ab.textContent = 'Apple or Outlook';
+    ab.addEventListener('click', function () {
+      var now = new Date().toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z';
+      var L = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Two-Step Alberta//Dances//EN', 'BEGIN:VEVENT',
+        'UID:' + cal.replace('/', '-') + '-' + i + '@twostepalberta.ca', 'DTSTAMP:' + now];
+      if (timed) L.push('DTSTART:' + toUTC(parts[0]), 'DTEND:' + toUTC(parts[1]));
+      else L.push('DTSTART;VALUE=DATE:' + cal, 'DTEND;VALUE=DATE:' + nextDay(cal));
+      if (rr) L.push('RRULE:' + rr);
+      L.push('SUMMARY:' + esc(title), 'LOCATION:' + esc(where), 'DESCRIPTION:' + esc(details));
+      if (link) L.push('URL:' + link);
+      L.push('END:VEVENT', 'END:VCALENDAR');
+      var url = URL.createObjectURL(new Blob([L.join('\r\n') + '\r\n'], { type: 'text/calendar' }));
+      var dl = document.createElement('a'); dl.href = url;
+      dl.download = title.replace(/[^\w]+/g, '-').replace(/^-|-$/g, '').toLowerCase().slice(0, 50) + '.ics';
+      document.body.appendChild(dl); dl.click(); dl.remove();
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+    });
+    p.appendChild(ga); p.appendChild(document.createTextNode(' · ')); p.appendChild(ab);
+    var src = body.querySelector('.src');
+    if (src) src.after(p); else body.appendChild(p);
+  });
 })();
 </script>
 

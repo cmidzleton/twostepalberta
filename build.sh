@@ -8,3 +8,5 @@ echo "Stamped last updated: ${TODAY}"
 ISO=$(TZ=America/Edmonton date '+%Y-%m-%d')
 sed -i -E "s#<lastmod>[^<]*</lastmod>#<lastmod>${ISO}</lastmod>#" sitemap.xml
 echo "Stamped sitemap lastmod: ${ISO}"
+# Rebuild the calendar feed (dances.ics) from the confirmed listings. The committed copy is used if Python isn't there.
+if command -v python3 >/dev/null 2>&1; then python3 make_ics.py; else echo "python3 not found, keeping committed dances.ics"; fi
