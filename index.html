@@ -55,28 +55,29 @@ h1, h2, h3 { text-wrap: balance; line-height: 1.15; margin: 0; }
 
 /* Masthead */
 .mast { background: var(--saddle); color: var(--cream); }
-.mast .wrap { padding-block: 1.25rem 2.25rem; }
-.nav { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; align-items: center; justify-content: space-between; }
+.mast .wrap { padding-block: 1rem 2rem; }
+.nav { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; align-items: center; justify-content: flex-end; }
 .logo { display: block; line-height: 0; }
-.logo img { width: clamp(11rem, 40vw, 17rem); height: auto; display: block; }
+.logo img { width: clamp(9rem, 30vw, 12rem); height: auto; display: block; }
+.hero-logo { display: block; width: min(100%, 34rem); height: auto; margin-top: 1.5rem; }
 .nav ul { list-style: none; display: flex; flex-wrap: wrap; gap: .25rem 1rem; margin: 0; padding: 0; font-weight: 600; font-size: .95rem; }
 .nav a { color: var(--cream); }
-.mast h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(2.2rem, 7vw, 3.75rem); margin-top: 2rem; max-width: 14ch; }
-.mast p.lede { font-size: 1.15rem; max-width: 38rem; margin: .9rem 0 0; }
+.mast h1 { font-family: var(--font-body); font-weight: 700; font-size: clamp(1.35rem, 3.6vw, 1.7rem); margin-top: 1.25rem; max-width: 30ch; }
+.mast p.lede { font-size: 1.05rem; max-width: 36rem; margin: .5rem 0 0; opacity: .92; }
 .mast .cta { display: inline-block; margin-top: 1.25rem; background: var(--canola); color: var(--saddle); padding: .7rem 1.1rem; border-radius: 4px; font-weight: 700; text-decoration: none; }
 
 main section { padding-block: 2.5rem 0; }
 .eyebrow { font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--barn); margin: 0 0 .4rem; }
-h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.6rem, 4.5vw, 2.2rem); }
+h2 { font-family: var(--font-body); font-weight: 800; font-size: clamp(1.45rem, 4vw, 1.85rem); letter-spacing: -.01em; }
 .section-note { color: var(--muted); max-width: 40rem; margin: .5rem 0 1.25rem; }
 
-.warn { border-left: 4px solid var(--barn); background: var(--card); padding: .8rem 1rem; margin: 1.5rem 0 0; max-width: 42rem; }
-.warn strong { color: var(--barn); }
+.warn { margin: 1.5rem 0 0; max-width: 42rem; font-style: italic; color: var(--muted); }
+.warn strong { color: var(--ink); font-style: normal; }
 
 /* Dance tickets */
 .dances { list-style: none; margin: 0; padding: 0; display: grid; gap: .75rem; }
 .ticket { display: grid; grid-template-columns: 5.5rem 1fr; background: var(--card); border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; }
-.stub { background: var(--denim); color: var(--card); text-align: center; padding: .9rem .4rem; display: flex; flex-direction: column; justify-content: center; border-right: 2px dashed var(--paper); font-family: var(--font-data); font-variant-numeric: tabular-nums; }
+.stub { background: var(--saddle); color: var(--cream); text-align: center; padding: .9rem .4rem; display: flex; flex-direction: column; justify-content: center; border-right: 2px dashed var(--paper); font-family: var(--font-data); font-variant-numeric: tabular-nums; }
 .stub .dow, .stub .mon { font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; }
 .stub .day { font-family: var(--font-display); font-size: 2rem; line-height: 1.05; }
 .stub.recurring { background: var(--rule); color: var(--ink); }
@@ -87,7 +88,7 @@ h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.6rem
 .facts { display: flex; flex-wrap: wrap; gap: .3rem 1.1rem; margin: 0; padding: 0; list-style: none; font-size: .93rem; }
 .facts b { font-weight: 600; }
 .pill { display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: .12rem .5rem; border-radius: 999px; vertical-align: .15em; margin-left: .35rem; white-space: nowrap; }
-.pill.ok { background: var(--denim); color: var(--card); }
+.pill.ok { background: var(--saddle); color: var(--cream); }
 .pill.check { background: var(--canola); color: var(--on-canola); }
 .notes { font-size: .93rem; margin: .5rem 0 0; }
 .src { font-size: .85rem; margin: .45rem 0 0; color: var(--muted); }
@@ -115,7 +116,6 @@ html { scroll-behavior: smooth; }
 <header class="mast">
   <div class="wrap">
     <nav class="nav" aria-label="Main">
-      <a class="logo" href="#top"><img src="logo.png" width="760" height="320" alt="Two-Step Alberta"></a>
       <ul>
         <li><a href="#dances">Dances</a></li>
         <li><a href="#monthly">Monthly jams</a></li>
@@ -124,20 +124,20 @@ html { scroll-behavior: smooth; }
         <li><a href="#about">About</a></li>
       </ul>
     </nav>
-    <h1 id="top">Find a hall dance this weekend.</h1>
-    <p class="lede">Cabarets, dinner-and-dances and old-time country nights at community halls, ag society grounds and Legions around Edmonton. Live bands, mostly country.</p>
-    <a class="cta" href="#dances">See winter 2026–27 dances</a>
+    <img class="hero-logo" src="logo.png" width="760" height="320" alt="">
+    <h1 id="top">Where's the dance this weekend?</h1>
+    <p class="lede">Cabarets, suppers and old-time dances at halls around Edmonton. Mostly country, mostly live bands.</p>
+    <a class="cta" href="#dances">See what's on</a>
   </div>
 </header>
 
 <main class="wrap">
 
-  <p class="warn"><strong>Phone before you drive.</strong> Small-town dates change and many dances never get posted online. Call the hall or organizer to confirm. Drive times are rough estimates from central Edmonton.</p>
+  <p class="warn"><strong>Give the hall a call before you head out.</strong> Dates change, and nobody wants to drive an hour to a dark hall. Drive times are my rough guess from central Edmonton.</p>
 
   <section id="dances" aria-labelledby="dances-h">
-    <p class="eyebrow">Edmonton &amp; area · Winter 2026–27</p>
-    <h2 id="dances-h">Dates on the calendar</h2>
-    <p class="section-note">Small-town dances with a posted date, in order. Edmonton dances are listed <a href="#city">further down</a>. Last checked November 2, 2026.</p>
+    <h2 id="dances-h">Coming up</h2>
+    <p class="section-note">Out-of-town dances, soonest first. City ones are <a href="#city">further down</a>. Updated Nov 2, 2026.</p>
 
     <ol class="dances">
 
@@ -151,8 +151,8 @@ html { scroll-behavior: smooth; }
             <li><b>Band:</b> Barre 44</li>
             <li><b>Price:</b> $65 dinner and dance, or $15 dance only (includes lunch)</li>
           </ul>
-          <p class="notes">Dinner tickets must be bought by November 29. Doors 7 pm. Order on the hall's form, pay by e-transfer, tickets held at the door.</p>
-          <p class="src">Tickets and source: <a href="https://docs.google.com/forms/d/e/1FAIpQLSfe5xHcJxSb2BKJgkgmM8IUcehAR2R0IWzXfBcJcFt2fQaZaA/viewform" target="_blank" rel="noopener">Villeneuve Hall ticket form</a> (linked from <a href="https://villeneuvehall.ca/" target="_blank" rel="noopener">villeneuvehall.ca</a>)</p>
+          <p class="notes">Dinner tickets must be bought by November 29. Doors 7 pm. Order on the hall's form and e-transfer; your tickets wait at the door.</p>
+          <p class="src">Tickets: <a href="https://docs.google.com/forms/d/e/1FAIpQLSfe5xHcJxSb2BKJgkgmM8IUcehAR2R0IWzXfBcJcFt2fQaZaA/viewform" target="_blank" rel="noopener">Villeneuve Hall ticket form</a> (linked from <a href="https://villeneuvehall.ca/" target="_blank" rel="noopener">villeneuvehall.ca</a>)</p>
         </div>
       </li>
 
@@ -162,8 +162,8 @@ html { scroll-behavior: smooth; }
           <h3>Leduc Christmas Gala Night <span class="pill ok">Confirmed</span></h3>
           <p class="where">Best Western Denham Inn &amp; Suites, 5207 50 Ave, Leduc · ~25 min</p>
           <ul class="facts"><li><b>When:</b> Saturday, December 12, 2026, 5 pm–midnight; dancing 8 pm–midnight</li><li><b>Band:</b> The Rural Routes (country duo)</li><li><b>Price:</b> $79, Christmas buffet included</li></ul>
-          <p class="notes">A hotel ballroom rather than a hall, same dinner-and-dance format. Reserve with the hotel at 780-986-2241.</p>
-          <p class="src">Source: <a href="https://downtownleduc.com/events/gala-night" target="_blank" rel="noopener">Downtown Leduc, Gala Night</a></p>
+          <p class="notes">It's in a hotel ballroom, not a hall. Book with the hotel at 780-986-2241.</p>
+          <p class="src">More info: <a href="https://downtownleduc.com/events/gala-night" target="_blank" rel="noopener">Downtown Leduc, Gala Night</a></p>
         </div>
       </li>
 
@@ -178,8 +178,8 @@ html { scroll-behavior: smooth; }
             <li><b>Band:</b> Rave On</li>
             <li><b>Price:</b> $15, free lunch included</li>
           </ul>
-          <p class="notes">Doors 7 pm. Order on the hall's form, pay by e-transfer, tickets held at the door.</p>
-          <p class="src">Tickets and source: <a href="https://docs.google.com/forms/d/e/1FAIpQLSfe5xHcJxSb2BKJgkgmM8IUcehAR2R0IWzXfBcJcFt2fQaZaA/viewform" target="_blank" rel="noopener">Villeneuve Hall ticket form</a> (linked from <a href="https://villeneuvehall.ca/" target="_blank" rel="noopener">villeneuvehall.ca</a>)</p>
+          <p class="notes">Doors 7 pm. Order on the hall's form and e-transfer; your tickets wait at the door.</p>
+          <p class="src">Tickets: <a href="https://docs.google.com/forms/d/e/1FAIpQLSfe5xHcJxSb2BKJgkgmM8IUcehAR2R0IWzXfBcJcFt2fQaZaA/viewform" target="_blank" rel="noopener">Villeneuve Hall ticket form</a> (linked from <a href="https://villeneuvehall.ca/" target="_blank" rel="noopener">villeneuvehall.ca</a>)</p>
         </div>
       </li>
 
@@ -194,8 +194,8 @@ html { scroll-behavior: smooth; }
             <li><b>Band:</b> 2026: Ryan Snow Band (live country)</li>
             <li><b>Price:</b> 2026: $37 + GST early, $42 + GST later, buffet included</li>
           </ul>
-          <p class="notes">18+. Hosted by Town of Morinville FCSS. Ran in 2025 and 2026.</p>
-          <p class="src">Source: <a href="https://www.morinville.ca/news/news-posts/music-memories-returns-for-its-second-year/" target="_blank" rel="noopener">Town of Morinville, 2026 announcement</a></p>
+          <p class="notes">18+. Put on by the Town of Morinville FCSS, who ran it in 2025 and 2026.</p>
+          <p class="src">More info: <a href="https://www.morinville.ca/news/news-posts/music-memories-returns-for-its-second-year/" target="_blank" rel="noopener">Town of Morinville, 2026 announcement</a></p>
         </div>
       </li>
       <li class="ticket">
@@ -204,8 +204,8 @@ html { scroll-behavior: smooth; }
           <h3>Alberta Beach Valentine's Supper &amp; Dance <span class="pill check">2027 date not posted</span></h3>
           <p class="where">Alberta Beach Agriplex · ~1 hr</p>
           <ul class="facts"><li><b>When:</b> Valentine's weekend (2026 was Sat Feb 14). Doors 5 pm, supper 6 pm, music 8–11 pm</li><li><b>Band:</b> 2026: Passin' Through (bluegrass) and Canadian Coldwater Revival (CCR tribute)</li><li><b>Price:</b> 2026: $49 supper and dance, $29 dance only</li></ul>
-          <p class="notes">Hosted by Community of Alberta Networking (C.A.N.). Proceeds fund a seniors' wishlist program.</p>
-          <p class="src">Source: <a href="https://lsac.ca/events/valentines-day-dine-dance" target="_blank" rel="noopener">Lac Ste. Anne County, 2026 listing</a></p>
+          <p class="notes">Put on by Community of Alberta Networking (C.A.N.). The money goes to a wishlist program for seniors.</p>
+          <p class="src">More info: <a href="https://lsac.ca/events/valentines-day-dine-dance" target="_blank" rel="noopener">Lac Ste. Anne County, 2026 listing</a></p>
         </div>
       </li>
       <li class="ticket">
@@ -214,8 +214,8 @@ html { scroll-behavior: smooth; }
           <h3>Winter Blooms Gala <span class="pill check">2027 date not posted</span></h3>
           <p class="where">Elks Social Hall, 400 Diamond Ave, Spruce Grove · ~30 min</p>
           <ul class="facts"><li><b>When:</b> A Saturday evening in February (2026 was Sat Feb 21, 5–11 pm)</li><li><b>Price:</b> 2026: $100</li></ul>
-          <p class="notes">Spruce Grove &amp; District Agricultural Society's formal dinner and dance (2026 was a masquerade). Dressier than a cabaret.</p>
-          <p class="src">Source: <a href="https://www.onefm.ca/leduc/whats-happening/event/winter-blooms-masquerade-gala" target="_blank" rel="noopener">The One FM, 2026 listing</a></p>
+          <p class="notes">Put on by the Spruce Grove &amp; District Ag Society. Dressier than a cabaret (2026 was a masquerade).</p>
+          <p class="src">More info: <a href="https://www.onefm.ca/leduc/whats-happening/event/winter-blooms-masquerade-gala" target="_blank" rel="noopener">The One FM, 2026 listing</a></p>
         </div>
       </li>
       <li class="ticket">
@@ -228,8 +228,8 @@ html { scroll-behavior: smooth; }
             <li><b>Band:</b> Barre 44</li>
             <li><b>Price:</b> $15, free lunch included</li>
           </ul>
-          <p class="notes">Doors 7 pm. Order on the hall's form, pay by e-transfer, tickets held at the door.</p>
-          <p class="src">Tickets and source: <a href="https://docs.google.com/forms/d/e/1FAIpQLSfe5xHcJxSb2BKJgkgmM8IUcehAR2R0IWzXfBcJcFt2fQaZaA/viewform" target="_blank" rel="noopener">Villeneuve Hall ticket form</a> (linked from <a href="https://villeneuvehall.ca/" target="_blank" rel="noopener">villeneuvehall.ca</a>)</p>
+          <p class="notes">Doors 7 pm. Order on the hall's form and e-transfer; your tickets wait at the door.</p>
+          <p class="src">Tickets: <a href="https://docs.google.com/forms/d/e/1FAIpQLSfe5xHcJxSb2BKJgkgmM8IUcehAR2R0IWzXfBcJcFt2fQaZaA/viewform" target="_blank" rel="noopener">Villeneuve Hall ticket form</a> (linked from <a href="https://villeneuvehall.ca/" target="_blank" rel="noopener">villeneuvehall.ca</a>)</p>
         </div>
       </li>
       <li class="ticket">
@@ -242,8 +242,8 @@ html { scroll-behavior: smooth; }
             <li><b>Band:</b> Satellites</li>
             <li><b>Price:</b> $15, free lunch included</li>
           </ul>
-          <p class="notes">Doors 7 pm. Order on the hall's form, pay by e-transfer, tickets held at the door.</p>
-          <p class="src">Tickets and source: <a href="https://docs.google.com/forms/d/e/1FAIpQLSfe5xHcJxSb2BKJgkgmM8IUcehAR2R0IWzXfBcJcFt2fQaZaA/viewform" target="_blank" rel="noopener">Villeneuve Hall ticket form</a> (linked from <a href="https://villeneuvehall.ca/" target="_blank" rel="noopener">villeneuvehall.ca</a>)</p>
+          <p class="notes">Doors 7 pm. Order on the hall's form and e-transfer; your tickets wait at the door.</p>
+          <p class="src">Tickets: <a href="https://docs.google.com/forms/d/e/1FAIpQLSfe5xHcJxSb2BKJgkgmM8IUcehAR2R0IWzXfBcJcFt2fQaZaA/viewform" target="_blank" rel="noopener">Villeneuve Hall ticket form</a> (linked from <a href="https://villeneuvehall.ca/" target="_blank" rel="noopener">villeneuvehall.ca</a>)</p>
         </div>
       </li>
       <li class="ticket">
@@ -256,8 +256,8 @@ html { scroll-behavior: smooth; }
             <li><b>Band:</b> Not listed</li>
             <li><b>Price:</b> $15, free lunch included</li>
           </ul>
-          <p class="notes">Order on the hall's form, pay by e-transfer, tickets held at the door.</p>
-          <p class="src">Tickets and source: <a href="https://docs.google.com/forms/d/e/1FAIpQLSfe5xHcJxSb2BKJgkgmM8IUcehAR2R0IWzXfBcJcFt2fQaZaA/viewform" target="_blank" rel="noopener">Villeneuve Hall ticket form</a> (linked from <a href="https://villeneuvehall.ca/" target="_blank" rel="noopener">villeneuvehall.ca</a>)</p>
+          <p class="notes">Order on the hall's form and e-transfer; your tickets wait at the door.</p>
+          <p class="src">Tickets: <a href="https://docs.google.com/forms/d/e/1FAIpQLSfe5xHcJxSb2BKJgkgmM8IUcehAR2R0IWzXfBcJcFt2fQaZaA/viewform" target="_blank" rel="noopener">Villeneuve Hall ticket form</a> (linked from <a href="https://villeneuvehall.ca/" target="_blank" rel="noopener">villeneuvehall.ca</a>)</p>
         </div>
       </li>
       <li class="ticket">
@@ -270,17 +270,16 @@ html { scroll-behavior: smooth; }
             <li><b>Band:</b> Ryan Snow Band</li>
             <li><b>Price:</b> $15, free lunch included</li>
           </ul>
-          <p class="notes">Doors 7 pm. Order on the hall's form, pay by e-transfer, tickets held at the door.</p>
-          <p class="src">Tickets and source: <a href="https://docs.google.com/forms/d/e/1FAIpQLSfe5xHcJxSb2BKJgkgmM8IUcehAR2R0IWzXfBcJcFt2fQaZaA/viewform" target="_blank" rel="noopener">Villeneuve Hall ticket form</a> (linked from <a href="https://villeneuvehall.ca/" target="_blank" rel="noopener">villeneuvehall.ca</a>)</p>
+          <p class="notes">Doors 7 pm. Order on the hall's form and e-transfer; your tickets wait at the door.</p>
+          <p class="src">Tickets: <a href="https://docs.google.com/forms/d/e/1FAIpQLSfe5xHcJxSb2BKJgkgmM8IUcehAR2R0IWzXfBcJcFt2fQaZaA/viewform" target="_blank" rel="noopener">Villeneuve Hall ticket form</a> (linked from <a href="https://villeneuvehall.ca/" target="_blank" rel="noopener">villeneuvehall.ca</a>)</p>
         </div>
       </li>
     </ol>
   </section>
 
   <section id="monthly" aria-labelledby="monthly-h">
-    <p class="eyebrow">Recurring</p>
     <h2 id="monthly-h">Monthly jams</h2>
-    <p class="section-note">Regular jams near Edmonton, listed by the Alberta Fiddlers. Bring an instrument or just come to listen and dance. Drive times are our estimates.</p>
+    <p class="section-note">These happen every month. Bring a fiddle or just come listen. From the Alberta Fiddlers' list.</p>
 
     <ol class="dances">
       <li class="ticket">
@@ -289,7 +288,7 @@ html { scroll-behavior: smooth; }
           <h3>Pizza Jam</h3>
           <p class="where">Good Note Community Farm, South Cooking Lake · ~35 min</p>
           <ul class="facts"><li><b>When:</b> 1st Friday, 5:30 pm</li></ul>
-          <p class="src">Source: <a href="https://www.albertafiddlers.com/alberta-regular-weekly-monthly-jams/" target="_blank" rel="noopener">Alberta Fiddlers, regular jams</a></p>
+          <p class="src">More info: <a href="https://www.albertafiddlers.com/alberta-regular-weekly-monthly-jams/" target="_blank" rel="noopener">Alberta Fiddlers, regular jams</a></p>
         </div>
       </li>
       <li class="ticket">
@@ -298,7 +297,7 @@ html { scroll-behavior: smooth; }
           <h3>Wetaskiwin Jammers</h3>
           <p class="where">Senior Centre, Wetaskiwin · ~1 hr</p>
           <ul class="facts"><li><b>When:</b> 2nd and 4th Sunday, 1–4 pm, September to April</li></ul>
-          <p class="src">Source: <a href="https://www.albertafiddlers.com/alberta-regular-weekly-monthly-jams/" target="_blank" rel="noopener">Alberta Fiddlers, regular jams</a></p>
+          <p class="src">More info: <a href="https://www.albertafiddlers.com/alberta-regular-weekly-monthly-jams/" target="_blank" rel="noopener">Alberta Fiddlers, regular jams</a></p>
         </div>
       </li>
       <li class="ticket">
@@ -307,7 +306,7 @@ html { scroll-behavior: smooth; }
           <h3>Old Time Country Jam</h3>
           <p class="where">Seniors' Centre, 5004 54 Ave, Tofield · ~50 min</p>
           <ul class="facts"><li><b>When:</b> 3rd Wednesday, 7 pm</li></ul>
-          <p class="src">Source: <a href="https://www.albertafiddlers.com/alberta-regular-weekly-monthly-jams/" target="_blank" rel="noopener">Alberta Fiddlers, regular jams</a></p>
+          <p class="src">More info: <a href="https://www.albertafiddlers.com/alberta-regular-weekly-monthly-jams/" target="_blank" rel="noopener">Alberta Fiddlers, regular jams</a></p>
         </div>
       </li>
       <li class="ticket">
@@ -316,7 +315,7 @@ html { scroll-behavior: smooth; }
           <h3>Genesee Hall Jam</h3>
           <p class="where">Genesee Hall, Genesee · ~1 hr</p>
           <ul class="facts"><li><b>When:</b> 3rd Friday, 7 pm</li></ul>
-          <p class="src">Source: <a href="https://www.albertafiddlers.com/alberta-regular-weekly-monthly-jams/" target="_blank" rel="noopener">Alberta Fiddlers, regular jams</a></p>
+          <p class="src">More info: <a href="https://www.albertafiddlers.com/alberta-regular-weekly-monthly-jams/" target="_blank" rel="noopener">Alberta Fiddlers, regular jams</a></p>
         </div>
       </li>
       <li class="ticket">
@@ -326,7 +325,7 @@ html { scroll-behavior: smooth; }
           <p class="where">Pioneer 73 Club, St. Lawrence Ave, Devon · ~35 min</p>
           <ul class="facts"><li><b>When:</b> 4th Wednesday, 7 pm, October to May</li></ul>
           <p class="notes">From June to September it moves to the chalet at Devon's campground.</p>
-          <p class="src">Source: <a href="https://www.albertafiddlers.com/alberta-regular-weekly-monthly-jams/" target="_blank" rel="noopener">Alberta Fiddlers, regular jams</a></p>
+          <p class="src">More info: <a href="https://www.albertafiddlers.com/alberta-regular-weekly-monthly-jams/" target="_blank" rel="noopener">Alberta Fiddlers, regular jams</a></p>
         </div>
       </li>
       <li class="ticket">
@@ -335,16 +334,15 @@ html { scroll-behavior: smooth; }
           <h3>Jamboree at Duffield Hall</h3>
           <p class="where">Duffield Hall, Duffield · ~50 min</p>
           <ul class="facts"><li><b>When:</b> 4th Saturday, 6:30 pm</li></ul>
-          <p class="src">Source: <a href="https://www.albertafiddlers.com/alberta-regular-weekly-monthly-jams/" target="_blank" rel="noopener">Alberta Fiddlers, regular jams</a></p>
+          <p class="src">More info: <a href="https://www.albertafiddlers.com/alberta-regular-weekly-monthly-jams/" target="_blank" rel="noopener">Alberta Fiddlers, regular jams</a></p>
         </div>
       </li>
     </ol>
   </section>
 
   <section id="city" aria-labelledby="city-h">
-    <p class="eyebrow">Edmonton</p>
     <h2 id="city-h">In the city</h2>
-    <p class="section-note">Not small-town halls, but these old-time dances and jams draw the same crowd.</p>
+    <p class="section-note">Not small town, but it's the same music.</p>
 
     <ol class="dances">
       <li class="ticket">
@@ -353,8 +351,8 @@ html { scroll-behavior: smooth; }
           <h3>Bar None 79 <span class="pill check">Not verified</span></h3>
           <p class="where">Midway Music Hall, Edmonton</p>
           <ul class="facts"><li><b>When:</b> Saturday, November 21, 2026, 7 pm</li><li><b>Music:</b> Chad Brownlee, Tim Hus</li><li><b>Price:</b> From $66.25</li></ul>
-          <p class="notes">The University of Alberta Agriculture Club's long-running country fundraiser, with dancing. We couldn't open the listing to check details.</p>
-          <p class="src">Source: <a href="https://www.todocanada.ca/city/edmonton/event/bar-none-79/" target="_blank" rel="noopener">ToDo Canada, Bar None 79</a></p>
+          <p class="notes">The U of A Ag Club's big country fundraiser. I couldn't open the listing to double-check, so look before you buy.</p>
+          <p class="src">More info: <a href="https://www.todocanada.ca/city/edmonton/event/bar-none-79/" target="_blank" rel="noopener">ToDo Canada, Bar None 79</a></p>
         </div>
       </li>
       <li class="ticket">
@@ -367,8 +365,8 @@ html { scroll-behavior: smooth; }
             <li><b>Band:</b> Calvin Vollrath &amp; Country Swing (old-time country)</li>
             <li><b>Price:</b> Not listed (earlier 2026 dances were $15)</li>
           </ul>
-          <p class="notes">"Dance &amp; Dinner" and "dance only" tickets are offered.</p>
-          <p class="src">Source: <a href="https://calvinvollrath.com/tickets" target="_blank" rel="noopener">calvinvollrath.com/tickets</a></p>
+          <p class="notes">You can get dinner and dance, or dance only.</p>
+          <p class="src">More info: <a href="https://calvinvollrath.com/tickets" target="_blank" rel="noopener">calvinvollrath.com/tickets</a></p>
         </div>
       </li>
       <li class="ticket">
@@ -380,7 +378,7 @@ html { scroll-behavior: smooth; }
             <li><b>When:</b> Sunday, January 10, 2027, 2 pm</li>
             <li><b>Band:</b> Calvin Vollrath &amp; Country Swing</li>
           </ul>
-          <p class="src">Source: <a href="https://calvinvollrath.com/tickets" target="_blank" rel="noopener">calvinvollrath.com/tickets</a></p>
+          <p class="src">More info: <a href="https://calvinvollrath.com/tickets" target="_blank" rel="noopener">calvinvollrath.com/tickets</a></p>
         </div>
       </li>
       <li class="ticket">
@@ -392,7 +390,7 @@ html { scroll-behavior: smooth; }
             <li><b>When:</b> Sunday, February 21, 2027, 2 pm</li>
             <li><b>Band:</b> Calvin Vollrath &amp; Country Swing</li>
           </ul>
-          <p class="src">Source: <a href="https://calvinvollrath.com/tickets" target="_blank" rel="noopener">calvinvollrath.com/tickets</a></p>
+          <p class="src">More info: <a href="https://calvinvollrath.com/tickets" target="_blank" rel="noopener">calvinvollrath.com/tickets</a></p>
         </div>
       </li>
       <li class="ticket">
@@ -405,7 +403,7 @@ html { scroll-behavior: smooth; }
             <li><b>Band:</b> Calvin Vollrath &amp; Country Swing</li>
           </ul>
           <p class="notes">The season runs to June 13, 2027.</p>
-          <p class="src">Source: <a href="https://calvinvollrath.com/tickets" target="_blank" rel="noopener">calvinvollrath.com/tickets</a></p>
+          <p class="src">More info: <a href="https://calvinvollrath.com/tickets" target="_blank" rel="noopener">calvinvollrath.com/tickets</a></p>
         </div>
       </li>
       <li class="ticket">
@@ -414,8 +412,8 @@ html { scroll-behavior: smooth; }
           <h3>WROTFA Old-Time Fiddle Jam</h3>
           <p class="where">Pleasantview Community Hall, Edmonton</p>
           <ul class="facts"><li><b>When:</b> Every Monday, 7–10 pm</li></ul>
-          <p class="notes">Acoustic old-time fiddle jam, run by the Wild Rose Old Time Fiddlers Association.</p>
-          <p class="src">Source: <a href="https://www.albertafiddlers.com/alberta-regular-weekly-monthly-jams/" target="_blank" rel="noopener">Alberta Fiddlers, regular jams</a></p>
+          <p class="notes">Acoustic fiddle jam put on by the Wild Rose Old Time Fiddlers.</p>
+          <p class="src">More info: <a href="https://www.albertafiddlers.com/alberta-regular-weekly-monthly-jams/" target="_blank" rel="noopener">Alberta Fiddlers, regular jams</a></p>
         </div>
       </li>
       <li class="ticket">
@@ -424,8 +422,8 @@ html { scroll-behavior: smooth; }
           <h3>WROTFA Old-Time Country Jam &amp; Dance</h3>
           <p class="where">North Glenora Community Hall, Edmonton</p>
           <ul class="facts"><li><b>When:</b> Every Thursday, 7–10 pm</li></ul>
-          <p class="notes">Jam with dancing. The listing gives 10860 57 Ave as the address, which doesn't match North Glenora, so check before you go.</p>
-          <p class="src">Source: <a href="https://www.albertafiddlers.com/alberta-regular-weekly-monthly-jams/" target="_blank" rel="noopener">Alberta Fiddlers, regular jams</a></p>
+          <p class="notes">There's dancing too. The listing's address (10860 57 Ave) doesn't match North Glenora Hall, so check first.</p>
+          <p class="src">More info: <a href="https://www.albertafiddlers.com/alberta-regular-weekly-monthly-jams/" target="_blank" rel="noopener">Alberta Fiddlers, regular jams</a></p>
         </div>
       </li>
     </ol>
@@ -434,34 +432,31 @@ html { scroll-behavior: smooth; }
   <section id="add" aria-labelledby="add-h">
     <div class="two">
       <div>
-        <p class="eyebrow">Know of one we missed?</p>
-        <h2 id="add-h">Add your hall's dance</h2>
-        <p class="section-note">Most small-town cabarets, New Year's Eve dances and Legion nights only get posted on Facebook or a poster at the post office. If you run one, or saw a poster, send it in and we'll list it free.</p>
+        <h2 id="add-h">Got a dance coming up?</h2>
+        <p class="section-note">A lot of these only ever go up on Facebook or a poster at the post office. If your hall has one, send it over and I'll put it up. It's free.</p>
       </div>
       <div class="add-box">
-        <p style="margin:0">Email <span class="email">twostepalberta@gmail.com</span> with:</p>
+        <p style="margin:0">Email <span class="email">twostepalberta@gmail.com</span> and include:</p>
         <ul>
-          <li>Dance name, town and hall</li>
-          <li>Date and start time</li>
-          <li>Band and price</li>
-          <li>Who's hosting, and a phone number for questions</li>
-          <li>A photo of the poster, if you have one</li>
+          <li>The town, the hall, the date and what time it starts</li>
+          <li>Who's playing and what it costs</li>
+          <li>A link to the event page or Facebook event (I only post dances that have one)</li>
+          <li>A picture of the poster if you've got it</li>
         </ul>
       </div>
     </div>
   </section>
 
   <section id="about" aria-labelledby="about-h">
-    <p class="eyebrow">About</p>
-    <h2 id="about-h">Keeping the hall dance going</h2>
-    <p class="section-note">Hall dances keep small towns together, and plenty of them are run by volunteers who are getting ready to retire. Two-Step Alberta puts the dates in one place so more people show up, the band gets paid, and the hall stays open. Every listing links to where we found it.</p>
+    <h2 id="about-h">About this site</h2>
+    <p class="section-note">Finding out when a hall dance is on usually means knowing somebody, or spotting the poster at the post office after it's already happened. This puts them in one spot. Every listing links to the hall or organizer's own page so you can check it yourself.</p>
   </section>
 
 </main>
 
 <footer>
   <div class="wrap">
-    <p>Two-Step Alberta · Listings last checked November 2, 2026. Dates come from public sources and can change, so always confirm with the organizer.</p>
+    <p>Two-Step Alberta · Updated Nov 2, 2026 · twostepalberta@gmail.com</p>
   </div>
 </footer>
 
