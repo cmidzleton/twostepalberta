@@ -148,7 +148,23 @@ h2 { font-family: var(--font-body); font-weight: 800; font-size: clamp(1.45rem, 
 .pill.ok { background: var(--saddle); color: var(--cream); }
 .pill.check { background: var(--canola); color: var(--on-canola); }
 .notes { font-size: .93rem; margin: .5rem 0 0; }
-.more-btn { display: none; }
+.more-btn { display: inline-block; margin-top: .5rem; font: inherit; font-size: .9rem; font-weight: 700; color: var(--denim); background: none; border: 1px solid var(--rule); border-radius: 999px; padding: .45rem .95rem; cursor: pointer; }
+.more-btn:focus-visible { outline: 3px solid var(--denim); outline-offset: 2px; }
+.details-btn { display: none; }
+.card-actions { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .6rem; }
+.card-actions .more-btn { margin-top: 0; padding: .45rem .75rem; font-size: .85rem; }
+.cal-btn { display: inline-flex; align-items: center; gap: .4rem; }
+.ticket .cal { display: none; }
+.cal-dialog { border: 0; border-radius: 10px; padding: 1.25rem; width: min(22rem, calc(100vw - 32px)); background: var(--card); color: var(--ink); box-shadow: 0 20px 50px rgba(0,0,0,.35); }
+.cal-dialog::backdrop { background: rgba(20, 12, 6, .55); }
+.cal-dialog h2 { font-size: 1.15rem; margin: 0 0 .3rem; }
+.cal-dialog p { margin: 0 0 1rem; color: var(--muted); font-size: .92rem; }
+.cal-choices { display: grid; gap: .55rem; }
+.cal-choices a, .cal-choices button { display: flex; align-items: center; justify-content: center; gap: .5rem; font: inherit; font-weight: 700; text-decoration: none; border-radius: 6px; padding: .8rem 1rem; cursor: pointer; }
+.cal-google { background: var(--saddle); color: var(--cream); border: 0; }
+.cal-apple { background: var(--canola); color: var(--saddle); border: 0; }
+.cal-cancel { background: none; color: var(--denim); border: 1px solid var(--rule); }
+.cal-choices a:focus-visible, .cal-choices button:focus-visible { outline: 3px solid var(--denim); outline-offset: 2px; }
 @media (max-width: 48rem) {
   /* Finger-sized links and buttons */
   .src a, .cal a, .cal button { display: inline-block; padding: .45rem 0; }
@@ -159,14 +175,8 @@ h2 { font-family: var(--font-body); font-weight: 800; font-size: clamp(1.45rem, 
   footer a { display: inline-block; padding: .35rem 0; }
   .sub-note a, .section-note a { display: inline-block; padding: .3rem 0; }
   /* Shorter cards: name, town, date and price, with Details for the rest */
-  .more-btn { display: inline-block; margin-top: .5rem; font: inherit; font-size: .9rem; font-weight: 700; color: var(--denim); background: none; border: 1px solid var(--rule); border-radius: 999px; padding: .45rem .95rem; cursor: pointer; }
-  .more-btn:focus-visible { outline: 3px solid var(--denim); outline-offset: 2px; }
+  .details-btn { display: inline-block; }
   .ticket:not(.open) .facts .extra, .ticket:not(.open) .notes, .ticket:not(.open) .src { display: none; }
-  .ticket:not(.cal-open) .cal { display: none; }
-  .card-actions { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .5rem; }
-  .card-actions .more-btn { padding: .45rem .75rem; font-size: .85rem; }
-  .card-actions .more-btn { margin-top: 0; }
-  .cal-btn { display: inline-flex; align-items: center; gap: .4rem; }
 }
 .email-form { margin: 0 0 1.4rem; max-width: 34rem; }
 .email-form label { display: block; font-weight: 700; margin-bottom: .4rem; }
@@ -949,6 +959,23 @@ html { scroll-behavior: smooth; }
 <script>
 (function () {
   // Phones: each card starts short (name, town, When, Price); "Details" shows the rest.
+  var dlg = document.createElement('dialog'); dlg.className = 'cal-dialog'; dlg.setAttribute('aria-labelledby', 'cal-dlg-h');
+  dlg.innerHTML = '<h2 id="cal-dlg-h">Add to calendar</h2><p id="cal-dlg-name"></p><div class="cal-choices">' +
+    '<a class="cal-google" target="_blank" rel="noopener">Google Calendar</a>' +
+    '<button type="button" class="cal-apple">Apple or Outlook</button>' +
+    '<button type="button" class="cal-cancel">Cancel</button></div>';
+  document.body.appendChild(dlg);
+  var dg = dlg.querySelector('.cal-google'), da = dlg.querySelector('.cal-apple'), dn = dlg.querySelector('#cal-dlg-name'), cur = null;
+  dg.addEventListener('click', function () { dlg.close(); });
+  da.addEventListener('click', function () { if (cur) cur.querySelector('button').click(); dlg.close(); });
+  dlg.querySelector('.cal-cancel').addEventListener('click', function () { dlg.close(); });
+  dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+  function openCal(t, cal) {
+    cur = cal; dg.href = cal.querySelector('a').href;
+    var h = t.querySelector('h3').cloneNode(true); h.querySelectorAll('.pill').forEach(function (x) { x.remove(); });
+    dn.textContent = h.textContent.trim();
+    if (dlg.showModal) dlg.showModal(); else window.open(dg.href, '_blank');
+  }
   document.querySelectorAll('.ticket').forEach(function (t) {
     var body = t.querySelector('.body'); if (!body) return;
     var hidden = 0;
@@ -959,7 +986,7 @@ html { scroll-behavior: smooth; }
     hidden += body.querySelectorAll('.notes, .src, .cal').length;
     if (!hidden) return;
     var btn = document.createElement('button');
-    btn.type = 'button'; btn.className = 'more-btn'; btn.textContent = 'Details'; btn.setAttribute('aria-expanded', 'false');
+    btn.type = 'button'; btn.className = 'more-btn details-btn'; btn.textContent = 'Details'; btn.setAttribute('aria-expanded', 'false');
     btn.addEventListener('click', function () {
       var open = t.classList.toggle('open');
       btn.textContent = open ? 'Hide details' : 'Details';
@@ -972,10 +999,8 @@ html { scroll-behavior: smooth; }
       var cb = document.createElement('button');
       cb.type = 'button'; cb.className = 'more-btn cal-btn'; cb.setAttribute('aria-expanded', 'false');
       cb.innerHTML = '<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Add to calendar';
-      cb.addEventListener('click', function () {
-        var o = t.classList.toggle('cal-open');
-        cb.setAttribute('aria-expanded', o ? 'true' : 'false');
-      });
+      cb.setAttribute('aria-haspopup', 'dialog'); cb.removeAttribute('aria-expanded');
+      cb.addEventListener('click', function () { openCal(t, cal); });
       row.appendChild(cb);
     }
     body.appendChild(row);
