@@ -194,6 +194,14 @@ h2 { font-family: var(--font-body); font-weight: 800; font-size: clamp(1.45rem, 
 .email-row input { flex: 1 1 14rem; min-width: 0; font: inherit; padding: .55rem .7rem; border: 2px solid var(--ink); border-radius: 4px; background: var(--card); color: var(--ink); }
 .email-row button { flex: 0 0 auto; font: inherit; font-weight: 700; color: var(--saddle); background: var(--canola); border: 0; border-radius: 4px; padding: .6rem 1rem; cursor: pointer; }
 .email-row input:focus-visible, .email-row button:focus-visible { outline: 3px solid var(--denim); outline-offset: 2px; }
+.contact-form { display: grid; gap: .35rem; max-width: 34rem; margin: 0 0 1rem; }
+.contact-form label { font-weight: 700; margin-top: .5rem; }
+.contact-form .opt { font-weight: 400; color: var(--muted); font-size: .9rem; }
+.contact-form input, .contact-form textarea { font: inherit; padding: .55rem .7rem; border: 2px solid var(--ink); border-radius: 4px; background: var(--card); color: var(--ink); width: 100%; box-sizing: border-box; }
+.contact-form textarea { resize: vertical; min-height: 7rem; }
+.contact-form button { justify-self: start; margin-top: .7rem; font: inherit; font-weight: 700; color: var(--saddle); background: var(--canola); border: 0; border-radius: 4px; padding: .6rem 1.2rem; cursor: pointer; }
+.contact-form input:focus-visible, .contact-form textarea:focus-visible, .contact-form button:focus-visible { outline: 3px solid var(--denim); outline-offset: 2px; }
+.contact-form .hp { position: absolute; left: -9999px; }
 .cal-label { font-weight: 700; margin: 0 0 .5rem; }
 .sub-btns { display: flex; flex-wrap: wrap; gap: .6rem; }
 .sub-btn { display: inline-block; font-weight: 700; color: var(--cream); background: var(--saddle); text-decoration: none; border-radius: 999px; padding: .55rem 1.1rem; }
@@ -356,6 +364,7 @@ html { scroll-behavior: smooth; }
         <li><a href="https://docs.google.com/forms/d/e/1FAIpQLScSvcJA_JO-SMhnt25zOBlzJMs5c-1fO8WIsBECea9QOfH4gw/viewform" target="_blank" rel="noopener">Submit a dance here</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="https://forms.gle/v9GQNi8NgZG2gEBN8" target="_blank" rel="noopener">Feedback</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
     <div class="mast-grid">
@@ -893,13 +902,30 @@ html { scroll-behavior: smooth; }
     </div>
   </section>
 
+  <section id="contact" aria-labelledby="contact-h">
+    <div class="sec-head"><h2 id="contact-h">Contact &amp; Feedback</h2> <a class="to-top" href="#search">Back to search</a></div>
+    <p class="section-note">Questions, corrections, or something on the site not working? Send us a note. To add a dance, use the <a href="https://docs.google.com/forms/d/e/1FAIpQLScSvcJA_JO-SMhnt25zOBlzJMs5c-1fO8WIsBECea9QOfH4gw/viewform" target="_blank" rel="noopener">dance form</a> instead.</p>
+    <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/?sent=1#contact">
+      <input type="hidden" name="form-name" value="contact">
+      <p class="hp" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+      <label for="c-name">Your name <span class="opt">(optional)</span></label>
+      <input type="text" id="c-name" name="name" autocomplete="name">
+      <label for="c-email">Your email <span class="opt">(optional, only if you want a reply)</span></label>
+      <input type="email" id="c-email" name="email" autocomplete="email" spellcheck="false">
+      <label for="c-msg">Message</label>
+      <textarea id="c-msg" name="message" rows="5" required></textarea>
+      <button type="submit">Send</button>
+      <p class="sub-note contact-status" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+
 </main>
 
 <footer>
   <div class="wrap">
     <p><strong>Updated every Wednesday!</strong> Last updated <span class="updated">November 2, 2026</span>.</p>
     <p>We don't run these dances. We just list what halls and organizers post online, so check the event page before you go.</p>
-    <p>Two-Step Alberta · <a href="https://forms.gle/v9GQNi8NgZG2gEBN8" target="_blank" rel="noopener">Site feedback</a></p>
+    <p>Two-Step Alberta · <a href="https://forms.gle/v9GQNi8NgZG2gEBN8" target="_blank" rel="noopener">Site feedback</a> · <a href="#contact">Contact</a></p>
     <p><button type="button" class="news-btn" id="news-btn" aria-haspopup="dialog">What's new on the site</button></p>
   </div>
 </footer>
@@ -909,6 +935,12 @@ html { scroll-behavior: smooth; }
 <dialog class="news-dialog" id="news" aria-labelledby="news-h">
   <h2 id="news-h">What's new on the site</h2>
   <div class="news-list">
+    <section data-date="2026-11-03">
+      <h3>November 3, 2026</h3>
+      <ul>
+        <li>A Contact &amp; Feedback form at the bottom of the page, so you can send us a note without leaving the site.</li>
+      </ul>
+    </section>
     <section data-date="2026-11-02">
       <h3>November 2, 2026</h3>
       <ul>
@@ -1262,5 +1294,22 @@ html { scroll-behavior: smooth; }
 })();
 </script>
 
+
+<script>
+(function () {
+  var f = document.querySelector('.contact-form'); if (!f) return;
+  var st = f.querySelector('.contact-status');
+  if (/[?&]sent=1/.test(location.search)) st.textContent = 'Thanks, your message was sent.';
+  f.addEventListener('submit', function (e) {
+    if (!window.fetch) return;
+    e.preventDefault();
+    var btn = f.querySelector('button'); btn.disabled = true; st.textContent = 'Sending...';
+    fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(new FormData(f)).toString() })
+      .then(function (r) { if (!r.ok) throw 0; f.reset(); st.textContent = 'Thanks, your message was sent.'; })
+      .catch(function () { st.textContent = "Sorry, that didn't go through. Please try again in a minute."; })
+      .then(function () { btn.disabled = false; });
+  });
+})();
+</script>
 </body>
 </html>
