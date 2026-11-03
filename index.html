@@ -261,8 +261,12 @@ section { scroll-margin-top: 1rem; }
 .search select { font: inherit; padding: .45rem .5rem; border: 1px solid var(--rule); border-radius: 4px; background: var(--card); color: var(--ink); justify-self: start; }
 .pill.age { background: var(--barn); color: var(--card); }
 .pill.city { background: var(--denim); color: var(--card); }
+/* Edmonton & St. Albert cards: blue date stub and a light blue edge, so they stand apart from the small town dances */
+.ticket[data-area="edmonton"] .stub { background: var(--denim); }
+.ticket[data-area="edmonton"] { border-color: #b9c8d8; background: #f5f8fb; }
+.ticket[data-area="edmonton"] .body { background: #f5f8fb; }
 .search .check { display: flex; gap: .6rem; align-items: center; min-height: 44px; font-weight: 600; cursor: pointer; }
-.search .check input { width: 1.4rem; height: 1.4rem; margin: 0; accent-color: var(--saddle); flex: none; }
+.search .check input { width: 1.4rem; height: 1.4rem; margin: 0; accent-color: var(--denim); flex: none; }
 .search #q-msg { margin: 0; font-size: .93rem; color: var(--muted); }
 .search #q-msg:empty { display: none; }
 .link-btn { font: inherit; font-weight: 600; color: var(--denim); background: none; border: 0; padding: .7rem 0; text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }
