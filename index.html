@@ -233,7 +233,7 @@ footer .wrap { padding-block: 1.5rem 2.5rem; color: var(--muted); font-size: .9r
   .cv-cell.has::after { content: ""; width: .45rem; height: .45rem; border-radius: 50%; background: var(--barn); }
   .cv-cell.sel::after { background: var(--canola); }
 }
-body.cal-mode .jump, body.cal-mode #dances, body.cal-mode #expected, body.cal-mode #monthly, body.cal-mode #city { display: none; }
+body.cal-mode .jump, body.cal-mode #dances, body.cal-mode #expected, body.cal-mode #monthly { display: none; }
 .jump { display: flex; flex-wrap: wrap; gap: .35rem; margin: 1rem 0 0; }
 #dances { padding-top: 1.75rem; }
 .jump a { display: inline-flex; align-items: center; min-height: 44px; padding: .5rem .6rem; border-radius: 999px; background: var(--saddle); color: var(--cream); font-weight: 700; font-size: .9rem; text-decoration: none; }
@@ -248,8 +248,12 @@ section { scroll-margin-top: 1rem; }
 .search input:focus-visible { outline: 3px solid var(--canola); outline-offset: 1px; }
 .search select { font: inherit; padding: .45rem .5rem; border: 1px solid var(--rule); border-radius: 4px; background: var(--card); color: var(--ink); justify-self: start; }
 .pill.age { background: var(--barn); color: var(--card); }
+.pill.city { background: var(--denim); color: var(--card); }
+.search .check { display: flex; gap: .6rem; align-items: center; min-height: 44px; font-weight: 600; cursor: pointer; }
+.search .check input { width: 1.4rem; height: 1.4rem; margin: 0; accent-color: var(--saddle); flex: none; }
 .search #q-msg { margin: 0; font-size: .93rem; color: var(--muted); }
 .search #q-msg:empty { display: none; }
+.link-btn { font: inherit; font-weight: 600; color: var(--denim); background: none; border: 0; padding: .7rem 0; text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }
 .no-match { color: var(--muted); font-style: italic; margin: 0; }
 /* Drive times: one line under search. The choice is remembered on this phone or computer. */
 .drive-from { display: grid; gap: .35rem; margin: .75rem 0 0; max-width: 42rem; }
@@ -331,6 +335,7 @@ html { scroll-behavior: smooth; }
   <div class="search" id="search">
     <label for="q">Search by town, hall or band</label>
     <input type="search" id="q" placeholder="e.g. Leduc, Villeneuve, Barre 44" autocomplete="off">
+    <label class="check"><input type="checkbox" id="show-city" checked> Show Edmonton &amp; St. Albert dances</label>
     <p id="q-msg" aria-live="polite"></p>
   </div>
 
@@ -394,7 +399,6 @@ html { scroll-behavior: smooth; }
     <a href="#dances">Confirmed</a>
     <a href="#expected">Expected</a>
     <a href="#monthly">Monthly</a>
-    <a href="#city">Edmonton</a>
   </nav>
 
   <section id="dances" aria-labelledby="dances-h">
@@ -403,6 +407,20 @@ html { scroll-behavior: smooth; }
 
     <ol class="dances">
 
+      <li class="ticket" data-area="edmonton" data-status="confirmed" data-age="18plus" data-cal="20261106T1700/20261106T2300">
+        <div class="stub" aria-hidden="true"><span class="dow">Fri</span><span class="day">6</span><span class="mon">Nov</span></div>
+        <div class="body">
+          <h3>Blatchford Boogie Woogie <span class="pill age">18+</span> <span class="pill city">Edmonton</span></h3>
+          <p class="where">Alberta Aviation Museum, 11410 Kingsway NW, Edmonton · <span class="drive" data-ll="53.571,-113.518">in the city</span></p>
+          <ul class="facts">
+            <li><b>When:</b> Friday, November 6, 2026. Dinner guests 5 pm, dance tickets from 7 pm, swing lesson about 7:30, big band about 8 pm, ends 11 pm</li>
+            <li><b>Band:</b> Live big band (not named), with Sugar Swing dancers</li>
+            <li><b>Price:</b> Not listed. Dance ticket or dinner and dance package</li>
+          </ul>
+          <p class="notes">Swing and boogie woogie among the old planes. Not country, but there's a lesson if you're new to it.</p>
+          <p class="src">Tickets: <a href="https://albertaaviationmuseum.com/blatchford-boogie-woogie/" target="_blank" rel="noopener">Alberta Aviation Museum</a> (also on <a href="https://exploreedmonton.com/event-calendar/blatchford-boogie-woogie" target="_blank" rel="noopener">Explore Edmonton</a>)</p>
+        </div>
+      </li>
       <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20261107">
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">7</span><span class="mon">Nov</span></div>
         <div class="body">
@@ -492,6 +510,16 @@ html { scroll-behavior: smooth; }
           <p class="src">More info: <a href="https://www.elkpoint.ca/public/uploads/images/2026_11_21buckinbroncs2/1789497782-1280w_2026_11_21buckinbroncs2.jpg" target="_blank" rel="noopener">Event poster</a> (posted on the <a href="https://www.elkpoint.ca/news/community-events" target="_blank" rel="noopener">Town of Elk Point events page</a>)</p>
         </div>
       </li>
+      <li class="ticket" data-area="edmonton" data-status="confirmed" data-age="unknown" data-cal="20261121T1900/20261121T2300">
+        <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">21</span><span class="mon">Nov</span></div>
+        <div class="body">
+          <h3>Bar None 79 <span class="pill city">Edmonton</span></h3>
+          <p class="where">Midway Music Hall, 6107 104 St NW, Edmonton · <span class="drive" data-ll="53.500,-113.497">in the city</span></p>
+          <ul class="facts"><li><b>When:</b> Saturday, November 21, 2026, 7 pm</li><li><b>Music:</b> Chad Brownlee, Tim Hus</li><li><b>Price:</b> From $66.25</li></ul>
+          <p class="notes">The U of A Ag Club's big country cabaret. Money goes to STARS. Tickets on Ticketmaster or in person on campus.</p>
+          <p class="src">More info: <a href="https://timhus.ca/tour" target="_blank" rel="noopener">Tim Hus tour page</a> and <a href="https://uofaagricultureclub.com/bar-none/" target="_blank" rel="noopener">U of A Ag Club, Bar None</a></p>
+        </div>
+      </li>
       <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20261128T1700/20261128T2300">
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">28</span><span class="mon">Nov</span></div>
         <div class="body">
@@ -540,6 +568,42 @@ html { scroll-behavior: smooth; }
 
 
 
+      <li class="ticket" data-area="edmonton" data-status="confirmed" data-age="unknown" data-cal="20261206T1400/20261206T1700">
+        <div class="stub" aria-hidden="true"><span class="dow">Sun</span><span class="day">6</span><span class="mon">Dec</span></div>
+        <div class="body">
+          <h3>Calvin Vollrath &amp; Country Swing Christmas Dance <span class="pill ok">Tickets on sale</span> <span class="pill city">Edmonton</span></h3>
+          <p class="where">Kingsway Legion Br. 175, 14339 50 St NW, Edmonton · <span class="drive" data-ll="53.611,-113.418">in the city</span></p>
+          <ul class="facts">
+            <li><b>When:</b> Sunday, December 6, 2026, 2 pm</li>
+            <li><b>Band:</b> Calvin Vollrath &amp; Country Swing (old-time country)</li>
+            <li><b>Price:</b> Not listed (earlier 2026 dances were $15)</li>
+          </ul>
+          <p class="notes">You can get dinner and dance, or dance only.</p>
+          <p class="src">More info: <a href="https://calvinvollrath.com/tickets" target="_blank" rel="noopener">calvinvollrath.com/tickets</a></p>
+        </div>
+      </li>
+      <li class="ticket" data-area="edmonton" data-status="confirmed" data-age="unknown" data-cal="20261222T1700/20261222T2100">
+        <div class="stub" aria-hidden="true"><span class="dow">Tue</span><span class="day">22</span><span class="mon">Dec</span></div>
+        <div class="body">
+          <h3>Making Spirits Bright Dinner &amp; Dance <span class="pill city">St. Albert</span></h3>
+          <p class="where">Red Willow Place, 7 Tache St, St. Albert · <span class="drive" data-ll="53.633,-113.626">~25 min from Edmonton</span></p>
+          <ul class="facts"><li><b>When:</b> Tuesday, December 22, 2026. Doors 5 pm, dinner 6 pm, dance 7–9 pm</li><li><b>Music:</b> DJ</li><li><b>Price:</b> $70 members, $80 non-members</li></ul>
+          <p class="notes">Put on by the St. Albert 50+ Activity &amp; Service Centre. Buy tickets by December 11 through the centre's office, 780-459-0433.</p>
+          <p class="src">More info: <a href="https://allevents.in/saint-albert/making-spirits-bright-dinner-and-dance/200030886440501" target="_blank" rel="noopener">AllEvents, Making Spirits Bright</a></p>
+        </div>
+      </li>
+      <li class="ticket" data-area="edmonton" data-status="confirmed" data-age="unknown" data-cal="20270110T1400/20270110T1700">
+        <div class="stub" aria-hidden="true"><span class="dow">Sun</span><span class="day">10</span><span class="mon">Jan</span></div>
+        <div class="body">
+          <h3>Calvin Vollrath &amp; Country Swing Dance <span class="pill ok">Tickets on sale</span> <span class="pill city">Edmonton</span></h3>
+          <p class="where">Kingsway Legion Br. 175, Edmonton · <span class="drive" data-ll="53.611,-113.418">in the city</span></p>
+          <ul class="facts">
+            <li><b>When:</b> Sunday, January 10, 2027, 2 pm</li>
+            <li><b>Band:</b> Calvin Vollrath &amp; Country Swing</li>
+          </ul>
+          <p class="src">More info: <a href="https://calvinvollrath.com/tickets" target="_blank" rel="noopener">calvinvollrath.com/tickets</a></p>
+        </div>
+      </li>
       <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20270130T2000/20270131T0000">
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">30</span><span class="mon">Jan</span></div>
         <div class="body">
@@ -556,6 +620,18 @@ html { scroll-behavior: smooth; }
       </li>
 
 
+      <li class="ticket" data-area="edmonton" data-status="confirmed" data-age="unknown" data-cal="20270221T1400/20270221T1700">
+        <div class="stub" aria-hidden="true"><span class="dow">Sun</span><span class="day">21</span><span class="mon">Feb</span></div>
+        <div class="body">
+          <h3>Calvin Vollrath &amp; Country Swing Dance <span class="pill ok">Tickets on sale</span> <span class="pill city">Edmonton</span></h3>
+          <p class="where">Kingsway Legion Br. 175, Edmonton · <span class="drive" data-ll="53.611,-113.418">in the city</span></p>
+          <ul class="facts">
+            <li><b>When:</b> Sunday, February 21, 2027, 2 pm</li>
+            <li><b>Band:</b> Calvin Vollrath &amp; Country Swing</li>
+          </ul>
+          <p class="src">More info: <a href="https://calvinvollrath.com/tickets" target="_blank" rel="noopener">calvinvollrath.com/tickets</a></p>
+        </div>
+      </li>
       <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20270227T2000/20270228T0000">
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">27</span><span class="mon">Feb</span></div>
         <div class="body">
@@ -568,6 +644,19 @@ html { scroll-behavior: smooth; }
           </ul>
           <p class="notes">Doors 7 pm. Order on the hall's form and e-transfer; your tickets wait at the door.</p>
           <p class="src">Tickets: <a href="https://docs.google.com/forms/d/e/1FAIpQLSfe5xHcJxSb2BKJgkgmM8IUcehAR2R0IWzXfBcJcFt2fQaZaA/viewform" target="_blank" rel="noopener">Villeneuve Hall ticket form</a> (linked from <a href="https://villeneuvehall.ca/" target="_blank" rel="noopener">villeneuvehall.ca</a>)</p>
+        </div>
+      </li>
+      <li class="ticket" data-area="edmonton" data-status="confirmed" data-age="unknown" data-cal="20270314T1400/20270314T1700">
+        <div class="stub" aria-hidden="true"><span class="dow">Sun</span><span class="day">14</span><span class="mon">Mar</span></div>
+        <div class="body">
+          <h3>Calvin Vollrath &amp; Country Swing Dance <span class="pill ok">Tickets on sale</span> <span class="pill city">Edmonton</span></h3>
+          <p class="where">Kingsway Legion Br. 175, Edmonton · <span class="drive" data-ll="53.611,-113.418">in the city</span></p>
+          <ul class="facts">
+            <li><b>When:</b> Sunday, March 14, 2027, 2 pm</li>
+            <li><b>Band:</b> Calvin Vollrath &amp; Country Swing</li>
+          </ul>
+          <p class="notes">The season runs to June 13, 2027.</p>
+          <p class="src">More info: <a href="https://calvinvollrath.com/tickets" target="_blank" rel="noopener">calvinvollrath.com/tickets</a></p>
         </div>
       </li>
       <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20270320T2000/20270321T0000">
@@ -598,6 +687,7 @@ html { scroll-behavior: smooth; }
           <p class="src">Tickets: <a href="https://docs.google.com/forms/d/e/1FAIpQLSfe5xHcJxSb2BKJgkgmM8IUcehAR2R0IWzXfBcJcFt2fQaZaA/viewform" target="_blank" rel="noopener">Villeneuve Hall ticket form</a> (linked from <a href="https://villeneuvehall.ca/" target="_blank" rel="noopener">villeneuvehall.ca</a>)</p>
         </div>
       </li>
+
     </ol>
   </section>
 
@@ -658,117 +748,24 @@ html { scroll-behavior: smooth; }
           <p class="src">More info: <a href="https://www.albertafiddlers.com/alberta-regular-weekly-monthly-jams/" target="_blank" rel="noopener">Alberta Fiddlers, regular jams</a></p>
         </div>
       </li>
-      <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20261103T1830/20261103T2300" data-rrule="FREQ=WEEKLY;BYDAY=TU">
+      <li class="ticket" data-area="edmonton" data-status="confirmed" data-age="unknown" data-cal="20261103T1830/20261103T2300" data-rrule="FREQ=WEEKLY;BYDAY=TU">
         <div class="stub recurring" aria-hidden="true"><span class="mon">Every</span><span class="day">Tue</span></div>
         <div class="body">
-          <h3>Traditional Tuesday Dance <span class="pill check">Check first</span></h3>
+          <h3>Traditional Tuesday Dance <span class="pill check">Check first</span> <span class="pill city">Edmonton</span></h3>
           <p class="where">Chateau Nova Yellowhead, 13920 Yellowhead Trail NW, Edmonton · <span class="drive" data-ll="53.585,-113.567">in Edmonton</span></p>
           <ul class="facts"><li><b>When:</b> Tuesdays, doors 6:30 pm, dancing 8–11 pm</li><li><b>Band:</b> Live band</li><li><b>Price:</b> $12 at the door</li></ul>
           <p class="notes">Bev Munro's weekly dance. The times and price are from a spring 2026 listing, so check their Facebook page before you go.</p>
           <p class="src">More info: <a href="https://www.facebook.com/TraditionalTuesday/" target="_blank" rel="noopener">Traditional Tuesday on Facebook</a></p>
         </div>
       </li>
-      <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20261105T1900/20261105T2200" data-rrule="FREQ=WEEKLY;BYDAY=TH">
+      <li class="ticket" data-area="edmonton" data-status="confirmed" data-age="unknown" data-cal="20261105T1900/20261105T2200" data-rrule="FREQ=WEEKLY;BYDAY=TH">
         <div class="stub recurring" aria-hidden="true"><span class="mon">Every</span><span class="day">Thu</span></div>
         <div class="body">
-          <h3>WROTFA Old-Time Country Jam &amp; Dance</h3>
+          <h3>WROTFA Old-Time Country Jam &amp; Dance <span class="pill city">Edmonton</span></h3>
           <p class="where">North Glenora Community Hall, Edmonton · <span class="drive" data-ll="53.556,-113.554">in the city</span></p>
           <ul class="facts"><li><b>When:</b> Every Thursday, 7–10 pm</li></ul>
           <p class="notes">There's dancing too. The listing's address (10860 57 Ave) doesn't match North Glenora Hall, so check first.</p>
           <p class="src">More info: <a href="https://www.albertafiddlers.com/alberta-regular-weekly-monthly-jams/" target="_blank" rel="noopener">Alberta Fiddlers, regular jams</a></p>
-        </div>
-      </li>
-    </ol>
-  </section>
-
-  <section id="city" aria-labelledby="city-h">
-    <div class="sec-head"><h2 id="city-h">In Edmonton</h2></div>
-    <p class="section-note">Edmonton and St. Albert. Not small town, but it's the same music.</p>
-
-    <ol class="dances">
-      <li class="ticket" data-status="confirmed" data-age="18plus" data-cal="20261106T1700/20261106T2300">
-        <div class="stub" aria-hidden="true"><span class="dow">Fri</span><span class="day">6</span><span class="mon">Nov</span></div>
-        <div class="body">
-          <h3>Blatchford Boogie Woogie <span class="pill age">18+</span></h3>
-          <p class="where">Alberta Aviation Museum, 11410 Kingsway NW, Edmonton · <span class="drive" data-ll="53.571,-113.518">in the city</span></p>
-          <ul class="facts">
-            <li><b>When:</b> Friday, November 6, 2026. Dinner guests 5 pm, dance tickets from 7 pm, swing lesson about 7:30, big band about 8 pm, ends 11 pm</li>
-            <li><b>Band:</b> Live big band (not named), with Sugar Swing dancers</li>
-            <li><b>Price:</b> Not listed. Dance ticket or dinner and dance package</li>
-          </ul>
-          <p class="notes">Swing and boogie woogie among the old planes. Not country, but there's a lesson if you're new to it.</p>
-          <p class="src">Tickets: <a href="https://albertaaviationmuseum.com/blatchford-boogie-woogie/" target="_blank" rel="noopener">Alberta Aviation Museum</a> (also on <a href="https://exploreedmonton.com/event-calendar/blatchford-boogie-woogie" target="_blank" rel="noopener">Explore Edmonton</a>)</p>
-        </div>
-      </li>
-      <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20261121T1900/20261121T2300">
-        <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">21</span><span class="mon">Nov</span></div>
-        <div class="body">
-          <h3>Bar None 79</h3>
-          <p class="where">Midway Music Hall, 6107 104 St NW, Edmonton · <span class="drive" data-ll="53.500,-113.497">in the city</span></p>
-          <ul class="facts"><li><b>When:</b> Saturday, November 21, 2026, 7 pm</li><li><b>Music:</b> Chad Brownlee, Tim Hus</li><li><b>Price:</b> From $66.25</li></ul>
-          <p class="notes">The U of A Ag Club's big country cabaret. Money goes to STARS. Tickets on Ticketmaster or in person on campus.</p>
-          <p class="src">More info: <a href="https://timhus.ca/tour" target="_blank" rel="noopener">Tim Hus tour page</a> and <a href="https://uofaagricultureclub.com/bar-none/" target="_blank" rel="noopener">U of A Ag Club, Bar None</a></p>
-        </div>
-      </li>
-      <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20261206T1400/20261206T1700">
-        <div class="stub" aria-hidden="true"><span class="dow">Sun</span><span class="day">6</span><span class="mon">Dec</span></div>
-        <div class="body">
-          <h3>Calvin Vollrath &amp; Country Swing Christmas Dance <span class="pill ok">Tickets on sale</span></h3>
-          <p class="where">Kingsway Legion Br. 175, 14339 50 St NW, Edmonton · <span class="drive" data-ll="53.611,-113.418">in the city</span></p>
-          <ul class="facts">
-            <li><b>When:</b> Sunday, December 6, 2026, 2 pm</li>
-            <li><b>Band:</b> Calvin Vollrath &amp; Country Swing (old-time country)</li>
-            <li><b>Price:</b> Not listed (earlier 2026 dances were $15)</li>
-          </ul>
-          <p class="notes">You can get dinner and dance, or dance only.</p>
-          <p class="src">More info: <a href="https://calvinvollrath.com/tickets" target="_blank" rel="noopener">calvinvollrath.com/tickets</a></p>
-        </div>
-      </li>
-      <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20261222T1700/20261222T2100">
-        <div class="stub" aria-hidden="true"><span class="dow">Tue</span><span class="day">22</span><span class="mon">Dec</span></div>
-        <div class="body">
-          <h3>Making Spirits Bright Dinner &amp; Dance</h3>
-          <p class="where">Red Willow Place, 7 Tache St, St. Albert · <span class="drive" data-ll="53.633,-113.626">~25 min from Edmonton</span></p>
-          <ul class="facts"><li><b>When:</b> Tuesday, December 22, 2026. Doors 5 pm, dinner 6 pm, dance 7–9 pm</li><li><b>Music:</b> DJ</li><li><b>Price:</b> $70 members, $80 non-members</li></ul>
-          <p class="notes">Put on by the St. Albert 50+ Activity &amp; Service Centre. Buy tickets by December 11 through the centre's office, 780-459-0433.</p>
-          <p class="src">More info: <a href="https://allevents.in/saint-albert/making-spirits-bright-dinner-and-dance/200030886440501" target="_blank" rel="noopener">AllEvents, Making Spirits Bright</a></p>
-        </div>
-      </li>
-      <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20270110T1400/20270110T1700">
-        <div class="stub" aria-hidden="true"><span class="dow">Sun</span><span class="day">10</span><span class="mon">Jan</span></div>
-        <div class="body">
-          <h3>Calvin Vollrath &amp; Country Swing Dance <span class="pill ok">Tickets on sale</span></h3>
-          <p class="where">Kingsway Legion Br. 175, Edmonton · <span class="drive" data-ll="53.611,-113.418">in the city</span></p>
-          <ul class="facts">
-            <li><b>When:</b> Sunday, January 10, 2027, 2 pm</li>
-            <li><b>Band:</b> Calvin Vollrath &amp; Country Swing</li>
-          </ul>
-          <p class="src">More info: <a href="https://calvinvollrath.com/tickets" target="_blank" rel="noopener">calvinvollrath.com/tickets</a></p>
-        </div>
-      </li>
-      <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20270221T1400/20270221T1700">
-        <div class="stub" aria-hidden="true"><span class="dow">Sun</span><span class="day">21</span><span class="mon">Feb</span></div>
-        <div class="body">
-          <h3>Calvin Vollrath &amp; Country Swing Dance <span class="pill ok">Tickets on sale</span></h3>
-          <p class="where">Kingsway Legion Br. 175, Edmonton · <span class="drive" data-ll="53.611,-113.418">in the city</span></p>
-          <ul class="facts">
-            <li><b>When:</b> Sunday, February 21, 2027, 2 pm</li>
-            <li><b>Band:</b> Calvin Vollrath &amp; Country Swing</li>
-          </ul>
-          <p class="src">More info: <a href="https://calvinvollrath.com/tickets" target="_blank" rel="noopener">calvinvollrath.com/tickets</a></p>
-        </div>
-      </li>
-      <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20270314T1400/20270314T1700">
-        <div class="stub" aria-hidden="true"><span class="dow">Sun</span><span class="day">14</span><span class="mon">Mar</span></div>
-        <div class="body">
-          <h3>Calvin Vollrath &amp; Country Swing Dance <span class="pill ok">Tickets on sale</span></h3>
-          <p class="where">Kingsway Legion Br. 175, Edmonton · <span class="drive" data-ll="53.611,-113.418">in the city</span></p>
-          <ul class="facts">
-            <li><b>When:</b> Sunday, March 14, 2027, 2 pm</li>
-            <li><b>Band:</b> Calvin Vollrath &amp; Country Swing</li>
-          </ul>
-          <p class="notes">The season runs to June 13, 2027.</p>
-          <p class="src">More info: <a href="https://calvinvollrath.com/tickets" target="_blank" rel="noopener">calvinvollrath.com/tickets</a></p>
         </div>
       </li>
     </ol>
@@ -862,7 +859,9 @@ html { scroll-behavior: smooth; }
 (function () {
   var q = document.getElementById('q');
   var msg = document.getElementById('q-msg');
+  var city = document.getElementById('show-city');
   if (!q) return;
+  try { if (localStorage.getItem('showCity') === 'no') city.checked = false; } catch (e) {}
   var FORM = 'https://docs.google.com/forms/d/e/1FAIpQLScSvcJA_JO-SMhnt25zOBlzJMs5c-1fO8WIsBECea9QOfH4gw/viewform';
   var tickets = Array.prototype.slice.call(document.querySelectorAll('.ticket'));
   var lists = Array.prototype.slice.call(document.querySelectorAll('ol.dances'));
@@ -875,9 +874,11 @@ html { scroll-behavior: smooth; }
   tickets.forEach(function (t) { t._text = norm(t.querySelector('.body').textContent); });
   function run() {
     var terms = norm(q.value).split(/\s+/).filter(Boolean);
-    var shown = 0;
+    var shown = 0, off = 0;
     tickets.forEach(function (t) {
-      var ok = terms.every(function (w) { return t._text.indexOf(w) !== -1; });
+      var hit = terms.every(function (w) { return t._text.indexOf(w) !== -1; });
+      var ok = hit && (city.checked || t.getAttribute('data-area') !== 'edmonton');
+      if (hit && !ok) off++;
       t.hidden = !ok; if (ok) shown++;
     });
     lists.forEach(function (ol) {
@@ -886,6 +887,13 @@ html { scroll-behavior: smooth; }
     });
     msg.textContent = '';
     if (!terms.length) return;
+    if (!shown && off) {
+      msg.textContent = off + (off === 1 ? ' match' : ' matches') + ' in Edmonton or St. Albert, which you\u2019ve switched off. ';
+      var sw = document.createElement('button'); sw.type = 'button'; sw.className = 'link-btn'; sw.textContent = 'Show them';
+      sw.addEventListener('click', function () { city.checked = true; city.dispatchEvent(new Event('change')); });
+      msg.appendChild(sw);
+      return;
+    }
     if (!shown) {
       msg.textContent = 'No matches. Try just the town name. Don\u2019t see your town? ';
       var rq = document.createElement('a'); rq.href = FORM; rq.target = '_blank'; rq.rel = 'noopener'; rq.textContent = 'Tell us about a dance there';
@@ -903,6 +911,12 @@ html { scroll-behavior: smooth; }
     msg.appendChild(document.createTextNode('.'));
   }
   q.addEventListener('input', run);
+  // The Edmonton switch reuses the search run, so the list, calendar and map all follow it.
+  city.addEventListener('change', function () {
+    try { localStorage.setItem('showCity', city.checked ? 'yes' : 'no'); } catch (e) {}
+    q.dispatchEvent(new Event('input'));
+  });
+  if (!city.checked) run();
 })();
 </script>
 <script>
