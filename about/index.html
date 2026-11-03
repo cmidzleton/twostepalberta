@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>About &amp; Contact | Two-Step Alberta</title>
+<meta name="description" content="Why Two-Step Alberta lists small town hall dances and cabarets around Edmonton, and how to get in touch.">
+<link rel="canonical" href="https://twostepalberta.ca/about/">
+<meta name="theme-color" content="#28170d">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Two-Step Alberta">
+<meta property="og:title" content="About &amp; Contact | Two-Step Alberta">
+<meta property="og:url" content="https://twostepalberta.ca/about/">
+<meta property="og:image" content="https://twostepalberta.ca/og-image.jpg">
+<meta property="og:locale" content="en_CA">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" href="/favicon-192.png" sizes="192x192">
+<link rel="icon" type="image/png" href="/favicon-96.png" sizes="96x96">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/fonts/public-sans.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* Same look as the homepage. Keep these in step with index.html if the colours or fonts change. */
+@font-face { font-family: "Public Sans"; font-style: normal; font-weight: 100 900; font-display: swap; src: url(/fonts/public-sans.woff2) format("woff2"); }
+:root {
+  --paper: #f2f3ee; --card: #ffffff; --ink: #1d2733; --muted: #5b6573; --rule: #d5d9d0;
+  --canola: #e0a548; --saddle: #28170d; --cream: #f3e3c3; --denim: #24476b;
+  color-scheme: light;
+  --font-body: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 1.0625rem; line-height: 1.6; }
+a { color: var(--denim); text-underline-offset: 2px; }
+a:focus-visible { outline: 3px solid var(--canola); outline-offset: 2px; }
+.wrap { max-width: 54rem; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2 { text-wrap: balance; line-height: 1.15; margin: 0; font-weight: 800; letter-spacing: -.01em; }
+h1 { font-size: clamp(1.6rem, 5vw, 2.1rem); }
+h2 { font-size: clamp(1.45rem, 4vw, 1.85rem); }
+
+.mast { background: var(--saddle); color: var(--cream); }
+.mast .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem 1.5rem; padding-block: .75rem; }
+.home { display: block; line-height: 0; }
+.home img { width: 11rem; height: auto; }
+.nav ul { list-style: none; display: flex; flex-wrap: wrap; gap: 0 1.25rem; margin: 0; padding: 0; font-weight: 700; font-size: 1rem; }
+.nav a { display: inline-flex; align-items: center; min-height: 44px; color: var(--cream); text-decoration-color: rgba(243, 227, 195, .45); }
+.nav a[aria-current="page"] { color: var(--canola); }
+@media (max-width: 48rem) {
+  .nav { width: 100%; }
+  .nav ul { justify-content: space-between; gap: 0 .5rem; }
+}
+
+main section { padding-block: 2.5rem 0; }
+.section-note { color: var(--muted); max-width: 40rem; margin: .5rem 0 1.25rem; }
+.about-grid { display: grid; grid-template-columns: minmax(12rem, 16rem) minmax(0, 1fr); gap: 1.5rem 2rem; align-items: start; }
+.about-text { min-width: 0; }
+.photo { position: relative; margin: 0; border-radius: 8px; overflow: hidden; background: var(--saddle); }
+.photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.photo figcaption { position: absolute; right: .5rem; bottom: .5rem; font-size: .72rem; color: #fff; background: rgba(20, 12, 6, .55); padding: .15rem .45rem; border-radius: 3px; }
+.about-photo { aspect-ratio: 757 / 963; max-width: 100%; }
+@media (max-width: 48rem) {
+  .about-grid { grid-template-columns: 1fr; }
+  .about-photo { aspect-ratio: 4 / 3; }
+  .about-photo img { object-position: 50% 45%; }
+  .section-note a { display: inline-block; padding: .7rem 0; }
+}
+
+.contact-form { display: grid; gap: .35rem; max-width: 34rem; margin: 0 0 1rem; }
+.contact-form label { font-weight: 700; margin-top: .5rem; }
+.contact-form .opt { font-weight: 400; color: var(--muted); font-size: .9rem; }
+.contact-form input, .contact-form textarea { font: inherit; min-height: 44px; padding: .55rem .7rem; border: 2px solid var(--ink); border-radius: 4px; background: var(--card); color: var(--ink); width: 100%; }
+.contact-form textarea { resize: vertical; min-height: 7rem; }
+.contact-form button { justify-self: start; min-height: 44px; margin-top: .7rem; font: inherit; font-weight: 700; color: var(--saddle); background: var(--canola); border: 0; border-radius: 4px; padding: .6rem 1.2rem; cursor: pointer; }
+.contact-form input:focus-visible, .contact-form textarea:focus-visible, .contact-form button:focus-visible { outline: 3px solid var(--denim); outline-offset: 2px; }
+.contact-form .hp { position: absolute; left: -9999px; }
+.sub-note { font-size: .875rem; color: var(--muted); margin: .7rem 0 0; }
+section { scroll-margin-top: 1rem; }
+
+footer { margin-top: 3.5rem; border-top: 4px solid var(--canola); }
+footer .wrap { padding-block: 1.5rem 2.5rem; color: var(--muted); font-size: .9rem; }
+footer a { display: inline-block; padding: .7rem 0; }
+</style>
+</head>
+<body>
+
+<header class="mast">
+  <div class="wrap">
+    <a class="home" href="/"><img src="/logo-400.webp" width="400" height="168" alt="Two-Step Alberta, back to the dances"></a>
+    <nav class="nav" aria-label="Main">
+      <ul>
+        <li><a href="/#dances">Dances</a></li>
+        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLScSvcJA_JO-SMhnt25zOBlzJMs5c-1fO8WIsBECea9QOfH4gw/viewform" target="_blank" rel="noopener">Add a dance</a></li>
+        <li><a href="/#subscribe">Subscribe</a></li>
+        <li><a href="/about/" aria-current="page">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="about" aria-labelledby="about-h">
+    <div class="about-grid">
+      <figure class="photo about-photo">
+        <picture>
+          <source srcset="/cowboy-hat.webp" type="image/webp">
+          <img src="/cowboy-hat.jpg" width="757" height="963" alt="Cowboy hat resting on a truck tailgate at sunset on the prairie">
+        </picture>
+        <figcaption>Photo: Blake Emge</figcaption>
+      </figure>
+      <div class="about-text">
+        <h1 id="about-h">About this site</h1>
+        <p class="section-note">A lot of hall dances are scattered across Facebook pages, where they're easy to miss unless you already follow the right one. Small communities have a hard time getting the word out past their own area, and if you're not on social media you may never hear about them at all.</p>
+        <p class="section-note">Our vision is for people who love social dancing to see what's on in other communities, and for dancing to grow across all ages and Alberta communities. Every listing links to the hall or organizer's own page so you can check it yourself.</p>
+        <p class="section-note">We don't run any of these dances. This is just a list of hall dances people have posted online, gathered in one place. For tickets, changes or questions, go to the hall or whoever's putting it on.</p>
+        <p class="section-note"><a href="/#dances">See the dances</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" aria-labelledby="contact-h">
+    <h2 id="contact-h">Contact us</h2>
+    <p class="section-note">A question, something wrong or missing, or an idea for the site? Send us a note here. To add a dance, use the <a href="https://docs.google.com/forms/d/e/1FAIpQLScSvcJA_JO-SMhnt25zOBlzJMs5c-1fO8WIsBECea9QOfH4gw/viewform" target="_blank" rel="noopener">dance form</a> instead.</p>
+    <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/about/?sent=1#contact">
+      <input type="hidden" name="form-name" value="contact">
+      <p class="hp" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+      <label for="c-name">Your name <span class="opt">(optional)</span></label>
+      <input type="text" id="c-name" name="name" autocomplete="name">
+      <label for="c-email">Your email <span class="opt">(optional, only if you want a reply)</span></label>
+      <input type="email" id="c-email" name="email" autocomplete="email" spellcheck="false">
+      <label for="c-msg">Message</label>
+      <textarea id="c-msg" name="message" rows="5" required></textarea>
+      <button type="submit">Send</button>
+      <p class="sub-note contact-status" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>We don't run these dances. We just list what halls and organizers post online, so check the event page before you go.</p>
+    <p>Two-Step Alberta · <a href="/">Dances</a> · <a href="/#subscribe">Subscribe</a></p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var f = document.querySelector('.contact-form'); if (!f) return;
+  var st = f.querySelector('.contact-status');
+  if (/[?&]sent=1/.test(location.search)) st.textContent = 'Thanks, your message was sent.';
+  f.addEventListener('submit', function (e) {
+    if (!window.fetch) return;
+    e.preventDefault();
+    var btn = f.querySelector('button'); btn.disabled = true; st.textContent = 'Sending...';
+    fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(new FormData(f)).toString() })
+      .then(function (r) { if (!r.ok) throw 0; f.reset(); st.textContent = 'Thanks, your message was sent.'; })
+      .catch(function () { st.textContent = "Sorry, that didn't go through. Please try again in a minute."; })
+      .then(function () { btn.disabled = false; });
+  });
+})();
+</script>
+<!-- Cloudflare Web Analytics --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "7e606fc85f0e4583b7dae757bfa2369e"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

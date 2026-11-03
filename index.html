@@ -88,55 +88,41 @@ a:focus-visible { outline: 3px solid var(--canola); outline-offset: 2px; }
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
 }
-.sec-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: .25rem 1rem; }
-.to-top { font-size: .85rem; font-weight: 600; white-space: nowrap; }
 h1, h2, h3 { text-wrap: balance; line-height: 1.15; margin: 0; }
 
 /* Masthead */
 .mast { background: var(--saddle); color: var(--cream); }
 .mast .wrap { padding-block: 1rem 2rem; }
-.nav { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; align-items: center; justify-content: flex-end; }
+.nav { display: flex; align-items: center; justify-content: flex-end; }
 .logo { display: block; line-height: 0; }
 .logo img { width: clamp(9rem, 30vw, 12rem); height: auto; display: block; }
-.hero-logo { display: block; width: min(100%, 34rem); height: auto; margin-top: 1.5rem; }
-.nav ul { list-style: none; display: flex; flex-wrap: wrap; gap: .25rem 1rem; margin: 0; padding: 0; font-weight: 600; font-size: .95rem; }
-.nav a { color: var(--cream); }
-.nav-toggle { display: none; }
+.hero-logo { display: block; width: min(100%, 34rem); height: auto; margin-top: 1rem; }
+/* Main links always visible (no hidden menu): four links, finger-sized */
+.nav ul { list-style: none; display: flex; flex-wrap: wrap; gap: 0 1.25rem; margin: 0; padding: 0; font-weight: 700; font-size: 1rem; }
+.nav a { display: inline-flex; align-items: center; min-height: 44px; color: var(--cream); text-decoration-color: rgba(243, 227, 195, .45); }
+.nav a:focus-visible { outline: 3px solid var(--canola); outline-offset: 2px; }
 @media (max-width: 48rem) {
-  .nav { justify-content: flex-start; position: relative; padding-top: .6rem; }
-  .nav-toggle { display: inline-flex; align-items: center; gap: .55rem; font: inherit; font-weight: 700; color: var(--cream); background: none; border: 2px solid rgba(243, 227, 195, .45); border-radius: 6px; padding: .45rem .8rem; cursor: pointer; }
-  .nav-toggle:focus-visible { outline: 3px solid var(--canola); outline-offset: 2px; }
-  .burger, .burger::before, .burger::after { display: block; width: 1.2rem; height: 2px; background: currentColor; border-radius: 1px; position: relative; transition: transform .2s; }
-  .burger::before, .burger::after { content: ""; position: absolute; left: 0; }
-  .burger::before { top: -6px; } .burger::after { top: 6px; }
-  .nav-toggle[aria-expanded="true"] .burger { background: transparent; }
-  .nav-toggle[aria-expanded="true"] .burger::before { transform: translateY(6px) rotate(45deg); }
-  .nav-toggle[aria-expanded="true"] .burger::after { transform: translateY(-6px) rotate(-45deg); }
-  .nav ul { display: none; flex-direction: column; gap: 0; width: 100%; margin-top: .5rem; font-size: 1.05rem; }
-  .nav-toggle[aria-expanded="true"] + ul { display: flex; }
-  .nav li a { display: block; padding: .6rem .2rem; border-bottom: 1px solid rgba(243, 227, 195, .18); text-decoration: none; }
+  .nav { justify-content: flex-start; }
+  .nav ul { width: 100%; justify-content: space-between; gap: 0 .5rem; }
 }
 .mast h1 { font-family: var(--font-body); font-weight: 700; font-size: clamp(1.35rem, 3.6vw, 1.7rem); margin-top: 1.25rem; max-width: 30ch; }
 .mast p.lede { font-size: 1.05rem; max-width: 36rem; margin: .5rem 0 0; opacity: .92; }
 .mast .weekly { margin: .6rem 0 0; font-weight: 700; color: var(--canola); }
 .cta-row { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.25rem; }
-.mast .cta { display: inline-block; margin-top: 0; background: var(--canola); color: var(--saddle); padding: .7rem 1.1rem; border-radius: 4px; font-weight: 700; text-decoration: none; }
-.mast .cta-alt { background: transparent; color: var(--cream); box-shadow: inset 0 0 0 2px var(--canola); }
+.mast .cta { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; margin-top: 0; background: var(--canola); color: var(--saddle); padding: .7rem 1.1rem; border-radius: 4px; font-weight: 700; text-decoration: none; }
+@media (max-width: 48rem) { .mast .cta-row { display: none; } .hero-logo { width: min(100%, 17rem); margin-top: .5rem; } .mast .wrap { padding-block: .5rem 1.25rem; } .mast h1 { margin-top: .75rem; } }
 @media (max-width: 30rem) { .cta-row { flex-wrap: nowrap; } .mast .cta { flex: 1 1 auto; text-align: center; padding: .7rem .7rem; font-size: .95rem; } }
 
 main section { padding-block: 2.5rem 0; }
-.eyebrow { font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--barn); margin: 0 0 .4rem; }
 h2 { font-family: var(--font-body); font-weight: 800; font-size: clamp(1.45rem, 4vw, 1.85rem); letter-spacing: -.01em; }
 .section-note { color: var(--muted); max-width: 40rem; margin: .5rem 0 1.25rem; }
 
-.warn { margin: 1.5rem 0 0; max-width: 42rem; font-style: italic; color: var(--muted); }
-.warn strong { color: var(--ink); font-style: normal; }
 
 /* Dance tickets */
 .dances { list-style: none; margin: 0; padding: 0; display: grid; gap: .75rem; }
 .ticket { display: grid; grid-template-columns: 5.5rem 1fr; background: var(--card); border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; }
 .stub { background: var(--saddle); color: var(--cream); text-align: center; padding: .9rem .4rem; display: flex; flex-direction: column; justify-content: center; border-right: 2px dashed var(--paper); font-family: var(--font-data); font-variant-numeric: tabular-nums; }
-.stub .dow, .stub .mon { font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; }
+.stub .dow, .stub .mon { font-size: .875rem; letter-spacing: .1em; text-transform: uppercase; }
 .stub .day { font-family: var(--font-display); font-size: 2rem; line-height: 1.05; }
 .stub.recurring { background: var(--rule); color: var(--ink); }
 .stub.recurring .day { font-size: 1.05rem; font-family: var(--font-body); font-weight: 700; line-height: 1.25; }
@@ -145,18 +131,18 @@ h2 { font-family: var(--font-body); font-weight: 800; font-size: clamp(1.45rem, 
 .where { color: var(--muted); margin: .15rem 0 .5rem; font-size: .97rem; }
 .facts { display: flex; flex-wrap: wrap; gap: .3rem 1.1rem; margin: 0; padding: 0; list-style: none; font-size: .93rem; }
 .facts b { font-weight: 600; }
-.pill { display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: .12rem .5rem; border-radius: 999px; vertical-align: .15em; margin-left: .35rem; white-space: nowrap; }
+.pill { display: inline-block; font-size: .875rem; font-weight: 700; letter-spacing: .01em; padding: .12rem .5rem; border-radius: 999px; vertical-align: .15em; margin-left: .35rem; white-space: nowrap; }
 .pill.ok { background: var(--saddle); color: var(--cream); }
 .pill.check { background: var(--canola); color: var(--on-canola); }
 .notes { font-size: .93rem; margin: .5rem 0 0; }
-.more-btn { display: inline-block; margin-top: .5rem; font: inherit; font-size: .9rem; font-weight: 700; color: var(--denim); background: none; border: 1px solid var(--rule); border-radius: 999px; padding: .45rem .95rem; cursor: pointer; }
+.more-btn { display: inline-flex; align-items: center; min-height: 44px; margin-top: .5rem; font: inherit; font-size: .95rem; font-weight: 700; color: var(--denim); background: none; border: 1px solid var(--rule); border-radius: 999px; padding: .45rem .95rem; cursor: pointer; }
 .more-btn:focus-visible { outline: 3px solid var(--denim); outline-offset: 2px; }
 .details-btn { display: none; }
 .card-actions { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .6rem; }
-.card-actions .more-btn { margin-top: 0; padding: .45rem .75rem; font-size: .85rem; }
+.card-actions .more-btn { margin-top: 0; padding: .45rem .75rem; font-size: .95rem; }
 .cal-btn { display: inline-flex; align-items: center; gap: .4rem; }
 .ticket .cal { display: none; }
-.news-btn { font: inherit; font-weight: 700; color: var(--saddle); background: var(--canola); border: 0; border-radius: 4px; padding: .6rem 1rem; cursor: pointer; }
+.news-btn { font: inherit; min-height: 44px; font-weight: 700; color: var(--saddle); background: var(--canola); border: 0; border-radius: 4px; padding: .6rem 1rem; cursor: pointer; }
 .news-btn:focus-visible, .news-close:focus-visible { outline: 3px solid var(--denim); outline-offset: 2px; }
 .news-dialog { border: 0; border-radius: 10px; padding: 1.4rem; width: min(34rem, calc(100vw - 32px)); max-height: 85vh; background: var(--card); color: var(--ink); box-shadow: 0 20px 50px rgba(0,0,0,.35); }
 .news-dialog::backdrop { background: rgba(20, 12, 6, .55); }
@@ -178,13 +164,10 @@ h2 { font-family: var(--font-body); font-weight: 800; font-size: clamp(1.45rem, 
 .cal-choices a:focus-visible, .cal-choices button:focus-visible { outline: 3px solid var(--denim); outline-offset: 2px; }
 @media (max-width: 48rem) {
   /* Finger-sized links and buttons */
-  .src a, .cal a, .cal button { display: inline-block; padding: .45rem 0; }
+  .src a, .cal a, .cal button { display: inline-block; padding: .6rem 0; }
   .cal { display: flex; flex-wrap: wrap; align-items: center; gap: 0 .9rem; }
-  .to-top { display: inline-block; padding: .45rem .2rem; }
-  .search .check { padding: .35rem 0; }
-  .search label.check input { width: 1.5rem; height: 1.5rem; }
-  footer a { display: inline-block; padding: .35rem 0; }
-  .sub-note a, .section-note a { display: inline-block; padding: .3rem 0; }
+    footer a { display: inline-block; padding: .7rem .15rem; }
+  .sub-note a, .section-note a, #q-msg a { display: inline-block; padding: .7rem 0; }
   /* Shorter cards: name, town, date and price, with Details for the rest */
   .details-btn { display: inline-block; }
   .ticket:not(.open) .facts .extra, .ticket:not(.open) .notes, .ticket:not(.open) .src { display: none; }
@@ -192,42 +175,30 @@ h2 { font-family: var(--font-body); font-weight: 800; font-size: clamp(1.45rem, 
 .email-form { margin: 0 0 1.4rem; max-width: 34rem; }
 .email-form label { display: block; font-weight: 700; margin-bottom: .4rem; }
 .email-row { display: flex; flex-wrap: wrap; gap: .5rem; }
-.email-row input { flex: 1 1 14rem; min-width: 0; font: inherit; padding: .55rem .7rem; border: 2px solid var(--ink); border-radius: 4px; background: var(--card); color: var(--ink); }
-.email-row button { flex: 0 0 auto; font: inherit; font-weight: 700; color: var(--saddle); background: var(--canola); border: 0; border-radius: 4px; padding: .6rem 1rem; cursor: pointer; }
+.email-row input { flex: 1 1 14rem; min-height: 44px; min-width: 0; font: inherit; padding: .55rem .7rem; border: 2px solid var(--ink); border-radius: 4px; background: var(--card); color: var(--ink); }
+.email-row button { flex: 0 0 auto; min-height: 44px; font: inherit; font-weight: 700; color: var(--saddle); background: var(--canola); border: 0; border-radius: 4px; padding: .6rem 1rem; cursor: pointer; }
 .email-row input:focus-visible, .email-row button:focus-visible { outline: 3px solid var(--denim); outline-offset: 2px; }
-.contact-form { display: grid; gap: .35rem; max-width: 34rem; margin: 0 0 1rem; }
-.contact-form label { font-weight: 700; margin-top: .5rem; }
-.contact-form .opt { font-weight: 400; color: var(--muted); font-size: .9rem; }
-.contact-form input, .contact-form textarea { font: inherit; padding: .55rem .7rem; border: 2px solid var(--ink); border-radius: 4px; background: var(--card); color: var(--ink); width: 100%; box-sizing: border-box; }
-.contact-form textarea { resize: vertical; min-height: 7rem; }
-.contact-form button { justify-self: start; margin-top: .7rem; font: inherit; font-weight: 700; color: var(--saddle); background: var(--canola); border: 0; border-radius: 4px; padding: .6rem 1.2rem; cursor: pointer; }
-.contact-form input:focus-visible, .contact-form textarea:focus-visible, .contact-form button:focus-visible { outline: 3px solid var(--denim); outline-offset: 2px; }
-.contact-form .hp { position: absolute; left: -9999px; }
 .cal-label { font-weight: 700; margin: 0 0 .5rem; }
 .sub-btns { display: flex; flex-wrap: wrap; gap: .6rem; }
-.sub-btn { display: inline-block; font-weight: 700; color: var(--cream); background: var(--saddle); text-decoration: none; border-radius: 999px; padding: .55rem 1.1rem; }
+.sub-btn { display: inline-flex; align-items: center; min-height: 44px; font-weight: 700; color: var(--cream); background: var(--saddle); text-decoration: none; border-radius: 999px; padding: .55rem 1.1rem; }
 .sub-btn:hover { background: var(--barn); }
-.sub-note { font-size: .88rem; color: var(--muted); margin: .7rem 0 0; overflow-wrap: anywhere; }
-.cal { font-size: .85rem; margin: .45rem 0 0; color: var(--muted); }
+.sub-note { font-size: .875rem; color: var(--muted); margin: .7rem 0 0; overflow-wrap: anywhere; }
+.cal { font-size: .875rem; margin: .45rem 0 0; color: var(--muted); }
 .cal a, .cal button { font: inherit; font-weight: 600; color: var(--denim); background: none; border: 0; padding: 0; text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }
-.src { font-size: .85rem; margin: .45rem 0 0; color: var(--muted); }
+.src { font-size: .875rem; margin: .45rem 0 0; color: var(--muted); }
 
 /* About + add */
-.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: 1.5rem 2.5rem; }
-.two > * { min-width: 0; }
 .add-box { background: var(--card); border: 2px solid var(--ink); border-radius: 6px; padding: 1.25rem; }
 .add-box { display: grid; gap: .6rem; justify-items: start; }
 .add-box p { margin: 0; }
-.add-box .alt { font-size: .93rem; color: var(--muted); }
-.form-btn { display: inline-block; background: var(--canola); color: var(--saddle); font-weight: 700; padding: .7rem 1.1rem; border-radius: 4px; text-decoration: none; }
+.form-btn { display: inline-flex; align-items: center; min-height: 44px; background: var(--canola); color: var(--saddle); font-weight: 700; padding: .7rem 1.1rem; border-radius: 4px; text-decoration: none; }
 .form-btn:focus-visible { outline: 3px solid var(--denim); outline-offset: 2px; }
-.email { font-family: var(--font-data); background: var(--paper); padding: .1rem .35rem; border-radius: 3px; user-select: all; }
 
 footer { margin-top: 3.5rem; }
 footer .wrap { padding-block: 1.5rem 2.5rem; color: var(--muted); font-size: .9rem; }
 
-.view-toggle { display: inline-flex; margin: 1.6rem 0 0; border: 2px solid var(--saddle); border-radius: 999px; overflow: hidden; }
-.view-toggle button { font: inherit; font-weight: 700; font-size: .95rem; padding: .55rem 1.2rem; border: 0; background: var(--card); color: var(--saddle); cursor: pointer; }
+.view-toggle { display: inline-flex; margin: 1.25rem 0 0; border: 2px solid var(--saddle); border-radius: 999px; overflow: hidden; }
+.view-toggle button { font: inherit; font-weight: 700; font-size: 1rem; min-height: 44px; padding: .55rem 1.2rem; border: 0; background: var(--card); color: var(--saddle); cursor: pointer; }
 .view-toggle button[aria-pressed="true"] { background: var(--saddle); color: var(--cream); }
 .view-toggle button:focus-visible { outline: 3px solid var(--canola); outline-offset: -3px; }
 .calview { margin-top: 1.2rem; }
@@ -237,17 +208,17 @@ footer .wrap { padding-block: 1.5rem 2.5rem; color: var(--muted); font-size: .9r
 .cv-nav:disabled { opacity: .35; cursor: default; }
 .cv-note { margin: 0 0 .7rem; font-size: .92rem; font-weight: 600; color: var(--ink); }
 .cv-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 3px; }
-.cv-dow { text-align: center; font-size: .75rem; font-weight: 700; color: var(--muted); padding: .2rem 0; text-transform: uppercase; }
+.cv-dow { text-align: center; font-size: .875rem; font-weight: 700; color: var(--muted); padding: .2rem 0; text-transform: uppercase; }
 .cv-cell { min-height: 4.6rem; background: var(--card); border: 1px solid var(--rule); border-radius: 4px; padding: .25rem .3rem; font: inherit; text-align: left; color: var(--ink); display: flex; flex-direction: column; gap: .15rem; overflow: hidden; }
 .cv-cell.empty { background: transparent; border-color: transparent; }
-.cv-cell .n { font-size: .8rem; font-weight: 700; color: var(--muted); }
+.cv-cell .n { font-size: .875rem; font-weight: 700; color: var(--muted); }
 .cv-cell.has { cursor: pointer; border-color: var(--saddle); }
 .cv-cell.has .n { color: var(--saddle); }
 .cv-cell.today { box-shadow: inset 0 0 0 2px var(--canola); }
 .cv-cell.sel { background: var(--saddle); color: var(--cream); }
 .cv-cell.sel .n, .cv-cell.sel .ev { color: var(--cream); }
-.cv-cell .ev { font-size: .72rem; line-height: 1.2; color: var(--ink); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-.cv-cell .more { font-size: .7rem; color: var(--muted); }
+.cv-cell .ev { font-size: .8rem; line-height: 1.2; color: var(--ink); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.cv-cell .more { font-size: .8rem; color: var(--muted); }
 .cv-cell:focus-visible { outline: 3px solid var(--denim); outline-offset: 1px; }
 .cv-day { margin-top: 1rem; }
 .cv-day h3 { font-size: 1.05rem; margin: 0 0 .5rem; }
@@ -255,7 +226,7 @@ footer .wrap { padding-block: 1.5rem 2.5rem; color: var(--muted); font-size: .9r
 .cv-day li { background: var(--card); border: 1px solid var(--rule); border-left: 4px solid var(--canola); border-radius: 4px; padding: .6rem .8rem; }
 .cv-day .t { font-weight: 700; }
 .cv-day .m { font-size: .9rem; color: var(--muted); }
-.cv-day a { display: inline-block; padding: .35rem 0; font-size: .9rem; font-weight: 600; }
+.cv-day a { display: inline-block; padding: .6rem 0; font-size: .9rem; font-weight: 600; }
 @media (max-width: 30rem) {
   .cv-cell { min-height: 3rem; padding: .2rem; align-items: center; }
   .cv-cell .ev, .cv-cell .more { display: none; }
@@ -263,8 +234,9 @@ footer .wrap { padding-block: 1.5rem 2.5rem; color: var(--muted); font-size: .9r
   .cv-cell.sel::after { background: var(--canola); }
 }
 body.cal-mode .jump, body.cal-mode #dances, body.cal-mode #expected, body.cal-mode #monthly, body.cal-mode #city { display: none; }
-.jump { display: flex; flex-wrap: wrap; gap: .5rem; margin: 2rem 0 0; }
-.jump a { display: inline-block; padding: .55rem .95rem; border-radius: 999px; background: var(--saddle); color: var(--cream); font-weight: 700; font-size: .95rem; text-decoration: none; }
+.jump { display: flex; flex-wrap: wrap; gap: .35rem; margin: 1rem 0 0; }
+#dances { padding-top: 1.75rem; }
+.jump a { display: inline-flex; align-items: center; min-height: 44px; padding: .5rem .6rem; border-radius: 999px; background: var(--saddle); color: var(--cream); font-weight: 700; font-size: .9rem; text-decoration: none; }
 .jump a:hover { background: var(--denim); }
 .jump a:focus-visible { outline: 3px solid var(--canola); outline-offset: 2px; }
 .jump a[aria-disabled="true"] { opacity: .4; pointer-events: none; }
@@ -272,47 +244,21 @@ section { scroll-margin-top: 1rem; }
 #search { scroll-margin-top: 1rem; }
 .search { display: grid; gap: .35rem; margin: 1.25rem 0 0; max-width: 42rem; }
 .search label { font-weight: 700; }
-.search input { font: inherit; padding: .65rem .8rem; border: 2px solid var(--saddle); border-radius: 4px; background: var(--card); color: var(--ink); width: 100%; }
+.search input { font: inherit; min-height: 44px; padding: .65rem .8rem; border: 2px solid var(--saddle); border-radius: 4px; background: var(--card); color: var(--ink); width: 100%; }
 .search input:focus-visible { outline: 3px solid var(--canola); outline-offset: 1px; }
 .search select { font: inherit; padding: .45rem .5rem; border: 1px solid var(--rule); border-radius: 4px; background: var(--card); color: var(--ink); justify-self: start; }
 .pill.age { background: var(--barn); color: var(--card); }
-.search .check { display: flex; gap: .5rem; align-items: center; font-weight: 600; margin-top: .3rem; cursor: pointer; }
-.search .check input { width: 1.15rem; height: 1.15rem; accent-color: var(--saddle); }
-.town-req { margin: 0; font-size: .93rem; color: var(--muted); }
-.search #q-msg { margin: 0; font-size: .93rem; color: var(--muted); min-height: 1.2em; }
+.search #q-msg { margin: 0; font-size: .93rem; color: var(--muted); }
+.search #q-msg:empty { display: none; }
 .no-match { color: var(--muted); font-style: italic; margin: 0; }
-.drive-calc { font-size: .93rem; color: var(--muted); }
-.calc-inner { background: var(--card); border: 1px solid var(--rule); border-top: 4px solid var(--canola); border-radius: 6px; box-shadow: 0 4px 14px rgba(40, 23, 13, .12); }
-.calc-toggle { display: flex; flex-wrap: nowrap; align-items: center; gap: 0 .5rem; width: 100%; font: inherit; text-align: left; color: var(--ink); background: none; border: 0; padding: .7rem .9rem; cursor: pointer; }
-.calc-title { font-weight: 700; font-size: 1rem; }
-.calc-from { color: var(--muted); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.calc-title { white-space: nowrap; }
-.calc-toggle::after { content: ""; flex: none; margin-left: auto; width: .5rem; height: .5rem; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: translateY(.15rem) rotate(-135deg); }
-.calc-toggle[aria-expanded="true"]::after { transform: translateY(-.15rem) rotate(45deg); }
-.calc-body { display: grid; gap: .5rem; padding: 0 .9rem .9rem; }
-.calc-intro { margin: 0; }
-.drive-calc button#locate { font: inherit; font-weight: 700; color: var(--saddle); background: var(--canola); border: 0; border-radius: 4px; padding: .5rem .9rem; cursor: pointer; justify-self: start; }
-.drive-calc select { font: inherit; padding: .45rem .5rem; border: 1px solid var(--rule); border-radius: 4px; background: var(--card); color: var(--ink); max-width: 100%; }
-.drive-calc #locate-msg { margin: 0; }
-.drive-calc button:focus-visible, .drive-calc select:focus-visible { outline: 3px solid var(--denim); outline-offset: 2px; }
-/* Phones and narrow windows: a bar pinned to the bottom that opens up */
-@media (max-width: 69.99rem) {
-  body { padding-bottom: 3.5rem; }
-  .drive-calc { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; padding: 0 max(8px, env(safe-area-inset-right, 0px)) max(8px, env(safe-area-inset-bottom, 0px)) max(8px, env(safe-area-inset-left, 0px)); }
-  .calc-inner { max-width: 32rem; margin: 0 auto; }
-  .calc-body { max-height: 60vh; overflow: auto; }
-  .calc-toggle[aria-expanded="false"] + .calc-body { display: none; }
-}
-/* Wide screens: a panel down the right side that stays in view */
-@media (min-width: 70rem) {
-  .wrap { max-width: 72rem; }
-  main.wrap { position: relative; padding-right: calc(max(16px, env(safe-area-inset-right, 0px)) + 18rem); }
-  .drive-calc { position: absolute; top: 1.5rem; bottom: 0; right: max(16px, env(safe-area-inset-right, 0px)); width: 16rem; }
-  .calc-inner { position: sticky; top: 1rem; }
-  .calc-toggle { cursor: default; padding-bottom: .4rem; }
-  .calc-toggle::after { content: none; }
-  .calc-from { display: none; }
-}
+/* Drive times: one line under search. The choice is remembered on this phone or computer. */
+.drive-from { display: grid; gap: .35rem; margin: .75rem 0 0; max-width: 42rem; }
+.drive-from label { font-weight: 700; white-space: nowrap; }
+.from-row { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+.drive-from select { font: inherit; min-height: 44px; padding: .45rem .6rem; border: 2px solid var(--saddle); border-radius: 4px; background: var(--card); color: var(--ink); flex: 1 1 9rem; min-width: 0; max-width: 16rem; }
+.drive-from select:focus-visible { outline: 3px solid var(--denim); outline-offset: 2px; }
+#locate-msg { margin: 0; font-size: .93rem; color: var(--muted); }
+#locate-msg:empty { display: none; }
 .drive.mine { font-weight: 600; color: var(--ink); }
 /* Photos */
 .mast-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(14rem, 19rem); gap: 1.5rem 2.5rem; align-items: stretch; }
@@ -321,13 +267,11 @@ section { scroll-margin-top: 1rem; }
 .photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .photo figcaption { position: absolute; right: .5rem; bottom: .5rem; font-size: .72rem; color: #fff; background: rgba(20, 12, 6, .55); padding: .15rem .45rem; border-radius: 3px; }
 .mast-photo { margin-top: 1.5rem; min-height: 22rem; box-shadow: 0 10px 30px rgba(0,0,0,.35); }
-.band-row { display: grid; grid-template-columns: 2fr 1fr; gap: .75rem; margin-bottom: 1.75rem; }
-.band-photo { max-width: 100%; min-height: 15rem; }
-.band-photo.guitar-photo img { object-position: 60% 50%; }
-.band-photo img { object-position: 50% 55%; }
-.about-grid { display: grid; grid-template-columns: minmax(12rem, 16rem) minmax(0, 1fr); gap: 1.5rem 2rem; align-items: start; }
-.about-photo { aspect-ratio: 757 / 963; max-width: 100%; }
-.about-text { min-width: 0; }
+.add-grid { display: grid; grid-template-columns: minmax(12rem, 16rem) minmax(0, 1fr); gap: 1.5rem 2rem; align-items: start; }
+.add-grid > div { min-width: 0; }
+.add-photo { aspect-ratio: 1 / 1; }
+.add-photo img { object-position: 60% 50%; }
+.add-box { margin-top: .25rem; }
 .ticket { box-shadow: 0 1px 2px rgba(40, 23, 13, .06), 0 4px 14px rgba(40, 23, 13, .06); }
 /* Skip layout work for cards that are off screen (faster first load on phones) */
 .ticket { content-visibility: auto; contain-intrinsic-size: auto 13rem; }
@@ -336,13 +280,10 @@ footer { border-top: 4px solid var(--canola); }
   .mast-grid { grid-template-columns: 1fr; }
   .mast-photo { min-height: 0; height: 17rem; margin-top: .5rem; }
   .mast-photo img { object-position: 50% 68%; }
-  .about-grid { grid-template-columns: 1fr; }
-  .band-row { grid-template-columns: 1fr; }
-  .band-photo { aspect-ratio: 4 / 3; min-height: 0; }
-  .band-photo img { object-position: 35% 55%; }
-  .about-photo { aspect-ratio: 4 / 3; }
-  .about-photo img { object-position: 50% 45%; }
-}
+    /* Phones: no decorative photos, so the dances come first */
+  .mast-photo, .add-photo { display: none; }
+  .add-grid { grid-template-columns: 1fr; }
+  }
 @media (max-width: 30rem) {
   .ticket { grid-template-columns: 4.4rem 1fr; }
   .stub .day { font-size: 1.6rem; }
@@ -356,16 +297,11 @@ html { scroll-behavior: smooth; }
 <header class="mast" id="top">
   <div class="wrap">
     <nav class="nav" aria-label="Main">
-      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="nav-list"><span class="burger" aria-hidden="true"></span>Menu</button>
       <ul id="nav-list">
-        <li><a href="#dances">Local Dances &amp; Cabarets</a></li>
-        <li><a href="#monthly">Monthly dances</a></li>
-        <li><a href="#city">In Edmonton</a></li>
+        <li><a href="#dances">Dances</a></li>
+        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLScSvcJA_JO-SMhnt25zOBlzJMs5c-1fO8WIsBECea9QOfH4gw/viewform" target="_blank" rel="noopener">Add a dance</a></li>
         <li><a href="#subscribe">Subscribe</a></li>
-        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLScSvcJA_JO-SMhnt25zOBlzJMs5c-1fO8WIsBECea9QOfH4gw/viewform" target="_blank" rel="noopener">Submit a dance here</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="https://forms.gle/v9GQNi8NgZG2gEBN8" target="_blank" rel="noopener">Feedback</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="/about/">About</a></li>
       </ul>
     </nav>
     <div class="mast-grid">
@@ -376,11 +312,11 @@ html { scroll-behavior: smooth; }
     <p class="weekly">Updated every Wednesday!</p>
     <div class="cta-row">
       <a class="cta" href="#dances">See what's on</a>
-      <a class="cta cta-alt" href="#subscribe">Subscribe for updates</a>
     </div>
       </div>
       <figure class="photo mast-photo">
         <picture>
+          <source media="(max-width: 48rem)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
           <source srcset="welcome-sign-320.webp 320w, welcome-sign.webp 490w" sizes="(max-width: 48rem) calc(100vw - 32px), 304px" type="image/webp">
           <img src="welcome-sign.jpg" width="490" height="734" fetchpriority="high" alt="Neon bucking-horse Welcome sign against a pink prairie sunset">
         </picture>
@@ -392,59 +328,51 @@ html { scroll-behavior: smooth; }
 
 <main class="wrap">
 
-  <p class="warn"><strong>Check the event link before you head out.</strong> Dates can change.</p>
   <div class="search" id="search">
     <label for="q">Search by town, hall or band</label>
     <input type="search" id="q" placeholder="e.g. Leduc, Villeneuve, Barre 44" autocomplete="off">
-    <label class="check"><input type="checkbox" id="confirmed-only"> Only show dances with a confirmed date</label>
     <p id="q-msg" aria-live="polite"></p>
-    <p class="town-req">Don't see your town? <a href="https://docs.google.com/forms/d/e/1FAIpQLScSvcJA_JO-SMhnt25zOBlzJMs5c-1fO8WIsBECea9QOfH4gw/viewform" target="_blank" rel="noopener">Request your town</a></p>
   </div>
 
-  <aside class="drive-calc" aria-labelledby="calc-h">
-   <div class="calc-inner">
-    <button type="button" class="calc-toggle" id="calc-toggle" aria-expanded="false" aria-controls="calc-body"><span class="calc-title" id="calc-h">Drive time calculator</span> <span class="calc-from" id="calc-from">set your location</span></button>
-    <div class="calc-body" id="calc-body">
-    <p class="calc-intro">Shows roughly how long each drive takes. It doesn't change which dances are listed.</p>
-    <button type="button" id="locate">Use my location</button>
-    <label for="town">or pick your town</label>
-    <select id="town">
-      <option value="">Choose a town</option>
-      <option value="54.719,-113.285">Athabasca</option>
-      <option value="54.123,-114.402">Barrhead</option>
-      <option value="53.357,-113.415">Beaumont</option>
-      <option value="53.262,-113.817">Calmar</option>
-      <option value="53.016,-112.835">Camrose</option>
-      <option value="53.364,-113.733">Devon</option>
-      <option value="53.222,-114.977">Drayton Valley</option>
-      <option value="53.546,-113.494">Edmonton</option>
-      <option value="53.601,-114.979">Evansburg</option>
-      <option value="53.713,-113.213">Fort Saskatchewan</option>
-      <option value="53.828,-113.326">Gibbons</option>
-      <option value="53.760,-112.778">Lamont</option>
-      <option value="53.264,-113.551">Leduc</option>
-      <option value="53.951,-115.135">Mayerthorpe</option>
-      <option value="53.096,-113.471">Millet</option>
-      <option value="53.802,-113.649">Morinville</option>
-      <option value="53.702,-114.198">Onoway</option>
-      <option value="53.950,-113.107">Redwater</option>
-      <option value="53.516,-113.318">Sherwood Park</option>
-      <option value="54.112,-112.467">Smoky Lake</option>
-      <option value="53.545,-113.910">Spruce Grove</option>
-      <option value="53.633,-113.626">St. Albert</option>
-      <option value="53.528,-114.006">Stony Plain</option>
-      <option value="53.227,-114.050">Thorsby</option>
-      <option value="53.371,-112.665">Tofield</option>
-      <option value="53.494,-112.052">Vegreville</option>
-      <option value="53.557,-114.477">Wabamun</option>
-      <option value="54.152,-113.855">Westlock</option>
-      <option value="52.969,-113.377">Wetaskiwin</option>
-      <option value="54.142,-115.685">Whitecourt</option>
-    </select>
-    <p id="locate-msg">Drive times below are rough guesses from central Edmonton. If you use your location, it stays on your phone or computer.</p>
+  <div class="drive-from">
+    <div class="from-row">
+      <label for="town">Drive times from</label>
+      <select id="town">
+        <option value="here" id="opt-here">My location</option>
+        <option value="53.546,-113.494" selected>Edmonton</option>
+        <option value="54.719,-113.285">Athabasca</option>
+        <option value="54.123,-114.402">Barrhead</option>
+        <option value="53.357,-113.415">Beaumont</option>
+        <option value="53.262,-113.817">Calmar</option>
+        <option value="53.016,-112.835">Camrose</option>
+        <option value="53.364,-113.733">Devon</option>
+        <option value="53.222,-114.977">Drayton Valley</option>
+        <option value="53.601,-114.979">Evansburg</option>
+        <option value="53.713,-113.213">Fort Saskatchewan</option>
+        <option value="53.828,-113.326">Gibbons</option>
+        <option value="53.760,-112.778">Lamont</option>
+        <option value="53.264,-113.551">Leduc</option>
+        <option value="53.951,-115.135">Mayerthorpe</option>
+        <option value="53.096,-113.471">Millet</option>
+        <option value="53.802,-113.649">Morinville</option>
+        <option value="53.702,-114.198">Onoway</option>
+        <option value="53.950,-113.107">Redwater</option>
+        <option value="53.516,-113.318">Sherwood Park</option>
+        <option value="54.112,-112.467">Smoky Lake</option>
+        <option value="53.545,-113.910">Spruce Grove</option>
+        <option value="53.633,-113.626">St. Albert</option>
+        <option value="53.528,-114.006">Stony Plain</option>
+        <option value="53.227,-114.050">Thorsby</option>
+        <option value="53.371,-112.665">Tofield</option>
+        <option value="53.494,-112.052">Vegreville</option>
+        <option value="53.557,-114.477">Wabamun</option>
+        <option value="54.152,-113.855">Westlock</option>
+        <option value="52.969,-113.377">Wetaskiwin</option>
+        <option value="54.142,-115.685">Whitecourt</option>
+      </select>
     </div>
-   </div>
-  </aside>
+    <p id="locate-msg" aria-live="polite"></p>
+  </div>
 
   <div class="view-toggle" role="group" aria-label="How to show the dances">
     <button type="button" id="view-list" aria-pressed="true">List</button>
@@ -463,22 +391,22 @@ html { scroll-behavior: smooth; }
   </section>
 
   <nav class="jump" aria-label="Jump to a section">
-    <a href="#dances">Confirmed dances</a>
-    <a href="#expected" id="jump-expected">Expected dances</a>
-    <a href="#monthly">Monthly dances</a>
-    <a href="#city">In Edmonton</a>
+    <a href="#dances">Confirmed</a>
+    <a href="#expected">Expected</a>
+    <a href="#monthly">Monthly</a>
+    <a href="#city">Edmonton</a>
   </nav>
 
   <section id="dances" aria-labelledby="dances-h">
-    <div class="sec-head"><h2 id="dances-h">Confirmed dances</h2> <a class="to-top" href="#search">Back to search</a></div>
-    <p class="section-note">Out-of-town dances with a date posted, soonest first. Edmonton ones are <a href="#city">further down</a>.</p>
+    <div class="sec-head"><h2 id="dances-h">Confirmed dances</h2></div>
+    <p class="section-note">Soonest first. Dates change, so check the event link before you go.</p>
 
     <ol class="dances">
 
       <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20261107">
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">7</span><span class="mon">Nov</span></div>
         <div class="body">
-          <h3>Myrnam Perogy Supper &amp; Dance <span class="pill ok">Confirmed</span></h3>
+          <h3>Myrnam Perogy Supper &amp; Dance</h3>
           <p class="where">Myrnam (Myrnam Community Hall Association) · <span class="drive" data-ll="53.667,-111.234">~2 hr from Edmonton</span></p>
           <ul class="facts"><li><b>When:</b> Saturday, November 7, 2026 (start time not listed)</li><li><b>Price:</b> $40</li></ul>
           <p class="notes">Perogy supper with music and dancing. The listing doesn't give a start time, so check before you drive out.</p>
@@ -488,7 +416,7 @@ html { scroll-behavior: smooth; }
       <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20261107T1700/20261107T2200">
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">7</span><span class="mon">Nov</span></div>
         <div class="body">
-          <h3>Rosalind Harvest Hootenanny <span class="pill ok">Confirmed</span></h3>
+          <h3>Rosalind Harvest Hootenanny</h3>
           <p class="where">Rosalind (Rosalind Ag Society), Camrose County · <span class="drive" data-ll="52.786,-112.453">~1 hr 45 min from Edmonton</span></p>
           <ul class="facts"><li><b>When:</b> Saturday, November 7, 2026, 5–10 pm</li><li><b>Music:</b> DJ</li><li><b>Price:</b> $40</li></ul>
           <p class="notes">Drinks, dinner and a magic show. The event page doesn't mention dancing, but Camrose County's <a href="https://county.camrose.ab.ca/visit/annual-events/" target="_blank" rel="noopener">annual events list</a> calls it a "Supper, Dance, Cocktails" night.</p>
@@ -498,7 +426,7 @@ html { scroll-behavior: smooth; }
       <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20261113T1700/20261113T2100">
         <div class="stub" aria-hidden="true"><span class="dow">Fri</span><span class="day">13</span><span class="mon">Nov</span></div>
         <div class="body">
-          <h3>Kinsella Fall Supper &amp; Family Dance <span class="pill ok">Confirmed</span></h3>
+          <h3>Kinsella Fall Supper &amp; Family Dance</h3>
           <p class="where">Kinsella (Kinsella Rec and Ag), east of Viking · <span class="drive" data-ll="53.003,-111.533">~2 hr from Edmonton</span></p>
           <ul class="facts"><li><b>When:</b> Friday, November 13, 2026, 5 pm</li><li><b>Band:</b> Ethan Harty and the Corry Boys, plus an open mic</li><li><b>Price:</b> $15 per adult</li></ul>
           <p class="notes">A family dance, so bring the kids.</p>
@@ -508,7 +436,7 @@ html { scroll-behavior: smooth; }
       <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20261114T1730/20261114T2130">
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">14</span><span class="mon">Nov</span></div>
         <div class="body">
-          <h3>Vegreville Legion Dinner &amp; Dance <span class="pill ok">Confirmed</span></h3>
+          <h3>Vegreville Legion Dinner &amp; Dance</h3>
           <p class="where">Royal Canadian Legion Br. 39, 5037 52 Ave, Vegreville · <span class="drive" data-ll="53.494,-112.052">~1 hr from Edmonton</span></p>
           <ul class="facts"><li><b>When:</b> Saturday, November 14, 2026, 5:30 pm</li><li><b>Band:</b> Brandon Hackkowski and the Ukrainian Tradition Band</li><li><b>Price:</b> $50</li></ul>
           <p class="src">More info: <a href="https://goeastofedmonton.com/events/vegreville-legion-saturday-night-dinner-and-dance/" target="_blank" rel="noopener">Go East of Edmonton, Vegreville Legion Dinner and Dance</a></p>
@@ -517,7 +445,7 @@ html { scroll-behavior: smooth; }
       <li class="ticket" data-status="confirmed" data-age="all" data-cal="20261114T1730/20261114T2130">
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">14</span><span class="mon">Nov</span></div>
         <div class="body">
-          <h3>Stry Hall 75th Anniversary Dinner &amp; Dance <span class="pill ok">Confirmed</span></h3>
+          <h3>Stry Hall 75th Anniversary Dinner &amp; Dance</h3>
           <p class="where">Stry Community Hall, near Two Hills · <span class="drive" data-ll="53.710,-111.750">~1 hr 40 min from Edmonton</span></p>
           <ul class="facts"><li><b>When:</b> Saturday, November 14, 2026, 5:30 pm</li><li><b>Price:</b> $50 adults, $20 ages 7–12</li></ul>
           <p class="notes">The hall's 75th. Dinner, then dancing. Band not named.</p>
@@ -527,7 +455,7 @@ html { scroll-behavior: smooth; }
       <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20261114T2000/20261115T0000">
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">14</span><span class="mon">Nov</span></div>
         <div class="body">
-          <h3>Pathfinder Hall Harvest Dinner &amp; Dance <span class="pill ok">Confirmed</span></h3>
+          <h3>Pathfinder Hall Harvest Dinner &amp; Dance</h3>
           <p class="where">Pathfinder Hall, County of Two Hills · <span class="drive" data-ll="53.710,-111.750">~1 hr 40 min from Edmonton</span></p>
           <ul class="facts"><li><b>When:</b> Saturday, November 14, 2026, 8 pm</li><li><b>Band:</b> Calvin Vollrath</li></ul>
           <p class="notes">Price isn't listed. The exact hall location isn't on the listing, so the drive time is extra rough.</p>
@@ -537,7 +465,7 @@ html { scroll-behavior: smooth; }
       <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20261114T1700/20261114T2300">
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">14</span><span class="mon">Nov</span></div>
         <div class="body">
-          <h3>Harvest the Art Fundraiser &amp; Dance <span class="pill ok">Confirmed</span></h3>
+          <h3>Harvest the Art Fundraiser &amp; Dance</h3>
           <p class="where">Barrhead Senior Citizens Drop-In Centre, 5437 49 St, Barrhead · <span class="drive" data-ll="54.125,-114.402">~1 hr 20 min from Edmonton</span></p>
           <ul class="facts"><li><b>When:</b> Saturday, November 14, 2026. Art show 5 pm, dance 7 pm</li><li><b>Band:</b> Live music (not named)</li><li><b>Price:</b> $40 ahead, $50 at the door</li></ul>
           <p class="notes">Put on by the Barrhead Art Club. Reserve at artclubbarrhead@gmail.com.</p>
@@ -547,7 +475,7 @@ html { scroll-behavior: smooth; }
       <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20261114T1730/20261114T2330">
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">14</span><span class="mon">Nov</span></div>
         <div class="body">
-          <h3>Chauvin Elks Fall Supper &amp; Dance <span class="pill ok">Confirmed</span></h3>
+          <h3>Chauvin Elks Fall Supper &amp; Dance</h3>
           <p class="where">Chauvin · <span class="drive" data-ll="52.703,-110.137">~4 hr from Edmonton</span></p>
           <ul class="facts"><li><b>When:</b> Saturday, November 14, 2026, 5:30 pm</li><li><b>Music:</b> Travis Dolter</li><li><b>Price:</b> $60</li></ul>
           <p class="notes">The listing doesn't name the hall, so check the event page for where it is.</p>
@@ -557,7 +485,7 @@ html { scroll-behavior: smooth; }
       <li class="ticket" data-status="confirmed" data-age="all" data-cal="20261121T1730/20261121T2330">
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">21</span><span class="mon">Nov</span></div>
         <div class="body">
-          <h3>Buckin Broncs &amp; Honky Tonks <span class="pill ok">Confirmed</span></h3>
+          <h3>Buckin Broncs &amp; Honky Tonks</h3>
           <p class="where">Elk Point Riding Arena, Elk Point · <span class="drive" data-ll="53.894,-111.073">~2 hr 15 min from Edmonton</span></p>
           <ul class="facts"><li><b>When:</b> Saturday, November 21, 2026. Doors 5:30 pm, bronc riding and wild horse race 7 pm, then a live band and dance</li><li><b>Price:</b> $20 adults, $10 ages 12–17, under 12 free</li></ul>
           <p class="notes">Rodeo night first, dance after. Concession and beer gardens.</p>
@@ -567,7 +495,7 @@ html { scroll-behavior: smooth; }
       <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20261128T1700/20261128T2300">
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">28</span><span class="mon">Nov</span></div>
         <div class="body">
-          <h3>Willingdon Turning of the Seasons Dinner &amp; Dance <span class="pill ok">Confirmed</span></h3>
+          <h3>Willingdon Turning of the Seasons Dinner &amp; Dance</h3>
           <p class="where">Willingdon &amp; District Recreation Centre, 4807 51 Ave, Willingdon · <span class="drive" data-ll="53.836,-112.123">~1 hr 30 min from Edmonton</span></p>
           <ul class="facts"><li><b>When:</b> Saturday, November 28, 2026. Cocktails 5 pm, dinner 6 pm</li><li><b>Band:</b> Second Son</li></ul>
           <p class="notes">Tickets are sold by text. The numbers are on the event page.</p>
@@ -577,7 +505,7 @@ html { scroll-behavior: smooth; }
       <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20261128T1900/20261129T0100">
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">28</span><span class="mon">Nov</span></div>
         <div class="body">
-          <h3>Fall Zabava with Millenia <span class="pill ok">Confirmed</span></h3>
+          <h3>Fall Zabava with Millenia</h3>
           <p class="where">301 Jespersen Ave, Spruce Grove · <span class="drive" data-ll="53.540,-113.905">~30 min from Edmonton</span></p>
           <ul class="facts"><li><b>When:</b> Saturday, November 28, 2026, doors 7 pm to 1 am</li><li><b>Band:</b> Millenia (Ukrainian)</li><li><b>Price:</b> $50</li></ul>
           <p class="notes">Ukrainian social dance, not country, but the polkas and waltzes are the same. Ages 14+. Fundraiser for the Parkland Ukrainian Dancers travel club.</p>
@@ -587,7 +515,7 @@ html { scroll-behavior: smooth; }
       <li class="ticket" data-status="confirmed" data-age="all" data-cal="20261128T1800/20261129T0000">
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">28</span><span class="mon">Nov</span></div>
         <div class="body">
-          <h3>Country Pride Dance Club Christmas Dinner &amp; Dance <span class="pill ok">Confirmed</span></h3>
+          <h3>Country Pride Dance Club Christmas Dinner &amp; Dance</h3>
           <p class="where">Northside Community Centre (YMCA), 6391 76 St, Red Deer · <span class="drive" data-ll="52.296,-113.775">~1 hr 45 min from Edmonton</span></p>
           <ul class="facts"><li><b>When:</b> Saturday, November 28, 2026. Doors 6 pm, dinner 7 pm, social dancing until midnight</li></ul>
           <p class="notes">All ages. Catered dinner, country music and a cash bar. Tickets through the event page.</p>
@@ -674,7 +602,7 @@ html { scroll-behavior: smooth; }
   </section>
 
   <section id="expected" aria-labelledby="expected-h">
-    <div class="sec-head"><h2 id="expected-h">Expected dances</h2> <a class="to-top" href="#search">Back to search</a></div>
+    <div class="sec-head"><h2 id="expected-h">Expected dances</h2></div>
     <p class="section-note">These happen most years, but this year's date isn't posted yet. We link last year's page so you know what to expect.</p>
 
     <ol class="dances">
@@ -706,7 +634,7 @@ html { scroll-behavior: smooth; }
   </section>
 
   <section id="monthly" aria-labelledby="monthly-h">
-    <div class="sec-head"><h2 id="monthly-h">Monthly dances</h2> <a class="to-top" href="#search">Back to search</a></div>
+    <div class="sec-head"><h2 id="monthly-h">Monthly dances</h2></div>
     <p class="section-note">Dances that happen every month or every week.</p>
 
     <ol class="dances">
@@ -744,14 +672,14 @@ html { scroll-behavior: smooth; }
   </section>
 
   <section id="city" aria-labelledby="city-h">
-    <div class="sec-head"><h2 id="city-h">In Edmonton</h2> <a class="to-top" href="#search">Back to search</a></div>
+    <div class="sec-head"><h2 id="city-h">In Edmonton</h2></div>
     <p class="section-note">Edmonton and St. Albert. Not small town, but it's the same music.</p>
 
     <ol class="dances">
       <li class="ticket" data-status="confirmed" data-age="18plus" data-cal="20261106T1700/20261106T2300">
         <div class="stub" aria-hidden="true"><span class="dow">Fri</span><span class="day">6</span><span class="mon">Nov</span></div>
         <div class="body">
-          <h3>Blatchford Boogie Woogie <span class="pill age">18+</span> <span class="pill ok">Confirmed</span></h3>
+          <h3>Blatchford Boogie Woogie <span class="pill age">18+</span></h3>
           <p class="where">Alberta Aviation Museum, 11410 Kingsway NW, Edmonton · <span class="drive" data-ll="53.571,-113.518">in the city</span></p>
           <ul class="facts">
             <li><b>When:</b> Friday, November 6, 2026. Dinner guests 5 pm, dance tickets from 7 pm, swing lesson about 7:30, big band about 8 pm, ends 11 pm</li>
@@ -765,7 +693,7 @@ html { scroll-behavior: smooth; }
       <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20261121T1900/20261121T2300">
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">21</span><span class="mon">Nov</span></div>
         <div class="body">
-          <h3>Bar None 79 <span class="pill ok">Confirmed</span></h3>
+          <h3>Bar None 79</h3>
           <p class="where">Midway Music Hall, 6107 104 St NW, Edmonton · <span class="drive" data-ll="53.500,-113.497">in the city</span></p>
           <ul class="facts"><li><b>When:</b> Saturday, November 21, 2026, 7 pm</li><li><b>Music:</b> Chad Brownlee, Tim Hus</li><li><b>Price:</b> From $66.25</li></ul>
           <p class="notes">The U of A Ag Club's big country cabaret. Money goes to STARS. Tickets on Ticketmaster or in person on campus.</p>
@@ -789,7 +717,7 @@ html { scroll-behavior: smooth; }
       <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20261222T1700/20261222T2100">
         <div class="stub" aria-hidden="true"><span class="dow">Tue</span><span class="day">22</span><span class="mon">Dec</span></div>
         <div class="body">
-          <h3>Making Spirits Bright Dinner &amp; Dance <span class="pill ok">Confirmed</span></h3>
+          <h3>Making Spirits Bright Dinner &amp; Dance</h3>
           <p class="where">Red Willow Place, 7 Tache St, St. Albert · <span class="drive" data-ll="53.633,-113.626">~25 min from Edmonton</span></p>
           <ul class="facts"><li><b>When:</b> Tuesday, December 22, 2026. Doors 5 pm, dinner 6 pm, dance 7–9 pm</li><li><b>Music:</b> DJ</li><li><b>Price:</b> $70 members, $80 non-members</li></ul>
           <p class="notes">Put on by the St. Albert 50+ Activity &amp; Service Centre. Buy tickets by December 11 through the centre's office, 780-459-0433.</p>
@@ -837,7 +765,7 @@ html { scroll-behavior: smooth; }
   </section>
 
   <section id="subscribe" aria-labelledby="subscribe-h">
-    <div class="sec-head"><h2 id="subscribe-h">Subscribe</h2> <a class="to-top" href="#search">Back to search</a></div>
+    <div class="sec-head"><h2 id="subscribe-h">Subscribe</h2></div>
     <p class="section-note">Get an email when we post new dances, or put every confirmed dance into your own calendar. Either way, new ones reach you on their own after the Wednesday update.</p>
     <form class="email-form" action="https://api.follow.it/subscription-form/bXZkbDgzR1VJTlRvRWwzMjJmWTJFSGU5QUxtVkVmMlV5bTZEcCtWN081YnRjQitGeUEwUzRmOFpHbXVEYzU0SWk5Z3c2OHgyZTBLWlhVZVZwZlc3QWxlaitDTEJIYU5HdmdVakcyQXJVdnp4WU13dXBhVmFDeDBxK1VEMyswSmZ8MkZNNUZJUUc5b294R1I1R0VxMTcxNVp4UWZyeW9iWXJoR3F1YXFYWDNsOD0=/21" method="post">
       <label for="sub-email">Get new dances by email</label>
@@ -856,77 +784,33 @@ html { scroll-behavior: smooth; }
   </section>
 
   <section id="add" aria-labelledby="add-h">
-    <div class="band-row">
-      <figure class="photo band-photo">
+    <div class="add-grid">
+      <figure class="photo add-photo">
         <picture>
-          <source srcset="stage.webp" type="image/webp">
-          <img src="stage.jpg" width="1170" height="780" alt="Empty stage with a drum kit, microphone and keyboard under a spotlight" loading="lazy">
-        </picture>
-        <figcaption>Photo: John Matychuk</figcaption>
-      </figure>
-      <figure class="photo band-photo guitar-photo">
-        <picture>
+          <source media="(max-width: 48rem)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
           <source srcset="guitar.webp" type="image/webp">
           <img src="guitar.jpg" width="600" height="401" alt="Close-up of someone playing an acoustic guitar under a warm light" loading="lazy">
         </picture>
         <figcaption>Photo: Gabriel Gurrola</figcaption>
       </figure>
-    </div>
-    <div class="two">
       <div>
-        <div class="sec-head"><h2 id="add-h">Got a dance coming up?</h2> <a class="to-top" href="#search">Back to search</a></div>
+        <h2 id="add-h">Got a dance coming up?</h2>
         <p class="section-note">A lot of these only ever go up on Facebook or a poster at the post office. If your hall has one, send it over and we'll put it up. It's free.</p>
-      </div>
-      <div class="add-box">
-        <a class="form-btn" href="https://docs.google.com/forms/d/e/1FAIpQLScSvcJA_JO-SMhnt25zOBlzJMs5c-1fO8WIsBECea9QOfH4gw/viewform" target="_blank" rel="noopener">Send in a dance</a>
-        <p>Have the date, start time and hall handy. We prefer to post dances with a link to an event page or Facebook event.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="about" aria-labelledby="about-h">
-    <div class="about-grid">
-      <figure class="photo about-photo">
-        <picture>
-          <source srcset="cowboy-hat.webp" type="image/webp">
-          <img src="cowboy-hat.jpg" width="757" height="963" alt="Cowboy hat resting on a truck tailgate at sunset on the prairie" loading="lazy">
-        </picture>
-        <figcaption>Photo: Blake Emge</figcaption>
-      </figure>
-      <div class="about-text">
-    <div class="sec-head"><h2 id="about-h">About this site</h2> <a class="to-top" href="#search">Back to search</a></div>
-    <p class="section-note">A lot of hall dances are scattered across Facebook pages, where they're easy to miss unless you already follow the right one. Small communities have a hard time getting the word out past their own area, and if you're not on social media you may never hear about them at all.</p>
-    <p class="section-note">Our vision is for people who love social dancing to see what's on in other communities, and for dancing to grow across all ages and Alberta communities. Every listing links to the hall or organizer's own page so you can check it yourself.</p>
-    <p class="section-note">We don't run any of these dances. This is just a list of hall dances people have posted online, gathered in one place. For tickets, changes or questions, go to the hall or whoever's putting it on.</p>
-    <p class="section-note">Something wrong, missing or hard to use? <a href="https://forms.gle/v9GQNi8NgZG2gEBN8" target="_blank" rel="noopener">Tell us here</a>.</p>
+        <div class="add-box">
+          <a class="form-btn" href="https://docs.google.com/forms/d/e/1FAIpQLScSvcJA_JO-SMhnt25zOBlzJMs5c-1fO8WIsBECea9QOfH4gw/viewform" target="_blank" rel="noopener">Send in a dance</a>
+          <p>Have the date, start time and hall handy. We prefer to post dances with a link to an event page or Facebook event.</p>
+        </div>
       </div>
     </div>
-  </section>
-
-  <section id="contact" aria-labelledby="contact-h">
-    <div class="sec-head"><h2 id="contact-h">Contact us</h2> <a class="to-top" href="#search">Back to search</a></div>
-    <p class="section-note">Have a question, or want to get in touch? Send us a note here. To add a dance, use the <a href="https://docs.google.com/forms/d/e/1FAIpQLScSvcJA_JO-SMhnt25zOBlzJMs5c-1fO8WIsBECea9QOfH4gw/viewform" target="_blank" rel="noopener">dance form</a> instead.</p>
-    <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/?sent=1#contact">
-      <input type="hidden" name="form-name" value="contact">
-      <p class="hp" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
-      <label for="c-name">Your name <span class="opt">(optional)</span></label>
-      <input type="text" id="c-name" name="name" autocomplete="name">
-      <label for="c-email">Your email <span class="opt">(optional, only if you want a reply)</span></label>
-      <input type="email" id="c-email" name="email" autocomplete="email" spellcheck="false">
-      <label for="c-msg">Message</label>
-      <textarea id="c-msg" name="message" rows="5" required></textarea>
-      <button type="submit">Send</button>
-      <p class="sub-note contact-status" role="status" aria-live="polite"></p>
-    </form>
   </section>
 
 </main>
 
 <footer>
   <div class="wrap">
-    <p><strong>Updated every Wednesday!</strong> Last updated <span class="updated">November 2, 2026</span>.</p>
+    <p>Last updated <span class="updated">November 2, 2026</span>.</p>
     <p>We don't run these dances. We just list what halls and organizers post online, so check the event page before you go.</p>
-    <p>Two-Step Alberta · <a href="https://forms.gle/v9GQNi8NgZG2gEBN8" target="_blank" rel="noopener">Site feedback</a> · <a href="#contact">Contact</a></p>
+    <p>Two-Step Alberta · <a href="/about/">About</a> · <a href="/about/#contact">Contact us</a></p>
     <p><button type="button" class="news-btn" id="news-btn" aria-haspopup="dialog">What's new on the site</button></p>
   </div>
 </footer>
@@ -939,7 +823,11 @@ html { scroll-behavior: smooth; }
     <section data-date="2026-11-03">
       <h3>November 3, 2026</h3>
       <ul>
-        <li>A Contact us form at the bottom of the page, so you can send us a note without leaving the site.</li>
+        <li>A simpler page: the dances start sooner on phones, with fewer buttons in the way.</li>
+        <li>The main links are always showing at the top, no menu button.</li>
+        <li>Pick where you're driving from right under the search box. Your phone remembers it.</li>
+        <li>Bigger buttons and text that are easier to tap and read.</li>
+        <li>About and Contact us moved to their own page. Send feedback through the Contact us form.</li>
       </ul>
     </section>
     <section data-date="2026-11-02">
@@ -963,9 +851,9 @@ html { scroll-behavior: smooth; }
 <script>
 (function () {
   var q = document.getElementById('q');
-  var conf = document.getElementById('confirmed-only');
   var msg = document.getElementById('q-msg');
   if (!q) return;
+  var FORM = 'https://docs.google.com/forms/d/e/1FAIpQLScSvcJA_JO-SMhnt25zOBlzJMs5c-1fO8WIsBECea9QOfH4gw/viewform';
   var tickets = Array.prototype.slice.call(document.querySelectorAll('.ticket'));
   var lists = Array.prototype.slice.call(document.querySelectorAll('ol.dances'));
   lists.forEach(function (ol) {
@@ -979,16 +867,21 @@ html { scroll-behavior: smooth; }
     var terms = norm(q.value).split(/\s+/).filter(Boolean);
     var shown = 0;
     tickets.forEach(function (t) {
-      var ok = terms.every(function (w) { return t._text.indexOf(w) !== -1; }) && (!conf.checked || t.getAttribute('data-status') !== 'expected');
+      var ok = terms.every(function (w) { return t._text.indexOf(w) !== -1; });
       t.hidden = !ok; if (ok) shown++;
     });
     lists.forEach(function (ol) {
       var any = ol.querySelector('.ticket:not([hidden])');
-      ol.nextSibling.hidden = !!any || !(terms.length || conf.checked);
+      ol.nextSibling.hidden = !!any || !terms.length;
     });
     msg.textContent = '';
-    if (!(terms.length || conf.checked)) return;
-    if (!shown) { msg.textContent = 'No matches. Try just the town name.'; return; }
+    if (!terms.length) return;
+    if (!shown) {
+      msg.textContent = 'No matches. Try just the town name. Don\u2019t see your town? ';
+      var rq = document.createElement('a'); rq.href = FORM; rq.target = '_blank'; rq.rel = 'noopener'; rq.textContent = 'Tell us about a dance there';
+      msg.appendChild(rq); msg.appendChild(document.createTextNode('.'));
+      return;
+    }
     msg.appendChild(document.createTextNode(shown + (shown === 1 ? ' match, in ' : ' matches, in ')));
     var secs = lists.filter(function (ol) { return ol.querySelector('.ticket:not([hidden])'); }).map(function (ol) { return ol.closest('section'); });
     secs.forEach(function (sec, i) {
@@ -1000,22 +893,16 @@ html { scroll-behavior: smooth; }
     msg.appendChild(document.createTextNode('.'));
   }
   q.addEventListener('input', run);
-  conf.addEventListener('change', run);
-  conf.addEventListener('change', function () {
-    var sec = document.getElementById('expected'), j = document.getElementById('jump-expected');
-    sec.hidden = conf.checked;
-    if (conf.checked) { j.setAttribute('aria-disabled', 'true'); j.setAttribute('tabindex', '-1'); j.title = 'Hidden because "Only show dances with a confirmed date" is ticked'; }
-    else { j.removeAttribute('aria-disabled'); j.removeAttribute('tabindex'); j.removeAttribute('title'); }
-  });
 })();
 </script>
 <script>
 (function () {
-  var btn = document.getElementById('locate');
   var town = document.getElementById('town');
+  var here = document.getElementById('opt-here');
   var msg = document.getElementById('locate-msg');
   if (!town) return;
-  if (!('geolocation' in navigator)) btn.hidden = true;
+  if (!('geolocation' in navigator)) here.remove();
+  var last = town.value;
   function km(a, b) {
     var R = 6371, r = Math.PI / 180;
     var dLat = (b[0] - a[0]) * r, dLng = (b[1] - a[1]) * r;
@@ -1038,28 +925,23 @@ html { scroll-behavior: smooth; }
     });
   }
   town.addEventListener('change', function () {
+    if (town.value === 'here') {
+      msg.textContent = 'Finding you... Your location stays on this phone or computer.';
+      navigator.geolocation.getCurrentPosition(function (pos) {
+        from([pos.coords.latitude, pos.coords.longitude], 'you');
+        last = 'here';
+        msg.textContent = 'Drive times are now from where you are. They\u2019re rough estimates, so check a map for the real route.';
+      }, function () {
+        town.value = last === 'here' ? '53.546,-113.494' : last;
+        msg.textContent = 'Couldn\u2019t get your location. Pick your town from the list instead.';
+      }, { maximumAge: 600000, timeout: 15000 });
+      return;
+    }
     if (!town.value) return;
+    last = town.value;
     from(town.value.split(',').map(Number), town.options[town.selectedIndex].text);
-    msg.textContent = 'Drive times are now from ' + town.options[town.selectedIndex].text + '. They are estimates, so check a map for the real route.';
-    setFrom('from ' + town.options[town.selectedIndex].text);
+    msg.textContent = '';
     try { localStorage.setItem('town', town.value); } catch (e) {}
-  });
-  var tog = document.getElementById('calc-toggle'), fromEl = document.getElementById('calc-from');
-  function setFrom(t) { fromEl.textContent = t; }
-  tog.addEventListener('click', function () {
-    if (window.matchMedia('(min-width: 70rem)').matches) return;
-    tog.setAttribute('aria-expanded', tog.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');
-  });
-  btn.addEventListener('click', function () {
-    msg.textContent = 'Finding you...';
-    navigator.geolocation.getCurrentPosition(function (pos) {
-      from([pos.coords.latitude, pos.coords.longitude], 'you');
-      town.value = '';
-      msg.textContent = 'Drive times are now from you. They are estimates, so check a map for the real route.';
-      setFrom('from your location');
-    }, function () {
-      msg.textContent = 'Couldn\u2019t get your location. Pick your town from the list instead.';
-    }, { maximumAge: 600000, timeout: 15000 });
   });
   try {
     var saved = localStorage.getItem('town');
@@ -1127,11 +1009,6 @@ html { scroll-behavior: smooth; }
 </script>
 
 <script>
-(function () {
-  var t = document.querySelector('.nav-toggle'); if (!t) return;
-  t.addEventListener('click', function () { t.setAttribute('aria-expanded', t.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'); });
-  document.querySelectorAll('#nav-list a').forEach(function (a) { a.addEventListener('click', function () { t.setAttribute('aria-expanded', 'false'); }); });
-})();
 </script>
 
 <script>
@@ -1290,28 +1167,12 @@ html { scroll-behavior: smooth; }
   }
   bL.addEventListener('click', function () { setView('list'); });
   bC.addEventListener('click', function () { setView('cal'); });
-  ['q', 'confirmed-only'].forEach(function (id) { var el = document.getElementById(id); if (el) el.addEventListener(id === 'q' ? 'input' : 'change', function () { if (!cv.hidden) { sel = null; render(); } }); });
+  document.getElementById('q').addEventListener('input', function () { if (!cv.hidden) { sel = null; render(); } });
   try { if (localStorage.getItem('view') === 'cal') setView('cal'); } catch (e) {}
 })();
 </script>
 
 
-<script>
-(function () {
-  var f = document.querySelector('.contact-form'); if (!f) return;
-  var st = f.querySelector('.contact-status');
-  if (/[?&]sent=1/.test(location.search)) st.textContent = 'Thanks, your message was sent.';
-  f.addEventListener('submit', function (e) {
-    if (!window.fetch) return;
-    e.preventDefault();
-    var btn = f.querySelector('button'); btn.disabled = true; st.textContent = 'Sending...';
-    fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(new FormData(f)).toString() })
-      .then(function (r) { if (!r.ok) throw 0; f.reset(); st.textContent = 'Thanks, your message was sent.'; })
-      .catch(function () { st.textContent = "Sorry, that didn't go through. Please try again in a minute."; })
-      .then(function () { btn.disabled = false; });
-  });
-})();
-</script>
 <!-- Cloudflare Web Analytics --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "7e606fc85f0e4583b7dae757bfa2369e"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
