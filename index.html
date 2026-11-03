@@ -234,6 +234,18 @@ footer .wrap { padding-block: 1.5rem 2.5rem; color: var(--muted); font-size: .9r
   .cv-cell.sel::after { background: var(--canola); }
 }
 body.cal-mode .jump, body.cal-mode #dances, body.cal-mode #expected, body.cal-mode #monthly, body.cal-mode #city { display: none; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.mapview { margin-top: 1.2rem; padding-top: 0; }
+.map { height: min(62vh, 30rem); min-height: 20rem; border: 1px solid var(--rule); border-radius: 6px; background: #e8eadf; z-index: 0; }
+.map-pin-wrap { background: none; border: 0; display: grid; place-items: center; }
+.map-pin { display: grid; place-items: center; min-width: 48px; min-height: 48px; cursor: pointer; }
+.map-pin b { display: grid; place-items: center; min-width: 2.1rem; height: 2.1rem; padding: 0 .45rem; border-radius: 999px; background: var(--barn); color: #fff; font: 700 1rem/1 var(--font-body); border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.35); }
+.map-pin.group b { background: var(--saddle); color: var(--cream); min-width: 2.6rem; height: 2.6rem; font-size: 1.1rem; box-shadow: 0 0 0 4px rgba(40,23,13,.25), 0 1px 4px rgba(0,0,0,.35); }
+.map-pin.sel b { background: var(--canola); color: var(--saddle); }
+.map-pin-wrap:focus-visible { outline: none; }
+.map-pin-wrap:focus-visible b { outline: 3px solid var(--denim); outline-offset: 2px; }
+.leaflet-container { font-family: var(--font-body); }
+.leaflet-control-attribution { font-size: .7rem; }
 .jump { display: flex; flex-wrap: wrap; gap: .35rem; margin: 1rem 0 0; }
 #dances { padding-top: 1.75rem; }
 .jump a { display: inline-flex; align-items: center; min-height: 44px; padding: .5rem .6rem; border-radius: 999px; background: var(--saddle); color: var(--cream); font-weight: 700; font-size: .9rem; text-decoration: none; }
@@ -377,7 +389,15 @@ html { scroll-behavior: smooth; }
   <div class="view-toggle" role="group" aria-label="How to show the dances">
     <button type="button" id="view-list" aria-pressed="true">List</button>
     <button type="button" id="view-cal" aria-pressed="false">Calendar</button>
+    <button type="button" id="view-map" aria-pressed="false">Map</button>
   </div>
+
+  <section id="mapview" class="mapview" aria-labelledby="mapview-h" hidden>
+    <h2 id="mapview-h" class="visually-hidden">Map of confirmed dances</h2>
+    <p class="cv-note">The number is how many confirmed dances are in that town. Tap it to see them. Expected dances are in the list view.</p>
+    <div id="map" class="map" role="region" aria-label="Map of confirmed dances"></div>
+    <div class="cv-day" id="map-town" aria-live="polite"></div>
+  </section>
 
   <section id="calview" class="calview" aria-labelledby="calview-h" hidden>
     <div class="cv-head">
@@ -407,7 +427,7 @@ html { scroll-behavior: smooth; }
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">7</span><span class="mon">Nov</span></div>
         <div class="body">
           <h3>Myrnam Perogy Supper &amp; Dance</h3>
-          <p class="where">Myrnam (Myrnam Community Hall Association) · <span class="drive" data-ll="53.667,-111.234">~2 hr from Edmonton</span></p>
+          <p class="where">Myrnam (Myrnam Community Hall Association) · <span class="drive" data-ll="53.667,-111.234" data-town="Myrnam">~2 hr from Edmonton</span></p>
           <ul class="facts"><li><b>When:</b> Saturday, November 7, 2026 (start time not listed)</li><li><b>Price:</b> $40</li></ul>
           <p class="notes">Perogy supper with music and dancing. The listing doesn't give a start time, so check before you drive out.</p>
           <p class="src">More info: <a href="https://goeastofedmonton.com/events/myrnam-peroghy-supper/" target="_blank" rel="noopener">Go East of Edmonton, Myrnam Perogy Supper</a></p>
@@ -417,7 +437,7 @@ html { scroll-behavior: smooth; }
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">7</span><span class="mon">Nov</span></div>
         <div class="body">
           <h3>Rosalind Harvest Hootenanny</h3>
-          <p class="where">Rosalind (Rosalind Ag Society), Camrose County · <span class="drive" data-ll="52.786,-112.453">~1 hr 45 min from Edmonton</span></p>
+          <p class="where">Rosalind (Rosalind Ag Society), Camrose County · <span class="drive" data-ll="52.786,-112.453" data-town="Rosalind">~1 hr 45 min from Edmonton</span></p>
           <ul class="facts"><li><b>When:</b> Saturday, November 7, 2026, 5–10 pm</li><li><b>Music:</b> DJ</li><li><b>Price:</b> $40</li></ul>
           <p class="notes">Drinks, dinner and a magic show. The event page doesn't mention dancing, but Camrose County's <a href="https://county.camrose.ab.ca/visit/annual-events/" target="_blank" rel="noopener">annual events list</a> calls it a "Supper, Dance, Cocktails" night.</p>
           <p class="src">More info: <a href="https://county.camrose.ab.ca/events/harvest-hootenanny/" target="_blank" rel="noopener">Camrose County, Harvest Hootenanny</a></p>
@@ -427,7 +447,7 @@ html { scroll-behavior: smooth; }
         <div class="stub" aria-hidden="true"><span class="dow">Fri</span><span class="day">13</span><span class="mon">Nov</span></div>
         <div class="body">
           <h3>Kinsella Fall Supper &amp; Family Dance</h3>
-          <p class="where">Kinsella (Kinsella Rec and Ag), east of Viking · <span class="drive" data-ll="53.003,-111.533">~2 hr from Edmonton</span></p>
+          <p class="where">Kinsella (Kinsella Rec and Ag), east of Viking · <span class="drive" data-ll="53.003,-111.533" data-town="Kinsella">~2 hr from Edmonton</span></p>
           <ul class="facts"><li><b>When:</b> Friday, November 13, 2026, 5 pm</li><li><b>Band:</b> Ethan Harty and the Corry Boys, plus an open mic</li><li><b>Price:</b> $15 per adult</li></ul>
           <p class="notes">A family dance, so bring the kids.</p>
           <p class="src">More info: <a href="https://goeastofedmonton.com/events/kinsella-fall-supper-and-family-dance/" target="_blank" rel="noopener">Go East of Edmonton, Kinsella Fall Supper</a></p>
@@ -437,7 +457,7 @@ html { scroll-behavior: smooth; }
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">14</span><span class="mon">Nov</span></div>
         <div class="body">
           <h3>Vegreville Legion Dinner &amp; Dance</h3>
-          <p class="where">Royal Canadian Legion Br. 39, 5037 52 Ave, Vegreville · <span class="drive" data-ll="53.494,-112.052">~1 hr from Edmonton</span></p>
+          <p class="where">Royal Canadian Legion Br. 39, 5037 52 Ave, Vegreville · <span class="drive" data-ll="53.494,-112.052" data-town="Vegreville">~1 hr from Edmonton</span></p>
           <ul class="facts"><li><b>When:</b> Saturday, November 14, 2026, 5:30 pm</li><li><b>Band:</b> Brandon Hackkowski and the Ukrainian Tradition Band</li><li><b>Price:</b> $50</li></ul>
           <p class="src">More info: <a href="https://goeastofedmonton.com/events/vegreville-legion-saturday-night-dinner-and-dance/" target="_blank" rel="noopener">Go East of Edmonton, Vegreville Legion Dinner and Dance</a></p>
         </div>
@@ -446,7 +466,7 @@ html { scroll-behavior: smooth; }
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">14</span><span class="mon">Nov</span></div>
         <div class="body">
           <h3>Stry Hall 75th Anniversary Dinner &amp; Dance</h3>
-          <p class="where">Stry Community Hall, near Two Hills · <span class="drive" data-ll="53.710,-111.750">~1 hr 40 min from Edmonton</span></p>
+          <p class="where">Stry Community Hall, near Two Hills · <span class="drive" data-ll="53.710,-111.750" data-town="Two Hills area">~1 hr 40 min from Edmonton</span></p>
           <ul class="facts"><li><b>When:</b> Saturday, November 14, 2026, 5:30 pm</li><li><b>Price:</b> $50 adults, $20 ages 7–12</li></ul>
           <p class="notes">The hall's 75th. Dinner, then dancing. Band not named.</p>
           <p class="src">More info: <a href="https://goeastofedmonton.com/events/stry-75th-anniversary-hall-celebrating-the-fall-season/" target="_blank" rel="noopener">Go East of Edmonton, Stry Hall 75th</a></p>
@@ -456,7 +476,7 @@ html { scroll-behavior: smooth; }
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">14</span><span class="mon">Nov</span></div>
         <div class="body">
           <h3>Pathfinder Hall Harvest Dinner &amp; Dance</h3>
-          <p class="where">Pathfinder Hall, County of Two Hills · <span class="drive" data-ll="53.710,-111.750">~1 hr 40 min from Edmonton</span></p>
+          <p class="where">Pathfinder Hall, County of Two Hills · <span class="drive" data-ll="53.710,-111.750" data-town="Two Hills area">~1 hr 40 min from Edmonton</span></p>
           <ul class="facts"><li><b>When:</b> Saturday, November 14, 2026, 8 pm</li><li><b>Band:</b> Calvin Vollrath</li></ul>
           <p class="notes">Price isn't listed. The exact hall location isn't on the listing, so the drive time is extra rough.</p>
           <p class="src">More info: <a href="https://calvinvollrath.com/calendar" target="_blank" rel="noopener">calvinvollrath.com/calendar</a></p>
@@ -466,7 +486,7 @@ html { scroll-behavior: smooth; }
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">14</span><span class="mon">Nov</span></div>
         <div class="body">
           <h3>Harvest the Art Fundraiser &amp; Dance</h3>
-          <p class="where">Barrhead Senior Citizens Drop-In Centre, 5437 49 St, Barrhead · <span class="drive" data-ll="54.125,-114.402">~1 hr 20 min from Edmonton</span></p>
+          <p class="where">Barrhead Senior Citizens Drop-In Centre, 5437 49 St, Barrhead · <span class="drive" data-ll="54.125,-114.402" data-town="Barrhead">~1 hr 20 min from Edmonton</span></p>
           <ul class="facts"><li><b>When:</b> Saturday, November 14, 2026. Art show 5 pm, dance 7 pm</li><li><b>Band:</b> Live music (not named)</li><li><b>Price:</b> $40 ahead, $50 at the door</li></ul>
           <p class="notes">Put on by the Barrhead Art Club. Reserve at artclubbarrhead@gmail.com.</p>
           <p class="src">More info: <a href="https://allevents.in/barrhead/harvest-the-art-fundraiser/200030766779354" target="_blank" rel="noopener">AllEvents, Harvest the Art</a></p>
@@ -476,7 +496,7 @@ html { scroll-behavior: smooth; }
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">14</span><span class="mon">Nov</span></div>
         <div class="body">
           <h3>Chauvin Elks Fall Supper &amp; Dance</h3>
-          <p class="where">Chauvin · <span class="drive" data-ll="52.703,-110.137">~4 hr from Edmonton</span></p>
+          <p class="where">Chauvin · <span class="drive" data-ll="52.703,-110.137" data-town="Chauvin">~4 hr from Edmonton</span></p>
           <ul class="facts"><li><b>When:</b> Saturday, November 14, 2026, 5:30 pm</li><li><b>Music:</b> Travis Dolter</li><li><b>Price:</b> $60</li></ul>
           <p class="notes">The listing doesn't name the hall, so check the event page for where it is.</p>
           <p class="src">More info: <a href="https://goeastofedmonton.com/events/chauvin-elks-fall-supper-and-dance/" target="_blank" rel="noopener">Go East of Edmonton, Chauvin Elks Fall Supper and Dance</a></p>
@@ -486,7 +506,7 @@ html { scroll-behavior: smooth; }
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">21</span><span class="mon">Nov</span></div>
         <div class="body">
           <h3>Buckin Broncs &amp; Honky Tonks</h3>
-          <p class="where">Elk Point Riding Arena, Elk Point · <span class="drive" data-ll="53.894,-111.073">~2 hr 15 min from Edmonton</span></p>
+          <p class="where">Elk Point Riding Arena, Elk Point · <span class="drive" data-ll="53.894,-111.073" data-town="Elk Point">~2 hr 15 min from Edmonton</span></p>
           <ul class="facts"><li><b>When:</b> Saturday, November 21, 2026. Doors 5:30 pm, bronc riding and wild horse race 7 pm, then a live band and dance</li><li><b>Price:</b> $20 adults, $10 ages 12–17, under 12 free</li></ul>
           <p class="notes">Rodeo night first, dance after. Concession and beer gardens.</p>
           <p class="src">More info: <a href="https://www.elkpoint.ca/public/uploads/images/2026_11_21buckinbroncs2/1789497782-1280w_2026_11_21buckinbroncs2.jpg" target="_blank" rel="noopener">Event poster</a> (posted on the <a href="https://www.elkpoint.ca/news/community-events" target="_blank" rel="noopener">Town of Elk Point events page</a>)</p>
@@ -496,7 +516,7 @@ html { scroll-behavior: smooth; }
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">28</span><span class="mon">Nov</span></div>
         <div class="body">
           <h3>Willingdon Turning of the Seasons Dinner &amp; Dance</h3>
-          <p class="where">Willingdon &amp; District Recreation Centre, 4807 51 Ave, Willingdon · <span class="drive" data-ll="53.836,-112.123">~1 hr 30 min from Edmonton</span></p>
+          <p class="where">Willingdon &amp; District Recreation Centre, 4807 51 Ave, Willingdon · <span class="drive" data-ll="53.836,-112.123" data-town="Willingdon">~1 hr 30 min from Edmonton</span></p>
           <ul class="facts"><li><b>When:</b> Saturday, November 28, 2026. Cocktails 5 pm, dinner 6 pm</li><li><b>Band:</b> Second Son</li></ul>
           <p class="notes">Tickets are sold by text. The numbers are on the event page.</p>
           <p class="src">More info: <a href="https://goeastofedmonton.com/events/willingdon-turning-of-the-seasons-annual-dinner-dance/" target="_blank" rel="noopener">Go East of Edmonton, Willingdon Dinner and Dance</a></p>
@@ -506,7 +526,7 @@ html { scroll-behavior: smooth; }
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">28</span><span class="mon">Nov</span></div>
         <div class="body">
           <h3>Fall Zabava with Millenia</h3>
-          <p class="where">301 Jespersen Ave, Spruce Grove · <span class="drive" data-ll="53.540,-113.905">~30 min from Edmonton</span></p>
+          <p class="where">301 Jespersen Ave, Spruce Grove · <span class="drive" data-ll="53.540,-113.905" data-town="Spruce Grove">~30 min from Edmonton</span></p>
           <ul class="facts"><li><b>When:</b> Saturday, November 28, 2026, doors 7 pm to 1 am</li><li><b>Band:</b> Millenia (Ukrainian)</li><li><b>Price:</b> $50</li></ul>
           <p class="notes">Ukrainian social dance, not country, but the polkas and waltzes are the same. Ages 14+. Fundraiser for the Parkland Ukrainian Dancers travel club.</p>
           <p class="src">More info: <a href="https://allevents.in/spruce-grove/fall-zabava-2026-with-millenia/100001999856366226" target="_blank" rel="noopener">AllEvents, Fall Zabava 2026</a></p>
@@ -516,7 +536,7 @@ html { scroll-behavior: smooth; }
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">28</span><span class="mon">Nov</span></div>
         <div class="body">
           <h3>Country Pride Dance Club Christmas Dinner &amp; Dance</h3>
-          <p class="where">Northside Community Centre (YMCA), 6391 76 St, Red Deer · <span class="drive" data-ll="52.296,-113.775">~1 hr 45 min from Edmonton</span></p>
+          <p class="where">Northside Community Centre (YMCA), 6391 76 St, Red Deer · <span class="drive" data-ll="52.296,-113.775" data-town="Red Deer">~1 hr 45 min from Edmonton</span></p>
           <ul class="facts"><li><b>When:</b> Saturday, November 28, 2026. Doors 6 pm, dinner 7 pm, social dancing until midnight</li></ul>
           <p class="notes">All ages. Catered dinner, country music and a cash bar. Tickets through the event page.</p>
           <p class="src">More info: <a href="https://www.eventbrite.ca/e/country-pride-dance-club-christmas-dinner-dance-tickets-2003899086110" target="_blank" rel="noopener">Eventbrite, Country Pride Christmas Dinner &amp; Dance</a></p>
@@ -527,7 +547,7 @@ html { scroll-behavior: smooth; }
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">5</span><span class="mon">Dec</span></div>
         <div class="body">
           <h3>Villeneuve Christmas Dinner &amp; Cabaret <span class="pill ok">Tickets on sale</span></h3>
-          <p class="where">Villeneuve Community Hall, 61-54200 Rge Rd 265, Sturgeon County · <span class="drive" data-ll="53.660,-113.790">~30 min from Edmonton</span></p>
+          <p class="where">Villeneuve Community Hall, 61-54200 Rge Rd 265, Sturgeon County · <span class="drive" data-ll="53.660,-113.790" data-town="Villeneuve">~30 min from Edmonton</span></p>
           <ul class="facts">
             <li><b>When:</b> Saturday, December 5, 2026. Supper 6 pm, dance 8 pm–midnight</li>
             <li><b>Band:</b> Barre 44</li>
@@ -544,7 +564,7 @@ html { scroll-behavior: smooth; }
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">30</span><span class="mon">Jan</span></div>
         <div class="body">
           <h3>Villeneuve Hall Cabaret <span class="pill ok">Tickets on sale</span></h3>
-          <p class="where">Villeneuve Community Hall, 61-54200 Rge Rd 265, Sturgeon County · <span class="drive" data-ll="53.660,-113.790">~30 min from Edmonton</span></p>
+          <p class="where">Villeneuve Community Hall, 61-54200 Rge Rd 265, Sturgeon County · <span class="drive" data-ll="53.660,-113.790" data-town="Villeneuve">~30 min from Edmonton</span></p>
           <ul class="facts">
             <li><b>When:</b> Saturday, January 30, 2027, 8 pm–midnight</li>
             <li><b>Band:</b> Rave On</li>
@@ -560,7 +580,7 @@ html { scroll-behavior: smooth; }
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">27</span><span class="mon">Feb</span></div>
         <div class="body">
           <h3>Villeneuve Hall Cabaret <span class="pill ok">Tickets on sale</span></h3>
-          <p class="where">Villeneuve Community Hall, 61-54200 Rge Rd 265, Sturgeon County · <span class="drive" data-ll="53.660,-113.790">~30 min from Edmonton</span></p>
+          <p class="where">Villeneuve Community Hall, 61-54200 Rge Rd 265, Sturgeon County · <span class="drive" data-ll="53.660,-113.790" data-town="Villeneuve">~30 min from Edmonton</span></p>
           <ul class="facts">
             <li><b>When:</b> Saturday, February 27, 2027, 8 pm–midnight</li>
             <li><b>Band:</b> Barre 44</li>
@@ -574,7 +594,7 @@ html { scroll-behavior: smooth; }
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">20</span><span class="mon">Mar</span></div>
         <div class="body">
           <h3>Villeneuve Hall Cabaret <span class="pill ok">Tickets on sale</span></h3>
-          <p class="where">Villeneuve Community Hall, 61-54200 Rge Rd 265, Sturgeon County · <span class="drive" data-ll="53.660,-113.790">~30 min from Edmonton</span></p>
+          <p class="where">Villeneuve Community Hall, 61-54200 Rge Rd 265, Sturgeon County · <span class="drive" data-ll="53.660,-113.790" data-town="Villeneuve">~30 min from Edmonton</span></p>
           <ul class="facts">
             <li><b>When:</b> Saturday, March 20, 2027, 8 pm–midnight</li>
             <li><b>Band:</b> Satellites</li>
@@ -588,7 +608,7 @@ html { scroll-behavior: smooth; }
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">24</span><span class="mon">Apr</span></div>
         <div class="body">
           <h3>Villeneuve Hall Cabaret <span class="pill ok">Tickets on sale</span></h3>
-          <p class="where">Villeneuve Community Hall, 61-54200 Rge Rd 265, Sturgeon County · <span class="drive" data-ll="53.660,-113.790">~30 min from Edmonton</span></p>
+          <p class="where">Villeneuve Community Hall, 61-54200 Rge Rd 265, Sturgeon County · <span class="drive" data-ll="53.660,-113.790" data-town="Villeneuve">~30 min from Edmonton</span></p>
           <ul class="facts">
             <li><b>When:</b> Saturday, April 24, 2027, 8 pm–midnight</li>
             <li><b>Band:</b> Ryan Snow Band</li>
@@ -610,7 +630,7 @@ html { scroll-behavior: smooth; }
         <div class="stub recurring" aria-hidden="true"><span class="mon">Expected</span><span class="day">Feb</span></div>
         <div class="body">
           <h3>Music &amp; Memories Dinner and Dance <span class="pill age">18+</span> <span class="pill check">2027 date not posted</span></h3>
-          <p class="where">Morinville Community Cultural Centre, 9502 100 Ave, Morinville · <span class="drive" data-ll="53.802,-113.649">~35 min from Edmonton</span></p>
+          <p class="where">Morinville Community Cultural Centre, 9502 100 Ave, Morinville · <span class="drive" data-ll="53.802,-113.649" data-town="Morinville">~35 min from Edmonton</span></p>
           <ul class="facts">
             <li><b>When:</b> A Friday evening in February (2026 was Fri Feb 6)</li>
             <li><b>Band:</b> 2026: Ryan Snow Band (live country)</li>
@@ -624,7 +644,7 @@ html { scroll-behavior: smooth; }
         <div class="stub recurring" aria-hidden="true"><span class="mon">Expected</span><span class="day">Feb</span></div>
         <div class="body">
           <h3>Alberta Beach Valentine's Supper &amp; Dance <span class="pill check">2027 date not posted</span></h3>
-          <p class="where">Alberta Beach Agriplex · <span class="drive" data-ll="53.676,-114.350">~1 hr from Edmonton</span></p>
+          <p class="where">Alberta Beach Agriplex · <span class="drive" data-ll="53.676,-114.350" data-town="Alberta Beach">~1 hr from Edmonton</span></p>
           <ul class="facts"><li><b>When:</b> Valentine's weekend (2026 was Sat Feb 14). Doors 5 pm, supper 6 pm, music 8–11 pm</li><li><b>Band:</b> 2026: Passin' Through (bluegrass) and Canadian Coldwater Revival (CCR tribute)</li><li><b>Price:</b> 2026: $49 supper and dance, $29 dance only</li></ul>
           <p class="notes">Put on by Community of Alberta Networking (C.A.N.). The money goes to a wishlist program for seniors.</p>
           <p class="src">More info: <a href="https://lsac.ca/events/valentines-day-dine-dance" target="_blank" rel="noopener">Lac Ste. Anne County, 2026 listing</a></p>
@@ -642,7 +662,7 @@ html { scroll-behavior: smooth; }
         <div class="stub recurring" aria-hidden="true"><span class="mon">4th</span><span class="day">Wed</span></div>
         <div class="body">
           <h3>Devon Music Jam &amp; Dance</h3>
-          <p class="where">Pioneer 73 Club, St. Lawrence Ave, Devon · <span class="drive" data-ll="53.364,-113.733">~35 min from Edmonton</span></p>
+          <p class="where">Pioneer 73 Club, St. Lawrence Ave, Devon · <span class="drive" data-ll="53.364,-113.733" data-town="Devon">~35 min from Edmonton</span></p>
           <ul class="facts"><li><b>When:</b> 4th Wednesday, 7 pm, October to May</li></ul>
           <p class="notes">From June to September it moves to the chalet at Devon's campground.</p>
           <p class="src">More info: <a href="https://www.albertafiddlers.com/alberta-regular-weekly-monthly-jams/" target="_blank" rel="noopener">Alberta Fiddlers, regular jams</a></p>
@@ -652,7 +672,7 @@ html { scroll-behavior: smooth; }
         <div class="stub recurring" aria-hidden="true"><span class="mon">Every</span><span class="day">Tue</span></div>
         <div class="body">
           <h3>Traditional Tuesday Dance <span class="pill check">Check first</span></h3>
-          <p class="where">Chateau Nova Yellowhead, 13920 Yellowhead Trail NW, Edmonton · <span class="drive" data-ll="53.585,-113.567">in Edmonton</span></p>
+          <p class="where">Chateau Nova Yellowhead, 13920 Yellowhead Trail NW, Edmonton · <span class="drive" data-ll="53.585,-113.567" data-town="Edmonton">in Edmonton</span></p>
           <ul class="facts"><li><b>When:</b> Tuesdays, doors 6:30 pm, dancing 8–11 pm</li><li><b>Band:</b> Live band</li><li><b>Price:</b> $12 at the door</li></ul>
           <p class="notes">Bev Munro's weekly dance. The times and price are from a spring 2026 listing, so check their Facebook page before you go.</p>
           <p class="src">More info: <a href="https://www.facebook.com/TraditionalTuesday/" target="_blank" rel="noopener">Traditional Tuesday on Facebook</a></p>
@@ -662,7 +682,7 @@ html { scroll-behavior: smooth; }
         <div class="stub recurring" aria-hidden="true"><span class="mon">Every</span><span class="day">Thu</span></div>
         <div class="body">
           <h3>WROTFA Old-Time Country Jam &amp; Dance</h3>
-          <p class="where">North Glenora Community Hall, Edmonton · <span class="drive" data-ll="53.556,-113.554">in the city</span></p>
+          <p class="where">North Glenora Community Hall, Edmonton · <span class="drive" data-ll="53.556,-113.554" data-town="Edmonton">in the city</span></p>
           <ul class="facts"><li><b>When:</b> Every Thursday, 7–10 pm</li></ul>
           <p class="notes">There's dancing too. The listing's address (10860 57 Ave) doesn't match North Glenora Hall, so check first.</p>
           <p class="src">More info: <a href="https://www.albertafiddlers.com/alberta-regular-weekly-monthly-jams/" target="_blank" rel="noopener">Alberta Fiddlers, regular jams</a></p>
@@ -680,7 +700,7 @@ html { scroll-behavior: smooth; }
         <div class="stub" aria-hidden="true"><span class="dow">Fri</span><span class="day">6</span><span class="mon">Nov</span></div>
         <div class="body">
           <h3>Blatchford Boogie Woogie <span class="pill age">18+</span></h3>
-          <p class="where">Alberta Aviation Museum, 11410 Kingsway NW, Edmonton · <span class="drive" data-ll="53.571,-113.518">in the city</span></p>
+          <p class="where">Alberta Aviation Museum, 11410 Kingsway NW, Edmonton · <span class="drive" data-ll="53.571,-113.518" data-town="Edmonton">in the city</span></p>
           <ul class="facts">
             <li><b>When:</b> Friday, November 6, 2026. Dinner guests 5 pm, dance tickets from 7 pm, swing lesson about 7:30, big band about 8 pm, ends 11 pm</li>
             <li><b>Band:</b> Live big band (not named), with Sugar Swing dancers</li>
@@ -694,7 +714,7 @@ html { scroll-behavior: smooth; }
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">21</span><span class="mon">Nov</span></div>
         <div class="body">
           <h3>Bar None 79</h3>
-          <p class="where">Midway Music Hall, 6107 104 St NW, Edmonton · <span class="drive" data-ll="53.500,-113.497">in the city</span></p>
+          <p class="where">Midway Music Hall, 6107 104 St NW, Edmonton · <span class="drive" data-ll="53.500,-113.497" data-town="Edmonton">in the city</span></p>
           <ul class="facts"><li><b>When:</b> Saturday, November 21, 2026, 7 pm</li><li><b>Music:</b> Chad Brownlee, Tim Hus</li><li><b>Price:</b> From $66.25</li></ul>
           <p class="notes">The U of A Ag Club's big country cabaret. Money goes to STARS. Tickets on Ticketmaster or in person on campus.</p>
           <p class="src">More info: <a href="https://timhus.ca/tour" target="_blank" rel="noopener">Tim Hus tour page</a> and <a href="https://uofaagricultureclub.com/bar-none/" target="_blank" rel="noopener">U of A Ag Club, Bar None</a></p>
@@ -704,7 +724,7 @@ html { scroll-behavior: smooth; }
         <div class="stub" aria-hidden="true"><span class="dow">Sun</span><span class="day">6</span><span class="mon">Dec</span></div>
         <div class="body">
           <h3>Calvin Vollrath &amp; Country Swing Christmas Dance <span class="pill ok">Tickets on sale</span></h3>
-          <p class="where">Kingsway Legion Br. 175, 14339 50 St NW, Edmonton · <span class="drive" data-ll="53.611,-113.418">in the city</span></p>
+          <p class="where">Kingsway Legion Br. 175, 14339 50 St NW, Edmonton · <span class="drive" data-ll="53.611,-113.418" data-town="Edmonton">in the city</span></p>
           <ul class="facts">
             <li><b>When:</b> Sunday, December 6, 2026, 2 pm</li>
             <li><b>Band:</b> Calvin Vollrath &amp; Country Swing (old-time country)</li>
@@ -718,7 +738,7 @@ html { scroll-behavior: smooth; }
         <div class="stub" aria-hidden="true"><span class="dow">Tue</span><span class="day">22</span><span class="mon">Dec</span></div>
         <div class="body">
           <h3>Making Spirits Bright Dinner &amp; Dance</h3>
-          <p class="where">Red Willow Place, 7 Tache St, St. Albert · <span class="drive" data-ll="53.633,-113.626">~25 min from Edmonton</span></p>
+          <p class="where">Red Willow Place, 7 Tache St, St. Albert · <span class="drive" data-ll="53.633,-113.626" data-town="St. Albert">~25 min from Edmonton</span></p>
           <ul class="facts"><li><b>When:</b> Tuesday, December 22, 2026. Doors 5 pm, dinner 6 pm, dance 7–9 pm</li><li><b>Music:</b> DJ</li><li><b>Price:</b> $70 members, $80 non-members</li></ul>
           <p class="notes">Put on by the St. Albert 50+ Activity &amp; Service Centre. Buy tickets by December 11 through the centre's office, 780-459-0433.</p>
           <p class="src">More info: <a href="https://allevents.in/saint-albert/making-spirits-bright-dinner-and-dance/200030886440501" target="_blank" rel="noopener">AllEvents, Making Spirits Bright</a></p>
@@ -728,7 +748,7 @@ html { scroll-behavior: smooth; }
         <div class="stub" aria-hidden="true"><span class="dow">Sun</span><span class="day">10</span><span class="mon">Jan</span></div>
         <div class="body">
           <h3>Calvin Vollrath &amp; Country Swing Dance <span class="pill ok">Tickets on sale</span></h3>
-          <p class="where">Kingsway Legion Br. 175, Edmonton · <span class="drive" data-ll="53.611,-113.418">in the city</span></p>
+          <p class="where">Kingsway Legion Br. 175, Edmonton · <span class="drive" data-ll="53.611,-113.418" data-town="Edmonton">in the city</span></p>
           <ul class="facts">
             <li><b>When:</b> Sunday, January 10, 2027, 2 pm</li>
             <li><b>Band:</b> Calvin Vollrath &amp; Country Swing</li>
@@ -740,7 +760,7 @@ html { scroll-behavior: smooth; }
         <div class="stub" aria-hidden="true"><span class="dow">Sun</span><span class="day">21</span><span class="mon">Feb</span></div>
         <div class="body">
           <h3>Calvin Vollrath &amp; Country Swing Dance <span class="pill ok">Tickets on sale</span></h3>
-          <p class="where">Kingsway Legion Br. 175, Edmonton · <span class="drive" data-ll="53.611,-113.418">in the city</span></p>
+          <p class="where">Kingsway Legion Br. 175, Edmonton · <span class="drive" data-ll="53.611,-113.418" data-town="Edmonton">in the city</span></p>
           <ul class="facts">
             <li><b>When:</b> Sunday, February 21, 2027, 2 pm</li>
             <li><b>Band:</b> Calvin Vollrath &amp; Country Swing</li>
@@ -752,7 +772,7 @@ html { scroll-behavior: smooth; }
         <div class="stub" aria-hidden="true"><span class="dow">Sun</span><span class="day">14</span><span class="mon">Mar</span></div>
         <div class="body">
           <h3>Calvin Vollrath &amp; Country Swing Dance <span class="pill ok">Tickets on sale</span></h3>
-          <p class="where">Kingsway Legion Br. 175, Edmonton · <span class="drive" data-ll="53.611,-113.418">in the city</span></p>
+          <p class="where">Kingsway Legion Br. 175, Edmonton · <span class="drive" data-ll="53.611,-113.418" data-town="Edmonton">in the city</span></p>
           <ul class="facts">
             <li><b>When:</b> Sunday, March 14, 2027, 2 pm</li>
             <li><b>Band:</b> Calvin Vollrath &amp; Country Swing</li>
@@ -1169,6 +1189,170 @@ html { scroll-behavior: smooth; }
   bC.addEventListener('click', function () { setView('cal'); });
   document.getElementById('q').addEventListener('input', function () { if (!cv.hidden) { sel = null; render(); } });
   try { if (localStorage.getItem('view') === 'cal') setView('cal'); } catch (e) {}
+})();
+</script>
+
+<script>
+/* Map view. Loaded only when someone taps "Map", so it costs nothing on first page load.
+   GOOGLE MAPS: paste the browser key (restricted to twostepalberta.ca) and the Map ID below.
+   With no key, the map falls back to free Leaflet + OpenStreetMap (files in /vendor/leaflet).
+   Each confirmed dance is placed by data-ll / data-town on its .drive span. One bubble per town shows
+   how many confirmed dances are there; nearby towns merge into a bigger bubble when zoomed out. */
+var TSA_MAP = { googleKey: '', googleMapId: '' };
+(function () {
+  var mv = document.getElementById('mapview'), bM = document.getElementById('view-map'); if (!mv || !bM) return;
+  var bL = document.getElementById('view-list'), bC = document.getElementById('view-cal'), cv = document.getElementById('calview');
+  var box = document.getElementById('map-town'), el = document.getElementById('map'), engine = null, loading = false;
+  var useGoogle = !!(TSA_MAP.googleKey || TSA_MAP.forceGoogle);
+  function clean(e) { var c = e.cloneNode(true); c.querySelectorAll('.pill, .drive').forEach(function (x) { x.remove(); }); return c.textContent.replace(/\s+/g, ' ').replace(/\s*·\s*$/, '').trim(); }
+  function clock(t) { var h = +t.slice(0, 2), mi = t.slice(2, 4), ap = h >= 12 ? 'pm' : 'am'; h = h % 12 || 12; return h + (mi !== '00' ? ':' + mi : '') + ' ' + ap; }
+  function uniq(a) { return a.filter(function (x, i) { return a.indexOf(x) === i; }); }
+  function towns() {
+    var by = {}, list = [];
+    document.querySelectorAll('.ticket[data-status="confirmed"]').forEach(function (t) {
+      if (t.hidden) return;
+      var d = t.querySelector('.drive[data-ll]'); if (!d) return;
+      var k = d.getAttribute('data-ll'), ll = k.split(',').map(Number);
+      if (!by[k]) { by[k] = { key: k, lat: ll[0], lng: ll[1], name: d.getAttribute('data-town') || clean(t.querySelector('.where')).split(/[(,]/)[0].trim(), items: [] }; list.push(by[k]); }
+      by[k].items.push(t);
+    });
+    return list;
+  }
+  function count(g) { return g.reduce(function (n, t) { return n + t.items.length; }, 0); }
+  function label(g) { var n = count(g); return n + (n > 1 ? ' dances' : ' dance') + (g.length > 1 ? ' near ' : ' in ') + uniq(g.map(function (t) { return t.name; })).join(', '); }
+  function when(t) {
+    var s = t.querySelector('.stub'), cal = t.getAttribute('data-cal') || '';
+    var txt = s ? Array.prototype.map.call(s.children, function (x) { return x.textContent; }).join(' ') : '';
+    if (cal.indexOf('T') > -1) txt += ', ' + clock(cal.slice(9, 13));
+    return txt;
+  }
+  function show(g) {
+    box.innerHTML = '';
+    var h = document.createElement('h3'), items = [], ul = document.createElement('ul');
+    g.forEach(function (t) { items = items.concat(t.items); });
+    h.textContent = uniq(g.map(function (t) { return t.name; })).join(', ') + ': ' + items.length + (items.length > 1 ? ' dances' : ' dance');
+    items.forEach(function (t) {
+      var li = document.createElement('li'), a = t.querySelector('.src a');
+      li.innerHTML = '<div class="t"></div><div class="m"></div>';
+      li.querySelector('.t').textContent = clean(t.querySelector('h3'));
+      li.querySelector('.m').textContent = when(t) + ' · ' + clean(t.querySelector('.where'));
+      var see = document.createElement('a'); see.href = '#'; see.textContent = 'See full details';
+      see.addEventListener('click', function (ev) { ev.preventDefault(); bL.click(); t.classList.add('open'); var db = t.querySelector('.details-btn'); if (db) { db.textContent = 'Hide details'; db.setAttribute('aria-expanded', 'true'); } t.scrollIntoView({ block: 'center' }); });
+      li.appendChild(see);
+      if (a) { li.appendChild(document.createTextNode(' · ')); var e2 = document.createElement('a'); e2.href = a.href; e2.target = '_blank'; e2.rel = 'noopener'; e2.textContent = 'Event page'; li.appendChild(e2); }
+      ul.appendChild(li);
+    });
+    box.appendChild(h); box.appendChild(ul);
+  }
+  function hint(list) { box.innerHTML = '<p class="section-note">' + (list.length ? 'Tap a number on the map to see the dances there.' : 'No confirmed dances match your search.') + '</p>'; }
+  function bubble(n, group, sel) { var d = document.createElement('div'); d.className = 'map-pin' + (group ? ' group' : '') + (sel ? ' sel' : ''); d.innerHTML = '<b>' + n + '</b>'; return d; }
+  function fail() { loading = false; box.innerHTML = '<p class="section-note">The map did not load. Check your connection and try again.</p>'; }
+  function addScript(src, cb) { var s = document.createElement('script'); s.src = src; s.async = true; s.onload = cb; s.onerror = fail; document.head.appendChild(s); }
+
+  /* ---------- Google Maps + MarkerClusterer ---------- */
+  function googleEngine() {
+    var map, clusterer, selKey = null, markers = [];
+    function draw() {
+      if (clusterer) clusterer.clearMarkers();
+      markers.forEach(function (m) { m.map = null; });
+      var list = towns(); hint(list);
+      markers = list.map(function (t) {
+        var m = new google.maps.marker.AdvancedMarkerElement({ position: { lat: t.lat, lng: t.lng }, content: bubble(t.items.length, false, t.key === selKey), title: label([t]), gmpClickable: true });
+        m.town = t;
+        m.addEventListener('gmp-click', function () { selKey = t.key; draw(); show([t]); });
+        return m;
+      });
+      clusterer = new markerClusterer.MarkerClusterer({
+        map: map, markers: markers,
+        algorithmOptions: { radius: 70, maxZoom: 12 },
+        renderer: { render: function (c) {
+          var g = c.markers.map(function (m) { return m.town; });
+          return new google.maps.marker.AdvancedMarkerElement({ position: c.position, content: bubble(count(g), true), title: label(g), zIndex: 1000 + count(g) });
+        } },
+        onClusterClick: function (e, c, m) { show(c.markers.map(function (x) { return x.town; })); m.fitBounds(c.bounds, 60); }
+      });
+    }
+    function fit() {
+      var list = towns(), b = new google.maps.LatLngBounds(); if (!list.length) return;
+      list.forEach(function (t) { b.extend({ lat: t.lat, lng: t.lng }); }); map.fitBounds(b, 30);
+    }
+    return {
+      load: function (cb) {
+        window.__tsaMapReady = function () { addScript('/vendor/markerclusterer/markerclusterer.min.js', cb); };
+        addScript('https://maps.googleapis.com/maps/api/js?' + (TSA_MAP.googleKey ? 'key=' + encodeURIComponent(TSA_MAP.googleKey) + '&' : '') + 'v=weekly&loading=async&libraries=marker&callback=__tsaMapReady');
+      },
+      build: function () {
+        map = new google.maps.Map(el, { center: { lat: 53.5, lng: -113.5 }, zoom: 7, minZoom: 5, maxZoom: 14, mapId: TSA_MAP.googleMapId || 'DEMO_MAP_ID',
+          gestureHandling: 'cooperative', streetViewControl: false, mapTypeControl: false, fullscreenControl: false, clickableIcons: false });
+        fit(); draw();
+      },
+      refresh: function () { selKey = null; draw(); }
+    };
+  }
+
+  /* ---------- Leaflet + OpenStreetMap (free fallback) ---------- */
+  function leafletEngine() {
+    var map, layer, selKey = null;
+    function draw() {
+      if (layer) layer.remove();
+      layer = L.layerGroup().addTo(map);
+      var list = towns(), z = map.getZoom(), used = {}, groups = [];
+      list.sort(function (a, b) { return b.items.length - a.items.length; });
+      list.forEach(function (t) {
+        if (used[t.key]) return;
+        var p = map.project([t.lat, t.lng], z), g = [t]; used[t.key] = 1;
+        list.forEach(function (o) { if (!used[o.key] && map.project([o.lat, o.lng], z).distanceTo(p) < 56) { g.push(o); used[o.key] = 1; } });
+        groups.push(g);
+      });
+      groups.forEach(function (g) {
+        var multi = g.length > 1, lat = 0, lng = 0;
+        g.forEach(function (t) { lat += t.lat; lng += t.lng; });
+        var m = L.marker([lat / g.length, lng / g.length], {
+          icon: L.divIcon({ className: 'map-pin-wrap', html: bubble(count(g), multi, !multi && g[0].key === selKey).outerHTML, iconSize: [48, 48] }),
+          title: label(g), alt: label(g), keyboard: true, riseOnHover: true
+        }).addTo(layer);
+        m.on('click', function () {
+          show(g);
+          if (multi && map.getZoom() < map.getMaxZoom()) { map.flyToBounds(L.latLngBounds(g.map(function (t) { return [t.lat, t.lng]; })), { padding: [60, 60], maxZoom: map.getZoom() + 4, duration: .5 }); return; }
+          selKey = g[0].key; draw();
+        });
+      });
+    }
+    return {
+      load: function (cb) {
+        var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = '/vendor/leaflet/leaflet.css'; document.head.appendChild(css);
+        addScript('/vendor/leaflet/leaflet.js', cb);
+      },
+      build: function () {
+        map = L.map(el, { scrollWheelZoom: false, zoomSnap: .5, minZoom: 5, maxZoom: 13 });
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>' }).addTo(map);
+        map.on('click', function () { map.scrollWheelZoom.enable(); });
+        map.on('zoomend', draw);
+        var list = towns();
+        if (list.length) map.fitBounds(L.latLngBounds(list.map(function (t) { return [t.lat, t.lng]; })), { padding: [30, 30], maxZoom: 9 }); else map.setView([53.5, -113.5], 7);
+        draw(); hint(list);
+      },
+      refresh: function () { selKey = null; draw(); hint(towns()); },
+      resize: function () { map.invalidateSize(); }
+    };
+  }
+
+  function setMap(on) {
+    mv.hidden = !on; bM.setAttribute('aria-pressed', String(on));
+    if (!on) return;
+    document.body.classList.add('cal-mode'); cv.hidden = true;
+    bL.setAttribute('aria-pressed', 'false'); bC.setAttribute('aria-pressed', 'false');
+    try { localStorage.setItem('view', 'map'); } catch (e) {}
+    if (engine) { if (engine.resize) engine.resize(); engine.refresh(); return; }
+    if (loading) return; loading = true;
+    var eng = useGoogle ? googleEngine() : leafletEngine();
+    eng.load(function () { engine = eng; loading = false; eng.build(); });
+  }
+  bM.addEventListener('click', function () { setMap(true); });
+  bL.addEventListener('click', function () { setMap(false); });
+  bC.addEventListener('click', function () { setMap(false); });
+  document.getElementById('q').addEventListener('input', function () { if (engine && !mv.hidden) engine.refresh(); });
+  try { if (localStorage.getItem('view') === 'map') setMap(true); } catch (e) {}
 })();
 </script>
 
