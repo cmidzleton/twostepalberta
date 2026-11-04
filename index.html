@@ -1289,12 +1289,12 @@ html { scroll-behavior: smooth; }
     document.body.classList.toggle('cal-mode', cal); cv.hidden = !cal;
     bL.setAttribute('aria-pressed', String(!cal)); bC.setAttribute('aria-pressed', String(cal));
     if (cal) render();
-    try { localStorage.setItem('view', v); } catch (e) {}
   }
   bL.addEventListener('click', function () { setView('list'); });
   bC.addEventListener('click', function () { setView('cal'); });
   document.getElementById('q').addEventListener('input', function () { if (!cv.hidden) { sel = null; render(); } });
-  try { if (localStorage.getItem('view') === 'cal') setView('cal'); } catch (e) {}
+  /* Always open on the list. Clear the old saved view from earlier versions. */
+  try { localStorage.removeItem('view'); } catch (e) {}
 })();
 </script>
 
@@ -1459,7 +1459,6 @@ var TSA_MAP = { googleKey: '', googleMapId: '' };
     if (!on) return;
     document.body.classList.add('cal-mode'); cv.hidden = true;
     bL.setAttribute('aria-pressed', 'false'); bC.setAttribute('aria-pressed', 'false');
-    try { localStorage.setItem('view', 'map'); } catch (e) {}
     if (engine) { if (engine.resize) engine.resize(); engine.refresh(); return; }
     if (loading) return; loading = true;
     var eng = useGoogle ? googleEngine() : leafletEngine();
@@ -1469,7 +1468,6 @@ var TSA_MAP = { googleKey: '', googleMapId: '' };
   bL.addEventListener('click', function () { setMap(false); });
   bC.addEventListener('click', function () { setMap(false); });
   document.getElementById('q').addEventListener('input', function () { if (engine && !mv.hidden) engine.refresh(); });
-  try { if (localStorage.getItem('view') === 'map') setMap(true); } catch (e) {}
 })();
 </script>
 
