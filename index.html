@@ -1247,7 +1247,7 @@ html { scroll-behavior: smooth; }
    GOOGLE MAPS: paste the browser key (restricted to twostepalberta.ca) and the Map ID below.
    With no key, the map falls back to free Leaflet + OpenStreetMap (files in /vendor/leaflet).
    Each confirmed dance is placed by data-ll / data-town on its .drive span. One bubble per town shows
-   how many confirmed dances are there; nearby towns merge into a bigger bubble when zoomed out. */
+   how many confirmed dances are there. Towns never merge; bubbles that would overlap are nudged apart with a line to the real spot. */
 var TSA_MAP = { googleKey: '', googleMapId: '' };
 (function () {
   var mv = document.getElementById('mapview'), bM = document.getElementById('view-map'); if (!mv || !bM) return;
@@ -1269,7 +1269,7 @@ var TSA_MAP = { googleKey: '', googleMapId: '' };
     return list;
   }
   function count(g) { return g.reduce(function (n, t) { return n + t.items.length; }, 0); }
-  function label(g) { var n = count(g); return n + (n > 1 ? ' dances' : ' dance') + (g.length > 1 ? ' near ' : ' in ') + uniq(g.map(function (t) { return t.name; })).join(', '); }
+  function label(g) { var n = count(g), names = uniq(g.map(function (t) { return t.name; })); return n + (n > 1 ? ' dances' : ' dance') + (names.length > 1 ? ' near ' : ' in ') + names.join(', '); }
   function when(t) {
     var s = t.querySelector('.stub'), cal = t.getAttribute('data-cal') || '';
     var txt = s ? Array.prototype.map.call(s.children, function (x) { return x.textContent; }).join(' ') : '';
@@ -1299,27 +1299,19 @@ var TSA_MAP = { googleKey: '', googleMapId: '' };
   function fail() { loading = false; box.innerHTML = '<p class="section-note">The map did not load. Check your connection and try again.</p>'; }
   function addScript(src, cb) { var s = document.createElement('script'); s.src = src; s.async = true; s.onload = cb; s.onerror = fail; document.head.appendChild(s); }
 
-  /* ---------- Google Maps + MarkerClusterer ---------- */
+  /* ---------- Google Maps ---------- */
   function googleEngine() {
-    var map, clusterer, selKey = null, markers = [];
+    var map, selKey = null, markers = [];
     function draw() {
-      if (clusterer) clusterer.clearMarkers();
       markers.forEach(function (m) { m.map = null; });
-      var list = towns(); hint(list);
-      markers = list.map(function (t) {
-        var m = new google.maps.marker.AdvancedMarkerElement({ position: { lat: t.lat, lng: t.lng }, content: bubble(t.items.length, false, t.key === selKey), title: label([t]), gmpClickable: true });
-        m.town = t;
-        m.addEventListener('gmp-click', function () { selKey = t.key; draw(); show([t]); });
+      var list = towns(), by = {}, groups = []; hint(list);
+      // One bubble per town (all of a town's halls together). Different towns never merge (Curtis, Nov 4).
+      list.forEach(function (t) { if (!by[t.name]) { by[t.name] = []; groups.push(by[t.name]); } by[t.name].push(t); });
+      markers = groups.map(function (g) {
+        var lat = 0, lng = 0; g.forEach(function (t) { lat += t.lat; lng += t.lng; });
+        var n = count(g), m = new google.maps.marker.AdvancedMarkerElement({ map: map, position: { lat: lat / g.length, lng: lng / g.length }, content: bubble(n, false, g[0].name === selKey), title: label(g), gmpClickable: true, zIndex: n });
+        m.addEventListener('gmp-click', function () { selKey = g[0].name; draw(); show(g); });
         return m;
-      });
-      clusterer = new markerClusterer.MarkerClusterer({
-        map: map, markers: markers,
-        algorithmOptions: { radius: 70, maxZoom: 12 },
-        renderer: { render: function (c) {
-          var g = c.markers.map(function (m) { return m.town; });
-          return new google.maps.marker.AdvancedMarkerElement({ position: c.position, content: bubble(count(g), true), title: label(g), zIndex: 1000 + count(g) });
-        } },
-        onClusterClick: function (e, c, m) { show(c.markers.map(function (x) { return x.town; })); m.fitBounds(c.bounds, 60); }
       });
     }
     function fit() {
@@ -1328,7 +1320,7 @@ var TSA_MAP = { googleKey: '', googleMapId: '' };
     }
     return {
       load: function (cb) {
-        window.__tsaMapReady = function () { addScript('/vendor/markerclusterer/markerclusterer.min.js', cb); };
+        window.__tsaMapReady = cb;
         addScript('https://maps.googleapis.com/maps/api/js?' + (TSA_MAP.googleKey ? 'key=' + encodeURIComponent(TSA_MAP.googleKey) + '&' : '') + 'v=weekly&loading=async&libraries=marker&callback=__tsaMapReady');
       },
       build: function () {
@@ -1348,16 +1340,35 @@ var TSA_MAP = { googleKey: '', googleMapId: '' };
       layer = L.layerGroup().addTo(map);
       var list = towns(), z = map.getZoom(), used = {}, groups = [];
       list.sort(function (a, b) { return b.items.length - a.items.length; });
+      // Only halls in the SAME town share a bubble (e.g. Edmonton's venues). Different towns never merge (Curtis, Nov 4).
       list.forEach(function (t) {
         if (used[t.key]) return;
         var p = map.project([t.lat, t.lng], z), g = [t]; used[t.key] = 1;
-        list.forEach(function (o) { if (!used[o.key] && map.project([o.lat, o.lng], z).distanceTo(p) < 56) { g.push(o); used[o.key] = 1; } });
-        groups.push(g);
+        list.forEach(function (o) { if (!used[o.key] && o.name === t.name && map.project([o.lat, o.lng], z).distanceTo(p) < 56) { g.push(o); used[o.key] = 1; } });
+        var lat = 0, lng = 0; g.forEach(function (x) { lat += x.lat; lng += x.lng; });
+        var ll = L.latLng(lat / g.length, lng / g.length);
+        groups.push({ g: g, ll: ll, at: map.project(ll, z), pt: map.project(ll, z) });
       });
-      groups.forEach(function (g) {
-        var multi = g.length > 1, lat = 0, lng = 0;
-        g.forEach(function (t) { lat += t.lat; lng += t.lng; });
-        var m = L.marker([lat / g.length, lng / g.length], {
+      // Towns close together would hide each other, so nudge overlapping bubbles apart and draw a short line to the real spot.
+      var D = 40;
+      for (var it = 0; it < 60; it++) {
+        var moved = false;
+        for (var i = 0; i < groups.length; i++) for (var j = i + 1; j < groups.length; j++) {
+          var a = groups[i].pt, b = groups[j].pt, dx = b.x - a.x, dy = b.y - a.y, d = Math.sqrt(dx * dx + dy * dy);
+          if (d >= D) continue;
+          if (d < .01) { dx = Math.cos(j); dy = Math.sin(j); d = 1; }
+          var push = (D - d) / 2 + .5, ux = dx / d, uy = dy / d;
+          groups[i].pt = L.point(a.x - ux * push, a.y - uy * push); groups[j].pt = L.point(b.x + ux * push, b.y + uy * push); moved = true;
+        }
+        if (!moved) break;
+      }
+      groups.forEach(function (o) {
+        var g = o.g, multi = g.length > 1, pos = map.unproject(o.pt, z);
+        if (o.pt.distanceTo(o.at) > 6) {
+          L.polyline([o.ll, pos], { color: '#28170d', weight: 2, opacity: .7, interactive: false }).addTo(layer);
+          L.circleMarker(o.ll, { radius: 3, color: '#28170d', weight: 1, fillColor: '#28170d', fillOpacity: 1, interactive: false }).addTo(layer);
+        }
+        var m = L.marker(pos, {
           icon: L.divIcon({ className: 'map-pin-wrap', html: bubble(count(g), multi, !multi && g[0].key === selKey).outerHTML, iconSize: [48, 48] }),
           title: label(g), alt: label(g), keyboard: true, riseOnHover: true
         }).addTo(layer);
