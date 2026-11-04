@@ -265,8 +265,14 @@ section { scroll-margin-top: 1rem; }
 .ticket[data-area="edmonton"] .stub { background: var(--denim); color: var(--cream); }
 .ticket[data-area="edmonton"] { border-color: #b9c8d8; background: #f5f8fb; }
 .ticket[data-area="edmonton"] .body { background: #f5f8fb; }
-.search .check { display: flex; gap: .6rem; align-items: center; min-height: 44px; font-weight: 600; cursor: pointer; }
-.search .check input { width: 1.4rem; height: 1.4rem; margin: 0; accent-color: var(--denim); flex: none; }
+/* Edmonton & St. Albert on/off switch: its own control, separate from search */
+.area-switch { display: flex; gap: .7rem; align-items: center; min-height: 44px; margin: .9rem 0 0; font-weight: 700; cursor: pointer; width: fit-content; }
+.area-switch input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.area-switch .track { flex: none; position: relative; width: 3rem; height: 1.7rem; border-radius: 999px; background: var(--rule); border: 2px solid var(--muted); transition: background .15s; }
+.area-switch .track::after { content: ""; position: absolute; top: 2px; left: 2px; width: calc(1.7rem - 8px); height: calc(1.7rem - 8px); border-radius: 50%; background: var(--card); box-shadow: 0 1px 2px rgba(0,0,0,.3); transition: transform .15s; }
+.area-switch input:checked + .track { background: var(--denim); border-color: var(--denim); }
+.area-switch input:checked + .track::after { transform: translateX(1.3rem); }
+.area-switch input:focus-visible + .track { outline: 3px solid var(--canola); outline-offset: 2px; }
 .search #q-msg { margin: 0; font-size: .93rem; color: var(--muted); }
 .search #q-msg:empty { display: none; }
 .link-btn { font: inherit; font-weight: 600; color: var(--denim); background: none; border: 0; padding: .7rem 0; text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }
@@ -351,7 +357,6 @@ html { scroll-behavior: smooth; }
   <div class="search" id="search">
     <label for="q">Search by town, hall or band</label>
     <input type="search" id="q" placeholder="e.g. Leduc, Villeneuve, Barre 44" autocomplete="off">
-    <label class="check"><input type="checkbox" id="show-city" checked> Show Edmonton &amp; St. Albert dances</label>
     <p id="q-msg" aria-live="polite"></p>
   </div>
 
@@ -394,6 +399,8 @@ html { scroll-behavior: smooth; }
     </div>
     <p id="locate-msg" aria-live="polite"></p>
   </div>
+
+  <label class="area-switch"><input type="checkbox" id="show-city" role="switch" checked><span class="track" aria-hidden="true"></span><span>Show Edmonton &amp; St. Albert dances</span></label>
 
   <div class="view-toggle" role="group" aria-label="How to show the dances">
     <button type="button" id="view-list" aria-pressed="true">List</button>
