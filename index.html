@@ -261,11 +261,12 @@ section { scroll-margin-top: 1rem; }
 .search select { font: inherit; padding: .45rem .5rem; border: 1px solid var(--rule); border-radius: 4px; background: var(--card); color: var(--ink); justify-self: start; }
 .pill.age { background: var(--barn); color: var(--card); }
 .pill.city { background: var(--denim); color: var(--card); }
-/* Edmonton & St. Albert cards: blue date stub and a light blue edge, so they stand apart from the small town dances */
+/* Edmonton cards: blue date stub and a light blue edge, so they stand apart from the small town dances */
 .ticket[data-area="edmonton"] .stub { background: var(--denim); color: var(--cream); }
 .ticket[data-area="edmonton"] { border-color: #b9c8d8; background: #f5f8fb; }
 .ticket[data-area="edmonton"] .body { background: #f5f8fb; }
-/* Edmonton & St. Albert on/off switch: its own control, separate from search */
+/* Edmonton on/off switch: its own control, separate from search */
+.ticket[hidden] { display: none; }
 .area-switch { display: flex; gap: .7rem; align-items: center; min-height: 44px; margin: .9rem 0 0; font-weight: 700; cursor: pointer; width: fit-content; }
 .area-switch input { position: absolute; opacity: 0; width: 1px; height: 1px; }
 .area-switch .track { flex: none; position: relative; width: 3rem; height: 1.7rem; border-radius: 999px; background: var(--rule); border: 2px solid var(--muted); transition: background .15s; }
@@ -400,7 +401,7 @@ html { scroll-behavior: smooth; }
     <p id="locate-msg" aria-live="polite"></p>
   </div>
 
-  <label class="area-switch"><input type="checkbox" id="show-city" role="switch" checked><span class="track" aria-hidden="true"></span><span>Show Edmonton &amp; St. Albert dances</span></label>
+  <label class="area-switch"><input type="checkbox" id="show-city" role="switch" checked><span class="track" aria-hidden="true"></span><span>Show Edmonton dances</span></label>
 
   <div class="view-toggle" role="group" aria-label="How to show the dances">
     <button type="button" id="view-list" aria-pressed="true">List</button>
@@ -637,10 +638,10 @@ html { scroll-behavior: smooth; }
           <p class="src">More info: <a href="https://calvinvollrath.com/tickets" target="_blank" rel="noopener">calvinvollrath.com/tickets</a></p>
         </div>
       </li>
-      <li class="ticket" data-area="edmonton" data-status="confirmed" data-age="unknown" data-cal="20261222T1700/20261222T2100">
+      <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20261222T1700/20261222T2100">
         <div class="stub" aria-hidden="true"><span class="dow">Tue</span><span class="day">22</span><span class="mon">Dec</span></div>
         <div class="body">
-          <h3>Making Spirits Bright Dinner &amp; Dance <span class="pill city">St. Albert</span></h3>
+          <h3>Making Spirits Bright Dinner &amp; Dance</h3>
           <p class="where">Red Willow Place, 7 Tache St, St. Albert · <span class="drive" data-ll="53.633,-113.626" data-town="St. Albert">~25 min from Edmonton</span></p>
           <ul class="facts"><li><b>When:</b> Tuesday, December 22, 2026. Doors 5 pm, dinner 6 pm, dance 7–9 pm</li><li><b>Music:</b> DJ</li><li><b>Price:</b> $70 members, $80 non-members</li></ul>
           <p class="notes">Put on by the St. Albert 50+ Activity &amp; Service Centre. Buy tickets by December 11 through the centre's office, 780-459-0433.</p>
@@ -920,7 +921,7 @@ html { scroll-behavior: smooth; }
         <li>Pick where you're driving from right under the search box. Your phone remembers it.</li>
         <li>Bigger buttons and text that are easier to tap and read.</li>
         <li>About and Contact us moved to their own page.</li>
-        <li>One list: Edmonton and St. Albert dances are now in Confirmed dances, in blue. Untick "Show Edmonton &amp; St. Albert dances" to hide them.</li>
+        <li>One list: Edmonton dances are now in Confirmed dances, in blue. Turn off "Show Edmonton dances" to hide them.</li>
         <li>A Map view: tap Map to see how many confirmed dances are in each town.</li>
       </ul>
     </section>
@@ -975,7 +976,7 @@ html { scroll-behavior: smooth; }
     msg.textContent = '';
     if (!terms.length) return;
     if (!shown && off) {
-      msg.textContent = off + (off === 1 ? ' match' : ' matches') + ' in Edmonton or St. Albert, which you\u2019ve switched off. ';
+      msg.textContent = off + (off === 1 ? ' match' : ' matches') + ' in Edmonton, which you\u2019ve switched off. ';
       var sw = document.createElement('button'); sw.type = 'button'; sw.className = 'link-btn'; sw.textContent = 'Show them';
       sw.addEventListener('click', function () { city.checked = true; city.dispatchEvent(new Event('change')); });
       msg.appendChild(sw);
