@@ -6,7 +6,7 @@
 <atom:link href="https://twostepalberta.ca/feed.xml" rel="self" type="application/rss+xml"/>
 <description>Hall dances, cabarets and suppers around Edmonton, updated every Wednesday.</description>
 <language>en-ca</language>
-<lastBuildDate>Wed, 04 Nov 2026 02:13:17 +0000</lastBuildDate>
+<lastBuildDate>Wed, 04 Nov 2026 02:31:20 +0000</lastBuildDate>
 <item>
 <title>Blatchford Boogie Woogie</title>
 <link>https://albertaaviationmuseum.com/blatchford-boogie-woogie/</link>
@@ -24,6 +24,12 @@
 <link>https://county.camrose.ab.ca/events/harvest-hootenanny/</link>
 <guid isPermaLink="false">6768f074dd27606a@twostepalberta.ca</guid>
 <description>Rosalind (Rosalind Ag Society), Camrose County&lt;br&gt;Saturday, November 7, 2026, 5–10 pm&lt;br&gt;Check the event page before you go.&lt;br&gt;https://county.camrose.ab.ca/events/harvest-hootenanny/</description>
+</item>
+<item>
+<title>Calvin Vollrath &amp; Country Swing Dance: Real Fagnan&#x27;s Birthday Bash</title>
+<link>https://calvinvollrath.com/event/6414722/779442324/real-fagnan-s-birthday-bash</link>
+<guid isPermaLink="false">ac29501cdf67d6df@twostepalberta.ca</guid>
+<description>Kingsway Legion Br. 175, 14339 50 St NW, Edmonton&lt;br&gt;Sunday, November 8, 2026, 2 pm&lt;br&gt;Check the event page before you go.&lt;br&gt;https://calvinvollrath.com/event/6414722/779442324/real-fagnan-s-birthday-bash</description>
 </item>
 <item>
 <title>Kinsella Fall Supper &amp; Family Dance</title>
@@ -192,6 +198,18 @@
 <link>https://www.albertafiddlers.com/alberta-regular-weekly-monthly-jams/</link>
 <guid isPermaLink="false">5786f23b8d918a09@twostepalberta.ca</guid>
 <description>North Glenora Community Hall, Edmonton&lt;br&gt;Every Thursday, 7–10 pm&lt;br&gt;Check the event page before you go.&lt;br&gt;https://www.albertafiddlers.com/alberta-regular-weekly-monthly-jams/</description>
+</item>
+<item>
+<title>Kingsway Legion Friday Night Dance</title>
+<link>https://kingswaylegion.ca/mon%2C-fri-%26-sat-dances</link>
+<guid isPermaLink="false">a5f50ca6ed067c07@twostepalberta.ca</guid>
+<description>Juno Lounge, Kingsway Legion Br. 175, 14339 50 St NW, Edmonton&lt;br&gt;Every Friday, 7–11 pm&lt;br&gt;Check the event page before you go.&lt;br&gt;https://kingswaylegion.ca/mon%2C-fri-%26-sat-dances</description>
+</item>
+<item>
+<title>Kingsway Legion Saturday Night Dance</title>
+<link>https://kingswaylegion.ca/mon%2C-fri-%26-sat-dances</link>
+<guid isPermaLink="false">939bdb7c33452afc@twostepalberta.ca</guid>
+<description>Juno Lounge, Kingsway Legion Br. 175, 14339 50 St NW, Edmonton&lt;br&gt;Every Saturday, 7–11 pm&lt;br&gt;Check the event page before you go.&lt;br&gt;https://kingswaylegion.ca/mon%2C-fri-%26-sat-dances</description>
 </item>
 </channel>
 </rss>
