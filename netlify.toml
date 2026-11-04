@@ -17,3 +17,10 @@
   for = "/site.webmanifest"
   [headers.values]
     Content-Type = "application/manifest+json; charset=utf-8"
+
+# Send http://www straight to the main https address in one hop (instead of http://www -> https://www -> https://).
+[[redirects]]
+  from = "http://www.twostepalberta.ca/*"
+  to = "https://twostepalberta.ca/:splat"
+  status = 301
+  force = true
