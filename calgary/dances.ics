@@ -1,0 +1,37 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Two-Step Alberta//Dances//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Two-Step Alberta: Calgary-area dances
+X-WR-TIMEZONE:America/Edmonton
+REFRESH-INTERVAL;VALUE=DURATION:PT12H
+X-PUBLISHED-TTL:PT12H
+BEGIN:VEVENT
+UID:d35d301dbc4ceade@twostepalberta.ca
+DTSTAMP:20261105T042312Z
+DTSTART:20261121T003000Z
+DTEND:20261121T080000Z
+SUMMARY:Alberta Dreams: For the Love of 90's Country Dance Night
+LOCATION:Ranchman's Cookhouse & Dancehall\, 9615 Macleod Trail S\, Calgary
+DESCRIPTION:Friday\, November 20\, 2026. VIP table doors 6:30 pm\, general
+  admission doors 7:30 pm\, ends 2 am\nCheck the event page before you go.\
+ nhttps://www.showpass.com/alberta-dreams-for-the-love-of-90s-country-calga
+ ry/
+URL:https://www.showpass.com/alberta-dreams-for-the-love-of-90s-country-ca
+ lgary/
+END:VEVENT
+BEGIN:VEVENT
+UID:11fe1bec3a9dca48@twostepalberta.ca
+DTSTAMP:20261105T042312Z
+DTSTART:20261109T010000Z
+DTEND:20261109T050000Z
+RRULE:FREQ=WEEKLY;BYDAY=SU
+SUMMARY:Sunny City Swing Sunday Social Dance
+LOCATION:Sunalta Community Hall\, 1627 10 Ave SW\, Calgary
+DESCRIPTION:Every Sunday. Beginner drop-in class 7 pm\, social dancing fro
+ m 8 pm (end time not posted)\nCheck the event page before you go.\nhttps:/
+ /www.sunnycityswing.com/
+URL:https://www.sunnycityswing.com/
+END:VEVENT
+END:VCALENDAR

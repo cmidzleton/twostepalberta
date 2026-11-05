@@ -204,6 +204,14 @@ footer .wrap { padding-block: 1.5rem 2.5rem; color: var(--muted); font-size: .9r
 .view-toggle button { font: inherit; font-weight: 700; font-size: 1rem; min-height: 44px; padding: .55rem 1.2rem; border: 0; background: var(--card); color: var(--saddle); cursor: pointer; }
 .view-toggle button[aria-pressed="true"] { background: var(--saddle); color: var(--cream); }
 .view-toggle button:focus-visible { outline: 3px solid var(--canola); outline-offset: -3px; }
+/* Region tabs: Edmonton and area page / Calgary and area page. Plain links, the current page is filled in. */
+.region { margin: 1.25rem 0; }
+.region p { margin: 0 0 .4rem; font-weight: 700; }
+.region-tabs { display: flex; flex-wrap: wrap; gap: .5rem; }
+.region-tabs a { display: inline-flex; align-items: center; min-height: 44px; padding: .5rem .85rem; font-size: .95rem; border: 2px solid var(--saddle); border-radius: 999px; background: var(--card); color: var(--saddle); font-weight: 700; text-decoration: none; }
+.region-tabs a:hover { background: var(--cream); }
+.region-tabs a[aria-current="page"] { background: var(--saddle); color: var(--cream); }
+.region-tabs a:focus-visible { outline: 3px solid var(--canola); outline-offset: 2px; }
 .calview { margin-top: 1.2rem; }
 .cv-head { display: flex; align-items: center; justify-content: space-between; gap: .5rem; margin-bottom: .6rem; }
 .cv-head h2 { font-size: 1.35rem; text-align: center; flex: 1; }
@@ -357,6 +365,14 @@ html { scroll-behavior: smooth; }
 </header>
 
 <main class="wrap">
+
+  <nav class="region" aria-label="Choose a region">
+    <p>Dances near</p>
+    <div class="region-tabs">
+      <a href="/" aria-current="page">Edmonton and area</a>
+      <a href="/calgary/">Calgary and area</a>
+    </div>
+  </nav>
 
   <div class="search" id="search">
     <label for="q">Search by town, hall or band</label>
@@ -934,7 +950,7 @@ html { scroll-behavior: smooth; }
   <div class="wrap">
     <p>Last updated <span class="updated">November 2, 2026</span>.</p>
     <p>We don't run these dances. We just list what halls and organizers post online, so check the event page before you go.</p>
-    <p><a href="/about/">About</a> · <a href="https://forms.gle/v9GQNi8NgZG2gEBN8" target="_blank" rel="noopener">Site feedback</a> · <a href="/about/#contact">Contact us</a></p>
+    <p><a href="/about/">About</a> · <a href="/calgary/">Calgary dances</a> · <a href="https://forms.gle/v9GQNi8NgZG2gEBN8" target="_blank" rel="noopener">Site feedback</a> · <a href="/about/#contact">Contact us</a></p>
     <p><button type="button" class="news-btn" id="news-btn" aria-haspopup="dialog">What's new on the site</button></p>
   </div>
 </footer>
@@ -949,7 +965,7 @@ html { scroll-behavior: smooth; }
       <li>Drive times: use your location or pick your town to see roughly how far each dance is.</li>
       <li>Add to calendar on every confirmed dance, for Google, Apple or Outlook.</li>
       <li>Subscribe: get an email when we post new dances, or add them all to your calendar.</li>
-      <li>Switch between a list and a calendar view of the dances.</li>
+      <li>A new page for Calgary and area dances, with the same list, calendar and map.</li>
     </ul>
   </div>
   <button type="button" class="news-close">Close</button>

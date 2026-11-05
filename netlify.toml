@@ -9,6 +9,17 @@
     Cache-Control = "public, max-age=3600"
 
 [[headers]]
+  for = "/calgary/dances.ics"
+  [headers.values]
+    Content-Type = "text/calendar; charset=utf-8"
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/calgary/feed.xml"
+  [headers.values]
+    Content-Type = "application/rss+xml; charset=utf-8"
+
+[[headers]]
   for = "/feed.xml"
   [headers.values]
     Content-Type = "application/rss+xml; charset=utf-8"

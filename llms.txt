@@ -1,6 +1,6 @@
 # Two-Step Alberta
 
-> TwoStepAlberta.ca lists country and swing dances in small towns around Edmonton, Alberta: hall dances, cabarets, old-time country dances and monthly dances. Each listing has the date, start time, hall, band, price and a link to the event page. Red Deer-area dances are included, and Edmonton and St. Albert dances can be shown or hidden.
+> TwoStepAlberta.ca lists country and swing dances in small towns around Edmonton, Alberta: hall dances, cabarets, old-time country dances and monthly dances. Each listing has the date, start time, hall, band, price and a link to the event page. Red Deer-area dances are included, and Edmonton and St. Albert dances can be shown or hidden. A second page lists dances in Calgary and the towns around it.
 
 We only post public dances that a source shows with a date, a start time and a place. Listings are checked and updated every Wednesday, so always confirm details on the event's own page before you go.
 
@@ -9,12 +9,14 @@ We only post public dances that a source shows with a date, a start time and a p
 - [Hall dances](https://twostepalberta.ca/#dances): confirmed upcoming dances, soonest first
 - [Expected dances](https://twostepalberta.ca/#expected): yearly dances whose next date isn't posted yet
 - [Monthly dances](https://twostepalberta.ca/#monthly): regular weekly and monthly dances
+- [Calgary and area dances](https://twostepalberta.ca/calgary/): the same list, calendar and map for Calgary and nearby towns
 - [About and contact](https://twostepalberta.ca/about/): what the site is for and how to reach us
 
 ## Feeds
 
 - [Calendar feed (iCal)](https://twostepalberta.ca/dances.ics): every confirmed dance with times
 - [RSS feed](https://twostepalberta.ca/feed.xml): one item per confirmed dance
+- [Calgary calendar feed (iCal)](https://twostepalberta.ca/calgary/dances.ics) and [Calgary RSS feed](https://twostepalberta.ca/calgary/feed.xml)
 
 ## Add a dance
 
