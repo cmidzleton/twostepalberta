@@ -8,8 +8,21 @@ X-WR-TIMEZONE:America/Edmonton
 REFRESH-INTERVAL;VALUE=DURATION:PT12H
 X-PUBLISHED-TTL:PT12H
 BEGIN:VEVENT
+UID:facf6a2984d75ee0@twostepalberta.ca
+DTSTAMP:20261105T161606Z
+DTSTART:20261115T190000Z
+DTEND:20261115T220000Z
+SUMMARY:Swingin' Sundays at the Library
+LOCATION:Central Library\, Shaikh Family Welcome Gallery\, 800 3 St SE\, C
+ algary
+DESCRIPTION:Sunday\, November 15\, 2026. Beginner lesson 1 pm\, social dan
+ cing 2–4 pm\nCheck the event page before you go.\nhttps://www.eventbrite
+ .ca/e/swingin-sundays-tickets-1989320432966
+URL:https://www.eventbrite.ca/e/swingin-sundays-tickets-1989320432966
+END:VEVENT
+BEGIN:VEVENT
 UID:d35d301dbc4ceade@twostepalberta.ca
-DTSTAMP:20261105T042948Z
+DTSTAMP:20261105T161606Z
 DTSTART:20261121T003000Z
 DTEND:20261121T080000Z
 SUMMARY:Alberta Dreams: For the Love of 90's Country Dance Night
@@ -22,8 +35,20 @@ URL:https://www.showpass.com/alberta-dreams-for-the-love-of-90s-country-ca
  lgary/
 END:VEVENT
 BEGIN:VEVENT
+UID:0e906299441d68e9@twostepalberta.ca
+DTSTAMP:20261105T161606Z
+DTSTART:20261121T013000Z
+DTEND:20261121T050000Z
+SUMMARY:Red Aces Social Swing Dance
+LOCATION:Scott Block Theatre\, 4816 50 Ave\, Red Deer
+DESCRIPTION:Friday\, November 20\, 2026. Beginner lesson 7:30 pm\, social 
+ dancing 8:30–11 pm\nCheck the event page before you go.\nhttps://www.red
+ aces.ca/events/fall2026-socialdances-nov20
+URL:https://www.redaces.ca/events/fall2026-socialdances-nov20
+END:VEVENT
+BEGIN:VEVENT
 UID:52247a0aaee518e6@twostepalberta.ca
-DTSTAMP:20261105T042948Z
+DTSTAMP:20261105T161606Z
 DTSTART:20261129T000000Z
 DTEND:20261129T060000Z
 SUMMARY:Country Pride Dance Club Christmas Dinner & Dance
@@ -36,8 +61,33 @@ URL:https://www.eventbrite.ca/e/country-pride-dance-club-christmas-dinner-
  dance-tickets-2003899086110
 END:VEVENT
 BEGIN:VEVENT
+UID:19231a1efc3bb0e6@twostepalberta.ca
+DTSTAMP:20261105T161606Z
+DTSTART:20261213T013000Z
+DTEND:20261213T050000Z
+SUMMARY:Red Aces Christmas Swing Dance
+LOCATION:Scott Block Theatre\, 4816 50 Ave\, Red Deer
+DESCRIPTION:Saturday\, December 12\, 2026. Beginner lesson 7:30 pm\, socia
+ l dancing 8:30–11 pm\nCheck the event page before you go.\nhttps://www.r
+ edaces.ca/events/fall2026-socialdances-dec12
+URL:https://www.redaces.ca/events/fall2026-socialdances-dec12
+END:VEVENT
+BEGIN:VEVENT
+UID:bcde0d85dd82356f@twostepalberta.ca
+DTSTAMP:20261105T161606Z
+DTSTART:20261213T190000Z
+DTEND:20261213T220000Z
+SUMMARY:Swingin' Sundays at the Library
+LOCATION:Central Library\, Shaikh Family Welcome Gallery\, 800 3 St SE\, C
+ algary
+DESCRIPTION:Sunday\, December 13\, 2026. Beginner lesson 1 pm\, social dan
+ cing 2–4 pm\nCheck the event page before you go.\nhttps://www.eventbrite
+ .ca/e/swingin-sundays-tickets-1989320826142
+URL:https://www.eventbrite.ca/e/swingin-sundays-tickets-1989320826142
+END:VEVENT
+BEGIN:VEVENT
 UID:11fe1bec3a9dca48@twostepalberta.ca
-DTSTAMP:20261105T042948Z
+DTSTAMP:20261105T161606Z
 DTSTART:20261109T010000Z
 DTEND:20261109T050000Z
 RRULE:FREQ=WEEKLY;BYDAY=SU
@@ -50,7 +100,7 @@ URL:https://www.sunnycityswing.com/
 END:VEVENT
 BEGIN:VEVENT
 UID:4c93a69ec8700a54@twostepalberta.ca
-DTSTAMP:20261105T042948Z
+DTSTAMP:20261105T161606Z
 DTSTART:20261109T020000Z
 DTEND:20261109T050000Z
 RRULE:FREQ=WEEKLY;BYDAY=SU
@@ -60,5 +110,31 @@ DESCRIPTION:Every Sunday\, 8–11 pm. Group class before it at 7 pm (the s
  tyle changes)\nCheck the event page before you go.\nhttps://ballroomcountr
  y.com/social-dances/
 URL:https://ballroomcountry.com/social-dances/
+END:VEVENT
+BEGIN:VEVENT
+UID:ca726bacb31486bc@twostepalberta.ca
+DTSTAMP:20261105T161606Z
+DTSTART:20261107T023000Z
+DTEND:20261107T055900Z
+RRULE:FREQ=MONTHLY;BYDAY=1FR,3FR
+SUMMARY:Fly Right Friday Night Hop
+LOCATION:602 22 Ave NW\, Calgary (Mount Pleasant)
+DESCRIPTION:1st and 3rd Fridays. Beginner lesson 8:30 pm\, social dancing 
+ from 9:30 (end time not posted). Next: November 6 and 20\nCheck the event 
+ page before you go.\nhttps://flyrightswing.com/events
+URL:https://flyrightswing.com/events
+END:VEVENT
+BEGIN:VEVENT
+UID:76f23f7cae9c1e01@twostepalberta.ca
+DTSTAMP:20261105T161606Z
+DTSTART:20261107T013000Z
+DTEND:20261107T055900Z
+RRULE:FREQ=WEEKLY;INTERVAL=2;BYDAY=FR
+SUMMARY:WCSCalgary West Coast Swing Friday Night
+LOCATION:Ballroom & Country Dance Studio\, 121C 17 Ave NE\, Calgary
+DESCRIPTION:Every other Friday. Drop-in classes 7:30 pm\, social dancing 8
+ :30 pm to midnight. Next: November 6 and 20\, December 4\nCheck the event 
+ page before you go.\nhttps://www.wcscalgary.com/calendar
+URL:https://www.wcscalgary.com/calendar
 END:VEVENT
 END:VCALENDAR

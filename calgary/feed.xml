@@ -6,7 +6,13 @@
 <atom:link href="https://twostepalberta.ca/calgary/feed.xml" rel="self" type="application/rss+xml"/>
 <description>Hall dances, cabarets and social dances around Calgary, updated every Wednesday.</description>
 <language>en-ca</language>
-<lastBuildDate>Thu, 05 Nov 2026 04:29:48 +0000</lastBuildDate>
+<lastBuildDate>Thu, 05 Nov 2026 16:16:06 +0000</lastBuildDate>
+<item>
+<title>Swingin&#x27; Sundays at the Library</title>
+<link>https://www.eventbrite.ca/e/swingin-sundays-tickets-1989320432966</link>
+<guid isPermaLink="false">facf6a2984d75ee0@twostepalberta.ca</guid>
+<description>Central Library, Shaikh Family Welcome Gallery, 800 3 St SE, Calgary&lt;br&gt;Sunday, November 15, 2026. Beginner lesson 1 pm, social dancing 2–4 pm&lt;br&gt;Check the event page before you go.&lt;br&gt;https://www.eventbrite.ca/e/swingin-sundays-tickets-1989320432966</description>
+</item>
 <item>
 <title>Alberta Dreams: For the Love of 90&#x27;s Country Dance Night</title>
 <link>https://www.showpass.com/alberta-dreams-for-the-love-of-90s-country-calgary/</link>
@@ -14,10 +20,28 @@
 <description>Ranchman&#x27;s Cookhouse &amp; Dancehall, 9615 Macleod Trail S, Calgary&lt;br&gt;Friday, November 20, 2026. VIP table doors 6:30 pm, general admission doors 7:30 pm, ends 2 am&lt;br&gt;Check the event page before you go.&lt;br&gt;https://www.showpass.com/alberta-dreams-for-the-love-of-90s-country-calgary/</description>
 </item>
 <item>
+<title>Red Aces Social Swing Dance</title>
+<link>https://www.redaces.ca/events/fall2026-socialdances-nov20</link>
+<guid isPermaLink="false">0e906299441d68e9@twostepalberta.ca</guid>
+<description>Scott Block Theatre, 4816 50 Ave, Red Deer&lt;br&gt;Friday, November 20, 2026. Beginner lesson 7:30 pm, social dancing 8:30–11 pm&lt;br&gt;Check the event page before you go.&lt;br&gt;https://www.redaces.ca/events/fall2026-socialdances-nov20</description>
+</item>
+<item>
 <title>Country Pride Dance Club Christmas Dinner &amp; Dance</title>
 <link>https://www.eventbrite.ca/e/country-pride-dance-club-christmas-dinner-dance-tickets-2003899086110</link>
 <guid isPermaLink="false">52247a0aaee518e6@twostepalberta.ca</guid>
 <description>Northside Community Centre (YMCA), 6391 76 St, Red Deer&lt;br&gt;Saturday, November 28, 2026. Doors 6 pm, dinner 7 pm, social dancing until midnight&lt;br&gt;Check the event page before you go.&lt;br&gt;https://www.eventbrite.ca/e/country-pride-dance-club-christmas-dinner-dance-tickets-2003899086110</description>
+</item>
+<item>
+<title>Red Aces Christmas Swing Dance</title>
+<link>https://www.redaces.ca/events/fall2026-socialdances-dec12</link>
+<guid isPermaLink="false">19231a1efc3bb0e6@twostepalberta.ca</guid>
+<description>Scott Block Theatre, 4816 50 Ave, Red Deer&lt;br&gt;Saturday, December 12, 2026. Beginner lesson 7:30 pm, social dancing 8:30–11 pm&lt;br&gt;Check the event page before you go.&lt;br&gt;https://www.redaces.ca/events/fall2026-socialdances-dec12</description>
+</item>
+<item>
+<title>Swingin&#x27; Sundays at the Library</title>
+<link>https://www.eventbrite.ca/e/swingin-sundays-tickets-1989320826142</link>
+<guid isPermaLink="false">bcde0d85dd82356f@twostepalberta.ca</guid>
+<description>Central Library, Shaikh Family Welcome Gallery, 800 3 St SE, Calgary&lt;br&gt;Sunday, December 13, 2026. Beginner lesson 1 pm, social dancing 2–4 pm&lt;br&gt;Check the event page before you go.&lt;br&gt;https://www.eventbrite.ca/e/swingin-sundays-tickets-1989320826142</description>
 </item>
 <item>
 <title>Sunny City Swing Sunday Social Dance</title>
@@ -30,6 +54,18 @@
 <link>https://ballroomcountry.com/social-dances/</link>
 <guid isPermaLink="false">4c93a69ec8700a54@twostepalberta.ca</guid>
 <description>Ballroom &amp; Country Dance Studio, 121C 17 Ave NE, Calgary&lt;br&gt;Every Sunday, 8–11 pm. Group class before it at 7 pm (the style changes)&lt;br&gt;Check the event page before you go.&lt;br&gt;https://ballroomcountry.com/social-dances/</description>
+</item>
+<item>
+<title>Fly Right Friday Night Hop</title>
+<link>https://flyrightswing.com/events</link>
+<guid isPermaLink="false">ca726bacb31486bc@twostepalberta.ca</guid>
+<description>602 22 Ave NW, Calgary (Mount Pleasant)&lt;br&gt;1st and 3rd Fridays. Beginner lesson 8:30 pm, social dancing from 9:30 (end time not posted). Next: November 6 and 20&lt;br&gt;Check the event page before you go.&lt;br&gt;https://flyrightswing.com/events</description>
+</item>
+<item>
+<title>WCSCalgary West Coast Swing Friday Night</title>
+<link>https://www.wcscalgary.com/calendar</link>
+<guid isPermaLink="false">76f23f7cae9c1e01@twostepalberta.ca</guid>
+<description>Ballroom &amp; Country Dance Studio, 121C 17 Ave NE, Calgary&lt;br&gt;Every other Friday. Drop-in classes 7:30 pm, social dancing 8:30 pm to midnight. Next: November 6 and 20, December 4&lt;br&gt;Check the event page before you go.&lt;br&gt;https://www.wcscalgary.com/calendar</description>
 </item>
 </channel>
 </rss>

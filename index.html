@@ -272,6 +272,7 @@ section { scroll-margin-top: 1rem; }
 .search select { font: inherit; padding: .45rem .5rem; border: 1px solid var(--rule); border-radius: 4px; background: var(--card); color: var(--ink); justify-self: start; }
 .pill.age { background: var(--barn); color: var(--card); }
 .pill.city { background: var(--denim); color: var(--card); }
+.pill.swing { background: #2f5d50; color: var(--card); }
 /* Edmonton cards: blue date stub and a light blue edge, so they stand apart from the small town dances */
 .ticket[data-area="edmonton"] .stub { background: var(--denim); color: var(--cream); }
 .ticket[data-area="edmonton"] { border-color: #b9c8d8; background: #f5f8fb; }
@@ -461,7 +462,7 @@ html { scroll-behavior: smooth; }
       <li class="ticket" data-area="edmonton" data-status="confirmed" data-age="18plus" data-cal="20261106T1700/20261106T2300">
         <div class="stub" aria-hidden="true"><span class="dow">Fri</span><span class="day">6</span><span class="mon">Nov</span></div>
         <div class="body">
-          <h3>Blatchford Boogie Woogie <span class="pill age">18+</span> <span class="pill city">Edmonton</span></h3>
+          <h3>Blatchford Boogie Woogie <span class="pill age">18+</span> <span class="pill swing">Swing</span> <span class="pill city">Edmonton</span></h3>
           <p class="where">Alberta Aviation Museum, 11410 Kingsway NW, Edmonton · <span class="drive" data-ll="53.571,-113.518" data-town="Edmonton">in the city</span></p>
           <ul class="facts">
             <li><b>When:</b> Friday, November 6, 2026. Dinner guests 5 pm, dance tickets from 7 pm, swing lesson about 7:30, big band about 8 pm, ends 11 pm</li>
@@ -549,6 +550,16 @@ html { scroll-behavior: smooth; }
           <p class="src">More info: <a href="https://goeastofedmonton.com/events/stry-75th-anniversary-hall-celebrating-the-fall-season/" target="_blank" rel="noopener">Go East of Edmonton, Stry Hall 75th</a></p>
         </div>
       </li>
+      <li class="ticket" data-area="edmonton" data-status="confirmed" data-age="unknown" data-cal="20261114T1930/20261114T2330">
+        <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">14</span><span class="mon">Nov</span></div>
+        <div class="body">
+          <h3>West Coast Swing Social Dance with Benji Schwimmer <span class="pill swing">Swing</span> <span class="pill city">Edmonton</span></h3>
+          <p class="where">Aldergrove Community League, 8535 182 St NW, Edmonton · <span class="drive" data-ll="53.522,-113.633" data-town="Edmonton">in the city</span></p>
+          <ul class="facts"><li><b>When:</b> Saturday, November 14, 2026. Lesson with Benji Schwimmer 7:30 pm, social dance 8:30–11:30 pm</li><li><b>Music:</b> DJ Eva Blakney</li><li><b>Price:</b> $20 at the door for the dance</li></ul>
+          <p class="notes">The Saturday night social at a West Coast Swing workshop weekend. You can come for the dance alone without taking the workshops.</p>
+          <p class="src">More info: <a href="https://westcoastswingedmonton.com/benji-schwimmer-2026-workshop/" target="_blank" rel="noopener">West Coast Swing Edmonton, Benji Schwimmer weekend</a></p>
+        </div>
+      </li>
       <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20261114T2000/20261115T0000">
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">14</span><span class="mon">Nov</span></div>
         <div class="body">
@@ -589,6 +600,16 @@ html { scroll-behavior: smooth; }
           <p class="src">More info: <a href="https://www.cfcw.com/events/450704/" target="_blank" rel="noopener">CFCW, Minus One Dance Club</a> and <a href="http://www.minusonedanceclub.com" target="_blank" rel="noopener">Minus One Dance Club</a></p>
         </div>
       </li>
+      <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20261120T1930/20261120T2300">
+        <div class="stub" aria-hidden="true"><span class="dow">Fri</span><span class="day">20</span><span class="mon">Nov</span></div>
+        <div class="body">
+          <h3>Red Aces Social Swing Dance <span class="pill swing">Swing</span></h3>
+          <p class="where">Scott Block Theatre, 4816 50 Ave, Red Deer · <span class="drive" data-ll="52.268,-113.812" data-town="Red Deer">~1 hr 45 min from Edmonton</span></p>
+          <ul class="facts"><li><b>When:</b> Friday, November 20, 2026. Beginner lesson 7:30 pm, social dancing 8:30–11 pm</li><li><b>Price:</b> $12, lesson included</li></ul>
+          <p class="notes">Red Deer's swing club (Lindy hop, Charleston, Balboa). No partner or experience needed; bring indoor shoes.</p>
+          <p class="src">More info: <a href="https://www.redaces.ca/events/fall2026-socialdances-nov20" target="_blank" rel="noopener">Red Aces Dance Club</a></p>
+        </div>
+      </li>
       <li class="ticket" data-status="confirmed" data-age="all" data-cal="20261121T1730/20261121T2330">
         <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">21</span><span class="mon">Nov</span></div>
         <div class="body">
@@ -607,6 +628,16 @@ html { scroll-behavior: smooth; }
           <ul class="facts"><li><b>When:</b> Saturday, November 21, 2026, 7 pm</li><li><b>Music:</b> Chad Brownlee, Tim Hus</li><li><b>Price:</b> From $66.25</li></ul>
           <p class="notes">The U of A Ag Club's big country cabaret. Money goes to STARS. Tickets on Ticketmaster or in person on campus.</p>
           <p class="src">More info: <a href="https://timhus.ca/tour" target="_blank" rel="noopener">Tim Hus tour page</a> and <a href="https://uofaagricultureclub.com/bar-none/" target="_blank" rel="noopener">U of A Ag Club, Bar None</a></p>
+        </div>
+      </li>
+      <li class="ticket" data-area="edmonton" data-status="confirmed" data-age="unknown" data-cal="20261125T1830/20261125T2030">
+        <div class="stub" aria-hidden="true"><span class="dow">Wed</span><span class="day">25</span><span class="mon">Nov</span></div>
+        <div class="body">
+          <h3>Swing at Fringe <span class="pill swing">Swing</span> <span class="pill city">Edmonton</span></h3>
+          <p class="where">Studio A, Fringe Theatre, 10330 84 Ave NW, Edmonton · <span class="drive" data-ll="53.520,-113.496" data-town="Edmonton">in the city</span></p>
+          <ul class="facts"><li><b>When:</b> Wednesday, November 25, 2026, 6:30–8:30 pm</li><li><b>Price:</b> Free</li></ul>
+          <p class="notes">A free swing social hosted by Hit That Jive, with music for Lindy hop and Balboa. Everyone welcome; bring indoor shoes.</p>
+          <p class="src">More info: <a href="https://www.hitthatjive.ca/swingatfringe" target="_blank" rel="noopener">Hit That Jive, Swing at Fringe</a></p>
         </div>
       </li>
       <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20261128T1700/20261128T2300">
@@ -669,6 +700,26 @@ html { scroll-behavior: smooth; }
           </ul>
           <p class="notes">You can get dinner and dance, or dance only.</p>
           <p class="src">More info: <a href="https://calvinvollrath.com/tickets" target="_blank" rel="noopener">calvinvollrath.com/tickets</a></p>
+        </div>
+      </li>
+      <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20261212T1930/20261212T2300">
+        <div class="stub" aria-hidden="true"><span class="dow">Sat</span><span class="day">12</span><span class="mon">Dec</span></div>
+        <div class="body">
+          <h3>Red Aces Christmas Swing Dance <span class="pill swing">Swing</span></h3>
+          <p class="where">Scott Block Theatre, 4816 50 Ave, Red Deer · <span class="drive" data-ll="52.268,-113.812" data-town="Red Deer">~1 hr 45 min from Edmonton</span></p>
+          <ul class="facts"><li><b>When:</b> Saturday, December 12, 2026. Beginner lesson 7:30 pm, social dancing 8:30–11 pm</li><li><b>Price:</b> $12, lesson included</li></ul>
+          <p class="notes">Festive dress encouraged. Red Deer's swing club (Lindy hop, Charleston, Balboa). No partner or experience needed; bring indoor shoes.</p>
+          <p class="src">More info: <a href="https://www.redaces.ca/events/fall2026-socialdances-dec12" target="_blank" rel="noopener">Red Aces Dance Club</a></p>
+        </div>
+      </li>
+      <li class="ticket" data-area="edmonton" data-status="confirmed" data-age="unknown" data-cal="20261216T1830/20261216T2030">
+        <div class="stub" aria-hidden="true"><span class="dow">Wed</span><span class="day">16</span><span class="mon">Dec</span></div>
+        <div class="body">
+          <h3>Swing at Fringe <span class="pill swing">Swing</span> <span class="pill city">Edmonton</span></h3>
+          <p class="where">Westbury Theatre, Fringe Theatre, 10330 84 Ave NW, Edmonton · <span class="drive" data-ll="53.520,-113.496" data-town="Edmonton">in the city</span></p>
+          <ul class="facts"><li><b>When:</b> Wednesday, December 16, 2026, 6:30–8:30 pm</li><li><b>Price:</b> Free</li></ul>
+          <p class="notes">A free swing social hosted by Hit That Jive, with music for Lindy hop and Balboa. Everyone welcome; bring indoor shoes.</p>
+          <p class="src">More info: <a href="https://www.hitthatjive.ca/swingatfringe" target="_blank" rel="noopener">Hit That Jive, Swing at Fringe</a></p>
         </div>
       </li>
       <li class="ticket" data-status="confirmed" data-age="unknown" data-cal="20261222T1700/20261222T2100">
@@ -899,6 +950,26 @@ html { scroll-behavior: smooth; }
           <ul class="facts"><li><b>When:</b> Every Saturday, 7–11 pm</li><li><b>Band:</b> Live band, changes weekly. November: Bryce Delorme Band (Nov 7), CC &amp; High Rider (Nov 14), Trick Ryder (Nov 21), Dean Henry Band (Nov 28)</li><li><b>Price:</b> $10 Legion members, $15 non-members</li></ul>
           <p class="notes">Open to everyone; non-members pay the higher cover. Bands are on the Legion's monthly calendar.</p>
           <p class="src">More info: <a href="https://kingswaylegion.ca/mon%2C-fri-%26-sat-dances" target="_blank" rel="noopener">kingswaylegion.ca, Friday &amp; Saturday Night Dances</a> (bands: <a href="https://kingswaylegion.ca/events-calendar" target="_blank" rel="noopener">events calendar</a>)</p>
+        </div>
+      </li>
+      <li class="ticket" data-area="edmonton" data-status="confirmed" data-age="unknown" data-cal="20261106T1930/20261106T2330" data-rrule="FREQ=WEEKLY;BYDAY=FR,SA">
+        <div class="stub recurring" aria-hidden="true"><span class="mon">Every</span><span class="day">Fri/Sat</span></div>
+        <div class="body">
+          <h3>Sugar Swing Friday &amp; Saturday Social Dance <span class="pill swing">Swing</span> <span class="pill city">Edmonton</span></h3>
+          <p class="where">Sugar Swing Ballroom, 10019 80 Ave NW, Edmonton · <span class="drive" data-ll="53.517,-113.490" data-town="Edmonton">in the city</span></p>
+          <ul class="facts"><li><b>When:</b> Every Friday and Saturday. Doors 7 pm, beginner lesson 7:30, social dancing from 8:30 (end time not posted). No socials Dec 24, 25, 26, 30 or Jan 1</li><li><b>Price:</b> $15 online, $16 at the door, lesson included. Live music nights (Nov 20 and 21) are $25–$28 at the door</li></ul>
+          <p class="notes">Swing dancing (Lindy hop, Balboa, Charleston), not country. No partner needed.</p>
+          <p class="src">More info: <a href="https://www.sugarswing.com/register/tickets/" target="_blank" rel="noopener">Sugar Swing, dance socials</a></p>
+        </div>
+      </li>
+      <li class="ticket" data-area="edmonton" data-status="confirmed" data-age="unknown" data-cal="20261106T1930/20261106T2330" data-rrule="FREQ=MONTHLY;BYDAY=1FR,3FR">
+        <div class="stub recurring" aria-hidden="true"><span class="mon">1st &amp; 3rd</span><span class="day">Fri</span></div>
+        <div class="body">
+          <h3>West Coast Swing Edmonton Social Dance <span class="pill swing">Swing</span> <span class="pill city">Edmonton</span></h3>
+          <p class="where">Bonnie Doon Community Hall, 9240 93 St NW, Edmonton · <span class="drive" data-ll="53.522,-113.471" data-town="Edmonton">in the city</span></p>
+          <ul class="facts"><li><b>When:</b> 1st and 3rd Fridays. Beginner lesson 7:30 pm, social dancing 8:30–11:30 pm. Next: November 6 and 20, December 4 and 18</li><li><b>Price:</b> $10, lesson included; kids free</li></ul>
+          <p class="notes">Put on by the West Coast Swing Addicts Dance Society. Mostly West Coast Swing, with a few two-step songs. Bring clean indoor shoes.</p>
+          <p class="src">More info: <a href="https://westcoastswingedmonton.com/" target="_blank" rel="noopener">West Coast Swing Edmonton</a></p>
         </div>
       </li>
     </ol>
@@ -1254,8 +1325,11 @@ html { scroll-behavior: smooth; }
     var p = {}; e.rr.split(';').forEach(function (x) { var kv = x.split('='); p[kv[0]] = kv[1]; });
     var dt = new Date(y, m, d);
     if (p.BYMONTH && p.BYMONTH.split(',').indexOf(String(m + 1)) === -1) return false;
-    if (p.FREQ === 'WEEKLY') return dt.getDay() === BYDAY[p.BYDAY];
-    if (p.FREQ === 'MONTHLY') { var n = +p.BYDAY.slice(0, -2), wd = BYDAY[p.BYDAY.slice(-2)]; return dt.getDay() === wd && Math.ceil(d / 7) === n; }
+    if (p.FREQ === 'WEEKLY') {
+      if (p.BYDAY.split(',').map(function (x) { return BYDAY[x]; }).indexOf(dt.getDay()) === -1) return false;
+      var iv = +(p.INTERVAL || 1); return iv === 1 || Math.round((dt - new Date(e.y, e.m, e.d)) / 864e5 / 7) % iv === 0;
+    }
+    if (p.FREQ === 'MONTHLY') return p.BYDAY.split(',').some(function (x) { return dt.getDay() === BYDAY[x.slice(-2)] && Math.ceil(d / 7) === +x.slice(0, -2); });
     return false;
   }
   function eventsOn(y, m, d) { return events.filter(function (e) { return !e.el.hidden && onDate(e, y, m, d); }); }
