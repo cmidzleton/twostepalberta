@@ -9,7 +9,7 @@ REFRESH-INTERVAL;VALUE=DURATION:PT12H
 X-PUBLISHED-TTL:PT12H
 BEGIN:VEVENT
 UID:d35d301dbc4ceade@twostepalberta.ca
-DTSTAMP:20261105T042312Z
+DTSTAMP:20261105T042923Z
 DTSTART:20261121T003000Z
 DTEND:20261121T080000Z
 SUMMARY:Alberta Dreams: For the Love of 90's Country Dance Night
@@ -22,16 +22,28 @@ URL:https://www.showpass.com/alberta-dreams-for-the-love-of-90s-country-ca
  lgary/
 END:VEVENT
 BEGIN:VEVENT
-UID:11fe1bec3a9dca48@twostepalberta.ca
-DTSTAMP:20261105T042312Z
-DTSTART:20261109T010000Z
+UID:52247a0aaee518e6@twostepalberta.ca
+DTSTAMP:20261105T042923Z
+DTSTART:20261129T000000Z
+DTEND:20261129T060000Z
+SUMMARY:Country Pride Dance Club Christmas Dinner & Dance
+LOCATION:Northside Community Centre (YMCA)\, 6391 76 St\, Red Deer
+DESCRIPTION:Saturday\, November 28\, 2026. Doors 6 pm\, dinner 7 pm\, soci
+ al dancing until midnight\nCheck the event page before you go.\nhttps://ww
+ w.sunnycityswing.com/
+URL:https://www.sunnycityswing.com/
+END:VEVENT
+BEGIN:VEVENT
+UID:4c93a69ec8700a54@twostepalberta.ca
+DTSTAMP:20261105T042923Z
+DTSTART:20261109T020000Z
 DTEND:20261109T050000Z
 RRULE:FREQ=WEEKLY;BYDAY=SU
-SUMMARY:Sunny City Swing Sunday Social Dance
-LOCATION:Sunalta Community Hall\, 1627 10 Ave SW\, Calgary
-DESCRIPTION:Every Sunday. Beginner drop-in class 7 pm\, social dancing fro
- m 8 pm (end time not posted)\nCheck the event page before you go.\nhttps:/
- /www.sunnycityswing.com/
-URL:https://www.sunnycityswing.com/
+SUMMARY:Ballroom & Country Sunday Night Social Dance
+LOCATION:Ballroom & Country Dance Studio\, 121C 17 Ave NE\, Calgary
+DESCRIPTION:Every Sunday\, 8–11 pm. Group class before it at 7 pm (the s
+ tyle changes)\nCheck the event page before you go.\nhttps://ballroomcountr
+ y.com/social-dances/
+URL:https://ballroomcountry.com/social-dances/
 END:VEVENT
 END:VCALENDAR
