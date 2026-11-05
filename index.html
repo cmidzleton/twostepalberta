@@ -114,6 +114,7 @@ h1, h2, h3 { text-wrap: balance; line-height: 1.15; margin: 0; }
 .mast .weekly { margin: .6rem 0 0; font-weight: 700; color: var(--canola); }
 .cta-row { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.25rem; }
 .mast .cta { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; margin-top: 0; background: var(--canola); color: var(--saddle); padding: .7rem 1.1rem; border-radius: 4px; font-weight: 700; text-decoration: none; }
+@media (max-width: 48rem) { .foot-name { display: none; } }
 @media (max-width: 48rem) { .mast .cta-row { display: none; } .hero-logo { width: min(100%, 17rem); margin-top: .5rem; } .mast .wrap { padding-block: .5rem 1.25rem; } .mast h1 { margin-top: .75rem; } }
 @media (max-width: 30rem) { .cta-row { flex-wrap: nowrap; } .mast .cta { flex: 1 1 auto; text-align: center; padding: .7rem .7rem; font-size: .95rem; } }
 
@@ -151,8 +152,6 @@ h2 { font-family: var(--font-body); font-weight: 800; font-size: clamp(1.45rem, 
 .news-dialog { border: 0; border-radius: 10px; padding: 1.4rem; width: min(34rem, calc(100vw - 32px)); max-height: 85vh; background: var(--card); color: var(--ink); box-shadow: 0 20px 50px rgba(0,0,0,.35); }
 .news-dialog::backdrop { background: rgba(20, 12, 6, .55); }
 .news-dialog h2 { font-size: 1.3rem; margin: 0 0 .8rem; }
-.news-dialog h3 { font-size: 1rem; margin: 1rem 0 .3rem; color: var(--barn); }
-.news-dialog section:first-child h3 { margin-top: 0; }
 .news-dialog ul { margin: 0; padding-left: 1.2rem; }
 .news-dialog li { margin: .3rem 0; }
 .news-close { display: block; width: 100%; margin-top: 1.2rem; font: inherit; font-weight: 700; color: var(--denim); background: none; border: 1px solid var(--rule); border-radius: 6px; padding: .7rem; cursor: pointer; }
@@ -935,43 +934,24 @@ html { scroll-behavior: smooth; }
   <div class="wrap">
     <p>Last updated <span class="updated">November 2, 2026</span>.</p>
     <p>We don't run these dances. We just list what halls and organizers post online, so check the event page before you go.</p>
-    <p>Two-Step Alberta · <a href="/about/">About</a> · <a href="https://forms.gle/v9GQNi8NgZG2gEBN8" target="_blank" rel="noopener">Site feedback</a> · <a href="/about/#contact">Contact us</a></p>
+    <p><span class="foot-name">Two-Step Alberta · </span><a href="/about/">About</a> · <a href="https://forms.gle/v9GQNi8NgZG2gEBN8" target="_blank" rel="noopener">Site feedback</a> · <a href="/about/#contact">Contact us</a></p>
     <p><button type="button" class="news-btn" id="news-btn" aria-haspopup="dialog">What's new on the site</button></p>
   </div>
 </footer>
 
-<!-- What's new: add a <section data-date="YYYY-MM-DD"> per day with features added that day.
-     Only the current month shows; delete last month's sections at the start of each month. -->
+<!-- What's new: keep the 5 most impressive recent features. No dates (Curtis, Nov 4).
+     When a new feature ships, add it at the top and drop the weakest so there are still 5. -->
 <dialog class="news-dialog" id="news" aria-labelledby="news-h">
   <h2 id="news-h">What's new on the site</h2>
   <div class="news-list">
-    <section data-date="2026-11-03">
-      <h3>November 3, 2026</h3>
-      <ul>
-        <li>A simpler page: the dances start sooner on phones, with fewer buttons in the way.</li>
-        <li>The main links are always showing at the top, no menu button.</li>
-        <li>Pick where you're driving from right under the search box. Your phone remembers it.</li>
-        <li>Bigger buttons and text that are easier to tap and read.</li>
-        <li>About and Contact us moved to their own page.</li>
-        <li>One list: Edmonton dances are now in Confirmed dances, in blue. Turn off "Show Edmonton dances" to hide them.</li>
-        <li>A Map view: tap Map to see how many confirmed dances are in each town.</li>
-      </ul>
-    </section>
-    <section data-date="2026-11-02">
-      <h3>November 2, 2026</h3>
-      <ul>
-        <li>Search by town, hall or band, and a box to show only dances with a confirmed date.</li>
-        <li>Drive time calculator: use your location or pick your town to see roughly how far each dance is.</li>
-        <li>Add to calendar on every confirmed dance, for Google, Apple or Outlook.</li>
-        <li>Subscribe: get an email when we post new dances, or add them all to your calendar.</li>
-        <li>Buttons to jump to each section, and Back to search links.</li>
-        <li>On phones: a menu button, shorter cards with a Details button, and bigger buttons that are easier to tap.</li>
-        <li>The page loads faster.</li>
-        <li>Switch between a list and a calendar view of the dances.</li>
-      </ul>
-    </section>
+    <ul>
+      <li>A Map view: tap Map to see how many confirmed dances are in each town.</li>
+      <li>Drive times: use your location or pick your town to see roughly how far each dance is.</li>
+      <li>Add to calendar on every confirmed dance, for Google, Apple or Outlook.</li>
+      <li>Subscribe: get an email when we post new dances, or add them all to your calendar.</li>
+      <li>Switch between a list and a calendar view of the dances.</li>
+    </ul>
   </div>
-  <p class="news-empty" hidden>Nothing new yet this month.</p>
   <button type="button" class="news-close">Close</button>
 </dialog>
 
@@ -1211,11 +1191,6 @@ html { scroll-behavior: smooth; }
 <script>
 (function () {
   var d = document.getElementById('news'), b = document.getElementById('news-btn'); if (!d || !b) return;
-  // Only show this month's updates (Alberta time); older ones drop off on their own.
-  var month = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Edmonton', year: 'numeric', month: '2-digit' }).format(new Date()).slice(0, 7);
-  var shown = 0;
-  d.querySelectorAll('.news-list section').forEach(function (s) { var on = s.getAttribute('data-date').slice(0, 7) === month; s.hidden = !on; if (on) shown++; });
-  d.querySelector('.news-empty').hidden = shown > 0;
   b.addEventListener('click', function () { if (d.showModal) d.showModal(); else d.setAttribute('open', ''); });
   d.querySelector('.news-close').addEventListener('click', function () { d.close(); });
   d.addEventListener('click', function (e) { if (e.target === d) d.close(); });
