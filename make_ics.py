@@ -31,8 +31,8 @@ def fold(line):
 def main():
     with open('index.html', encoding='utf-8') as f: src = f.read()
     stamp = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')
-    lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Two-Step Alberta//Dances//EN',
-             'CALSCALE:GREGORIAN', 'METHOD:PUBLISH', 'X-WR-CALNAME:Two-Step Alberta dances',
+    lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Two Step Alberta//Dances//EN',
+             'CALSCALE:GREGORIAN', 'METHOD:PUBLISH', 'X-WR-CALNAME:Two Step Alberta dances',
              'X-WR-TIMEZONE:America/Edmonton', 'REFRESH-INTERVAL;VALUE=DURATION:PT12H',
              'X-PUBLISHED-TTL:PT12H']
     n = 0
@@ -72,7 +72,7 @@ def write_rss(items):
     now = format_datetime(datetime.now(timezone.utc))
     x = lambda v: html.escape(v, quote=True)
     out = ['<?xml version="1.0" encoding="UTF-8"?>', '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">', '<channel>',
-           '<title>Two-Step Alberta: new dances</title>', '<link>https://twostepalberta.ca/</link>',
+           '<title>Two Step Alberta: new dances</title>', '<link>https://twostepalberta.ca/</link>',
            '<atom:link href="https://twostepalberta.ca/feed.xml" rel="self" type="application/rss+xml"/>',
            '<description>Hall dances, cabarets and suppers around Edmonton, updated every Wednesday.</description>',
            '<language>en-ca</language>', '<lastBuildDate>' + now + '</lastBuildDate>']
