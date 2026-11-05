@@ -134,6 +134,7 @@ h2 { font-family: var(--font-body); font-weight: 800; font-size: clamp(1.45rem, 
 .body { padding: .9rem 1.1rem 1rem; min-width: 0; }
 .body h3 { font-size: 1.12rem; font-weight: 700; }
 .where { color: var(--muted); margin: .15rem 0 .5rem; font-size: .97rem; }
+.where .map-link { color: inherit; text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 3px; }
 .facts { display: flex; flex-wrap: wrap; gap: .3rem 1.1rem; margin: 0; padding: 0; list-style: none; font-size: .93rem; }
 .facts b { font-weight: 600; }
 .pill { display: inline-block; font-size: .875rem; font-weight: 700; letter-spacing: .01em; padding: .12rem .5rem; border-radius: 999px; vertical-align: .15em; margin-left: .35rem; white-space: nowrap; }
@@ -1184,6 +1185,22 @@ html { scroll-behavior: smooth; }
     }
     body.appendChild(row);
     if (cal) body.appendChild(cal);
+  });
+})();
+</script>
+
+<script>
+// Hall name/address on each card opens that spot in Google Maps.
+(function () {
+  document.querySelectorAll('.ticket .where').forEach(function (w) {
+    var n = w.firstChild; if (!n || n.nodeType !== 3) return;
+    var text = n.nodeValue.replace(/\s*·\s*$/, ''); if (!text.trim()) return;
+    var q = text.replace(/\([^)]*\)/g, '').replace(/,\s*(east|west|north|south) of [^,]*/gi, '').replace(/\bnear\s+/gi, '').replace(/\s+,/g, ',').replace(/\s+/g, ' ').trim() + ', Alberta';
+    var a = document.createElement('a');
+    a.className = 'map-link'; a.href = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(q);
+    a.target = '_blank'; a.rel = 'noopener'; a.textContent = text;
+    a.setAttribute('aria-label', text + ' (opens in Google Maps)');
+    w.insertBefore(a, n); n.nodeValue = n.nodeValue.slice(n.nodeValue.indexOf(text) + text.length);
   });
 })();
 </script>
