@@ -206,6 +206,14 @@ footer .wrap { padding-block: 1.5rem 2.5rem; color: var(--muted); font-size: .9r
 .cv-nav { font: inherit; font-size: 1.6rem; line-height: 1; width: 2.75rem; height: 2.75rem; border: 1px solid var(--rule); border-radius: 999px; background: var(--card); color: var(--saddle); cursor: pointer; }
 .cv-nav:disabled { opacity: .35; cursor: default; }
 .cv-note { margin: 0 0 .7rem; font-size: .92rem; font-weight: 600; color: var(--ink); }
+/* Calendar genre filter: All / Country / Swing. Calendar view only; always opens on All. */
+.cv-genre { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin: 0 0 .8rem; }
+.cv-genre .lbl { font-weight: 700; margin-right: .1rem; }
+.cv-genre button { font: inherit; font-weight: 700; font-size: .95rem; min-height: 44px; min-width: 4.5rem; padding: .45rem .9rem; border: 2px solid var(--saddle); border-radius: 999px; background: var(--card); color: var(--saddle); cursor: pointer; }
+.cv-genre button[aria-pressed="true"] { background: var(--saddle); color: var(--cream); }
+.cv-genre button[data-g="swing"] { border-color: #2f5d50; color: #2f5d50; }
+.cv-genre button[data-g="swing"][aria-pressed="true"] { background: #2f5d50; color: var(--card); }
+.cv-genre button:focus-visible { outline: 3px solid var(--canola); outline-offset: 2px; }
 .cv-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 3px; }
 .cv-dow { text-align: center; font-size: .875rem; font-weight: 700; color: var(--muted); padding: .2rem 0; text-transform: uppercase; }
 .cv-cell { min-height: 4.6rem; background: var(--card); border: 1px solid var(--rule); border-radius: 4px; padding: .25rem .3rem; font: inherit; text-align: left; color: var(--ink); display: flex; flex-direction: column; gap: .15rem; overflow: hidden; }
@@ -425,6 +433,7 @@ html { scroll-behavior: smooth; }
       <button type="button" class="cv-nav" id="cv-next" aria-label="Next month">&rsaquo;</button>
     </div>
     <p class="cv-note">Only confirmed dances are on the calendar. Expected dances (date not posted yet) are in the list view.</p>
+    <div class="cv-genre" role="group" aria-label="Which kind of dances to show"><span class="lbl" aria-hidden="true">Show:</span><button type="button" data-g="all" aria-pressed="true">All</button><button type="button" data-g="country" aria-pressed="false">Country</button><button type="button" data-g="swing" aria-pressed="false">Swing</button></div>
     <div class="cv-grid" id="cv-grid" role="grid"></div>
     <div class="cv-day" id="cv-day" aria-live="polite"></div>
   </section>
@@ -900,7 +909,8 @@ html { scroll-behavior: smooth; }
     var a = t.querySelector('.src a');
     events.push({ el: t, title: clean(t.querySelector('h3')), where: clean(t.querySelector('.where')).split(' · ')[0],
       y: +cal.slice(0, 4), m: +cal.slice(4, 6) - 1, d: +cal.slice(6, 8),
-      time: cal.indexOf('T') > -1 ? clock(cal.slice(9, 13)) : 'Time not listed', rr: rr, link: a ? a.href : '' });
+      time: cal.indexOf('T') > -1 ? clock(cal.slice(9, 13)) : 'Time not listed', rr: rr, link: a ? a.href : '',
+      genre: t.querySelector('.pill.swing') ? 'swing' : 'country' });
   });
   function onDate(e, y, m, d) {
     var k = key(y, m, d), start = key(e.y, e.m, e.d);
@@ -916,7 +926,14 @@ html { scroll-behavior: smooth; }
     if (p.FREQ === 'MONTHLY') return p.BYDAY.split(',').some(function (x) { return dt.getDay() === BYDAY[x.slice(-2)] && Math.ceil(d / 7) === +x.slice(0, -2); });
     return false;
   }
-  function eventsOn(y, m, d) { return events.filter(function (e) { return !e.el.hidden && onDate(e, y, m, d); }); }
+  var genre = 'all';
+  function eventsOn(y, m, d) { return events.filter(function (e) { return !e.el.hidden && (genre === 'all' || e.genre === genre) && onDate(e, y, m, d); }); }
+  var gBtns = cv.querySelectorAll('.cv-genre button');
+  gBtns.forEach(function (b) { b.addEventListener('click', function () {
+    genre = b.getAttribute('data-g');
+    gBtns.forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+    sel = null; render();
+  }); });
   var now = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Edmonton' }));
   var minY = now.getFullYear(), minM = now.getMonth(), curY = minY, curM = minM, sel = null;
   function render() {
@@ -948,7 +965,7 @@ html { scroll-behavior: smooth; }
   }
   function showDay() {
     dayBox.innerHTML = '';
-    if (sel === null) { dayBox.innerHTML = '<p class="section-note">No dances posted this month yet.</p>'; return; }
+    if (sel === null) { dayBox.innerHTML = '<p class="section-note">' + (genre === 'all' ? 'No dances posted this month yet.' : 'No ' + genre + ' dances posted this month yet. Tap All to see the rest.') + '</p>'; return; }
     var evs = eventsOn(curY, curM, sel), wd = new Date(curY, curM, sel).getDay();
     var h = document.createElement('h3'); h.textContent = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][wd] + ', ' + MONTHS[curM] + ' ' + sel;
     var ul = document.createElement('ul');
